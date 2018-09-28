@@ -494,7 +494,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;
         <ul><li id="loadImgsBtn" onclick="load_json_project()" title="Load images and start annotating">Load images and start annotating</li></ul>
         <ul><li onclick="help()" title="Show instructions">Help</li></ul>
-        <ul><li  onclick="copy_user_id() title="This is your user id. Provide it with the result E-Mail."><div id="user_id" style="width:140px;">User ID: </div></li></ul>
+        <ul><li  onclick="copy_user_id() title="This is your user id. Provide it with the result E-Mail."><div id="user_id" style="width:350px;">User ID: [appears after saving the finished JSON file]</div></li></ul>
 
         <!-- <svg onclick="sel_all_regions()" viewbox="0 0 24 24" style="margin-left:1rem;"><use xlink:href="#icon_selectall"></use><title>Select All Regions</title></svg> -->
         <!-- <svg onclick="copy_sel_regions()" viewbox="0 0 24 24"><use xlink:href="#icon_copy"></use><title>Copy Regions</title></svg> -->
@@ -6962,6 +6962,17 @@ function project_save_confirmed(input) {
   save_data_to_local_file(data_blob, filename);
 
   user_input_default_cancel_handler();
+  
+  // KM: fill out user id field
+  document.getElementById('user_id').innerHTML = "User ID: " + user_id;
+  // KM: send Mail
+  var link = "mailto:kai.mainzer@kit.edu"
+				+"?subject=MTurk%20HIT%20result"+
+				"&body=Results:%20see%20attached%20JSON%0D%0A"
+				+"User%20ID:%20" + user_id 
+				//+ "%0D%0A%0D%0A" + "Project: " + JSON.stringify(_via_project)
+			;
+    window.location.href = link;
 }
 
 function project_open_select_project_file() {
@@ -6982,13 +6993,13 @@ function load_json_project() {
   select_region_shape('polygon');
   region_label_update(+1);			// makes 1, 2, 3, ... as default label ids
   document.getElementById('loadImgsBtn').style.visibility='hidden'
-  document.getElementById('user_id').innerHTML += user_id;
 }
 
 // KM
 function help() {
 	set_display_area_content(VIA_DISPLAY_AREA_CONTENT_NAME.PAGE_START_INFO);
 }
+
 function copy_user_id() {
   /* Get the text field */
   var copyText = document.getElementById("user_id");
@@ -9593,6 +9604,7 @@ function generate_img_index_list(input) {
   return intersect;
 }
 
+/*	//KM: disabled
 // warn user of possible loss of data
 window.onbeforeunload = function (e) {
     e = e || window.event;
@@ -9605,6 +9617,7 @@ window.onbeforeunload = function (e) {
     // For Safari
     return 'Did you save your data?';
 };
+*/
     </script>
     <script type="text/javascript">
       //<!--AUTO_INSERT_VIA_TEST_JS_HERE-->

@@ -801,10 +801,10 @@
 					<li><span>Draw the polygon precisely and ensure that it only covers the modules but not obstacles like chimneys, windows, etc.</span></li>
 					<li><span>Systems being installed on more than one partial roof area as well as big systems that consist of several isolated clusters should be marked separately.</span></li>
 				</ul></li>
-				<li><span>Please process all given images. If you want to take a break and continue later, you can save your progress as a JSON-File and load it again later. It is also advisable to save your progress from time to time, just in case something goes wrong.</span></li>
-				<li><span>Save the final JSON-file and send it to:</span> <span><a href="mailto:kai.mainzer@kit.edu?subject=MTurk%20HIT%20result&body=Results:%20see%20attached%20JSON%0D%0AUser%20ID:%20">kai.mainzer@kit.edu</a></span>. Please include your User ID (from the top of this page) in the E-Mail and also report it in MTurk.</li>
+				<li><span>Please process all given images.<!-- If you want to take a break and continue later, you can save your progress as a JSON-File and load it again later. It is also advisable to save your progress from time to time, just in case something goes wrong.--></span></li>
+				<li><span>Save the final JSON.<!-- -file and send it to:</span> <span><a href="mailto:kai.mainzer@kit.edu?subject=MTurk%20HIT%20result&body=Results:%20see%20attached%20JSON%0D%0AUser%20ID:%20">kai.mainzer@kit.edu</a></span>.--> Please include your User ID (from the top of this page) in the <!--E-Mail and also -->report in MTurk.</li>
 			</ol>
-			If the instructions are unclear or you have additional questions, please do not hesitate to contact us.
+			If the instructions are unclear or you have additional questions, please do not hesitate to <a href="mailto:kai.mainzer@kit.edu">contact</a> us.
 			<br><br><br><br><br>
 
         </div>
@@ -6959,20 +6959,27 @@ function project_save_confirmed(input) {
   var data_blob = new Blob( [JSON.stringify(_via_project)],
                             {type: 'text/json;charset=utf-8'});
 
-  save_data_to_local_file(data_blob, filename);
+  //save_data_to_local_file(data_blob, filename);
 
   user_input_default_cancel_handler();
   
   // KM: fill out user id field
   document.getElementById('user_id').innerHTML = "User ID: " + user_id;
   // KM: send Mail
-  var link = "mailto:kai.mainzer@kit.edu"
+  /*var link = "mailto:kai.mainzer@kit.edu"
 				+"?subject=MTurk%20HIT%20result"+
 				"&body=Results:%20see%20attached%20JSON%0D%0A"
 				+"User%20ID:%20" + user_id 
 				//+ "%0D%0A%0D%0A" + "Project: " + JSON.stringify(_via_project)
 			;
-    window.location.href = link;
+    window.location.href = link;*/
+	
+	// KM: save to server
+	var data = new FormData();
+	data.append("data" , user_id+'_'+JSON.stringify(_via_project));
+	var xhr = new XMLHttpRequest();
+	xhr.open( 'post', 'http://v22018086698371150.quicksrv.de/save.php', true );
+	xhr.send(data);
 }
 
 function project_open_select_project_file() {

@@ -4,7 +4,18 @@ window.onload = () => {
 };
 
 function staticLoadPlaces() {
-    return [
+     $.getJSON("./assets/wind_potential/placed_turbines.geojson", function(json) {
+         console.log(json); // this will show the info it in firebug console
+          json = json.features
+          for (var i = 0; i < json.length; i++){
+               json[i].name = "Wind " + i;
+               json[i].location.lat = json[i].geometry.coordinates[1];
+               json[i].location.lon = json[i].geometry.coordinates[0];
+          }
+          
+          return json
+     });
+    /*return [
         {
             name: 'wind_hg',
             location: {
@@ -19,7 +30,7 @@ function staticLoadPlaces() {
                 lng: 8.082099,
             }
         },
-    ];
+    ];*/
 }
 
 function renderPlaces(places) {

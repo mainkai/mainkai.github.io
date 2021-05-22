@@ -8,7 +8,7 @@
     <a-scene embedded arjs>
       <a-marker preset="hiro">
         
-        <a-box position='0 0.5 0' material='color: red;'></a-box>
+        <a-box position='0 0 0' height=".1" material='color: #01796f;opacity: 0.5;'></a-box>
         
         <a-entity>
         <a-entity
@@ -53,14 +53,15 @@
           align="center"
         ></a-text>
         
+        <div id="globeViz"></div>
+        
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>
-    <div id="globeViz"></div>
 
   <script>
     // Gen random data
-    const N = 300;
+    const N = 10;
     const gData = [...Array(N).keys()].map(() => ({
       lat: (Math.random() - 0.5) * 180,
       lng: (Math.random() - 0.5) * 360,

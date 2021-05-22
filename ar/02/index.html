@@ -6,33 +6,50 @@
   <body style="margin : 0px; overflow: hidden;">
     <a-scene embedded arjs>
       <a-marker preset="hiro">
+        
+        <a-entity>
         <a-entity
           position="0 0 0"
           scale="0.02 0.02 0.02"
           gltf-model="./assets/logo/greenventory_logo.glb"
+          animation="property: rotation; to: 0 360 0; loop: true; dur: 10000"
         ></a-entity>
+        </a-entity>
+        <a-text
+          value="energy decisions made easy"
+          look-at="[camera]"
+          scale="0 0 0"
+          position="0.5 2 1"
+          align="center"
+          color="green"
+        ></a-text>
+        
         <a-entity
           position="1 0 1"
           scale="0.05 0.05 0.05"
           gltf-model="./assets/wind_turbine_01/windturbine.gltf"
         ></a-entity>
+        <a-text
+          value="Wind 01"
+          look-at="[camera]"
+          scale="1 1 1"
+          position="1 2 1"
+          align="center"
+        ></a-text>
+        
         <a-entity
           position="-1 0 -1"
           scale="0.02 0.02 0.02"
           gltf-model="./assets/wind_turbine_01/windturbine.gltf"
         ></a-entity>
         <a-text
-          value="Wind 01"
+          value="Wind 02"
           look-at="[camera]"
           scale="1 1 1"
-          position="0.5 2 1"
+          position="-1 1 -1"
+          align="center"
         ></a-text>
-        <a-text
-          value="Wind 01"
-          look-at="[camera]"
-          scale="1 1 1"
-          position="-0.5 2 -1"
-        ></a-text>
+        
       </a-marker>
       <a-entity camera></a-entity>
     </a-scene>

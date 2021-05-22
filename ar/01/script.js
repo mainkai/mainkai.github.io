@@ -12,7 +12,6 @@ function staticLoadPlaces() {
                json[i].location.lat = json[i].geometry.coordinates[1];
                json[i].location.lon = json[i].geometry.coordinates[0];
           }
-          
           return json
      });
     /*return [

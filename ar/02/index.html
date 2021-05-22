@@ -68,14 +68,9 @@
           align="center"
         ></a-text>
         
-        <a-sphere position="-1 .5 -2" 
-               material="src: #earth-sphere; transparent: true; opacity: 0.95;"
-               animation__rotate = "property: rotation; dur: 8000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;">
-        </a-sphere>
-        
         <a-entity
           position=".5 .5 -.5"
-          scale="1.2 1.2 1.2"
+          scale="10 10 10"
           gltf-model="./assets/solar_battery/Solar Battery 2.gltf"
         ></a-entity>
         <a-text
@@ -85,6 +80,11 @@
           position=".5 1 -.5"
           align="center"
         ></a-text>
+        
+        <a-sphere position="-1 1 -2" 
+               material="src: #earth-sphere; transparent: true; opacity: 0.95;"
+               animation__rotate = "property: rotation; dur: 20000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;">
+        </a-sphere>
         
       </a-marker>
       <a-entity camera></a-entity>

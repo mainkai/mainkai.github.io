@@ -7,15 +7,6 @@
   <!-- support 3D text -->
   <script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script>
   
-  <script>
-   AFRAME.registerComponent('wireframe', {
-     dependencies: ['material'],
-     init: function () {
-       this.el.components.material.material.wireframe = true;
-     }
-   });
-   </script>
-  
   <body style="margin : 0px; overflow: hidden;">
     <a-scene embedded arjs>
       
@@ -26,12 +17,11 @@
       <!-- <a-marker type="pattern" url=".assets/logo/pattern-greenventory_logo_1280x1280.patt"> -->
       <a-marker preset="hiro">
         
-        <!-- box on marke
+        <!-- box on marker -->
         <a-entity geometry="primitive: box; width: 1; height: .1; depth: 1"
                   position="0 .5 0"
                   material="color: gray; opacity: 0.5; wireframe: true">
-        </a-entity>r -->
-        <a-entity geometry="primitive: box" material="color: blue" wireframe></a-entity>
+        </a-entity>
 
         
         <a-entity>

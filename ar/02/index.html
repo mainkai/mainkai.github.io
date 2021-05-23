@@ -41,7 +41,7 @@
           alignment (centering) may be tricky; try calculating bounding box and repositioning.
           for more info, see: https://www.npmjs.com/package/aframe-text-geometry-component
          -->
-        <a-entity text-geometry="value: energy decisions;shader: msdf; font:https://raw.githubusercontent.com/etiennepinchon/aframe-fonts/master/fonts/creepster/Creepster-Regular.json;"
+        <a-entity text-geometry="value: energy decisions;"
           material="color: #01796f;"
           position="-.5 0.5 0"
           align="center"
@@ -100,6 +100,22 @@
                material="src: #earth-sphere; transparent: true; opacity: 0.95;"
                animation__rotate = "property: rotation; dur: 20000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;">
         </a-sphere>
+        
+        <!-- city -->
+        <a-entity
+          position="2 0 -2"
+          scale=".03 .03 .03"
+          rotation="0 0 0"
+          gltf-model="./assets/city_model_low_poly/scene.gltf"
+        ></a-entity>
+        
+        <!-- terrain -->
+        <a-entity
+          position="2 0 2"
+          scale=".03 .03 .03"
+          rotation="0 0 0"
+          gltf-model="./assets/free_quick_terrain_test/scene.gltf"
+        ></a-entity>
         
       </a-marker>
       <a-entity camera></a-entity>

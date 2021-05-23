@@ -72,6 +72,7 @@
           position="-1 0 .5"
           scale="0.025 0.025 0.025"
           gltf-model="./assets/wind_turbine_01/windturbine.gltf"
+          animation-mixer
         ></a-entity>
         <a-text
           value="Wind"
@@ -82,6 +83,14 @@
         ></a-text>
         <a-entity line="start: -.75 1.9 .25; end: -.25 1.9 .25; color: gray"
           line__2="start: -.75 1.9 .25; end: -1.25 1.3 .25; color: gray"></a-entity>
+        
+        <!-- power plant -->
+        <a-entity
+          position="1 0 1"
+          scale="0.2 0.2 0.2"
+          gltf-model="./assets/low_poly_coal_plant_stylized_-_animated/scene.gltf"
+          animation-mixer
+        ></a-entity>
         
         <!-- solar panel image -->
         <a-image src="./assets/pv_module/pv_module.png" 

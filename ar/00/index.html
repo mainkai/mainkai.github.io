@@ -16,7 +16,7 @@
         
         <!-- Terrasse Papa: simulateLatitude: 48.53466773760879; simulateLongitude: 8.077223619016133 -->
         <!-- Balkon Achern: simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878 -->
-        <a-camera gps-camera="alert: true; simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878" rotation-reader> </a-camera>
+        <a-camera gps-projected-camera="alert: true; simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878" rotation-reader> </a-camera>
         <!-- <a-camera gps-projected-camera="positionMinAccuracy: 500" rotation-reader></a-camera> -->
         
         <!-- animated wind turbines -->
@@ -30,7 +30,7 @@
         <!-- unser Garten -->
         <a-entity
           gps-entity-place="latitude: 48.62795188651055; longitude: 8.08246125964585;"
-          scale="6 6 6"
+          scale="30 30 30"
           gltf-model="../02/assets/turbine/scene.gltf"
           animation-mixer
         ></a-entity>
@@ -50,8 +50,8 @@
         ></a-entity>
         
         <!-- box in 100m height -->
-        <a-box gps-projected-entity-place='latitude: 48.62795188651055; longitude: 8.08246125964585' material='color: red' position='0 100 0'></a-box>
         <a-box gps-entity-place="latitude: 48.62795188651055; longitude: 8.08246125964585;" material="color: yellow" position='0 100 0'/></a-box>
+        <a-box gps-projected-entity-place='latitude: 48.62795188651055; longitude: 8.08246125964585' material='color: red' position='0 100 0'></a-box>
 
         <!-- rotating logo unser Garten -->
           <a-entity>

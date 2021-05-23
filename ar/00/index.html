@@ -12,7 +12,7 @@
         arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'
         renderer='antialias: true; alpha: true'>
             <a-camera gps-projected-camera rotation-reader></a-camera>
-            <a-box gps-projected-entity-place='latitude: 48.534588258431064; longitude: 8.077248429448483' material='color: red' scale='10 10 10'></a-box>
+            <a-box gps-projected-entity-place='latitude: 48.534588258431064; longitude: 8.077248429448483' material='color: red' scale='1 1 1'></a-box>
 
       <a-entity>
       <a-entity
@@ -25,22 +25,17 @@
         
       <a-entity
       gps-entity-place="latitude: 48.534572717795164; longitude: 8.077597116605864;"
-        scale="0.002 0.002 0.002"
+        scale="0.005 0.005 0.005"
         gltf-model="../02/assets/animated_wind_turbine/scene.gltf"
       ></a-entity>
-      <!-- infos, tutorials:
-      https://ar-js-org.github.io/AR.js-Docs/
-      https://ar-js-org.github.io/AR.js-Docs/location-based/
-      https://ar-js-org.github.io/AR.js-Docs/location-based-tutorial/
-      https://medium.com/chialab-open-source/build-your-location-based-augmented-reality-web-app-c2442e716564
-     
+      
       <a-text
         value="Hof"
         look-at="[gps-camera]"
         scale="20 20 20"
         gps-entity-place="latitude: 48.62801856910548; longitude: 8.082144874106907;"
       ></a-text>
--->
+
       <a-box material="color: yellow" gps-entity-place="latitude: 48.534572717795164; longitude: 8.077597116605864;"/>
       <a-text
         value="Home"

@@ -11,8 +11,13 @@
         vr-mode-ui="enabled: false"
         arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'
         renderer='antialias: true; alpha: true'>
-            <a-camera gps-projected-camera="positionMinAccuracy: 500" rotation-reader></a-camera>
-            <a-box gps-projected-entity-place='latitude: 48.534588258431064; longitude: 8.077248429448483' material='color: red' scale='1 1 1' position='0 100 0'></a-box>
+        
+        <!-- Balkon Achern: simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878 -->
+        <!-- Terrasse Papa: simulateLatitude: 48.53466773760879; simulateLongitude: 8.077223619016133 -->
+        <a-camera gps-camera="alert: true; simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878" rotation-reader> </a-camera>
+        <!-- <a-camera gps-projected-camera="positionMinAccuracy: 500" rotation-reader></a-camera> -->
+        
+        <a-box gps-projected-entity-place='latitude: 48.534588258431064; longitude: 8.077248429448483' material='color: red' scale='1 1 1' position='0 100 0'></a-box>
 
       <a-entity>
       <a-entity
@@ -86,7 +91,6 @@
         gps-entity-place="latitude: 48.53470046481298; longitude: 8.077240679873697;"
       ></a-text>
       
-      <!-- <a-camera gps-camera="alert: true; simulateLatitude: 48.53466773760879; simulateLongitude: 8.077223619016133" rotation-reader> </a-camera>  -->
     </a-scene>
   </body>
 </html>

@@ -11,7 +11,7 @@
 
   <body style="margin: 0; overflow: hidden;">
     <a-scene
-      vr-mode-ui="enabled: false"
+      vr-mode-ui="enabled: true"
       embedded
       arjs="sourceType: webcam; debugUIEnabled: true; videoTexture: true;"
     >
@@ -34,14 +34,15 @@
       https://ar-js-org.github.io/AR.js-Docs/location-based/
       https://ar-js-org.github.io/AR.js-Docs/location-based-tutorial/
       https://medium.com/chialab-open-source/build-your-location-based-augmented-reality-web-app-c2442e716564
-      -->
+     
       <a-text
         value="Hof"
         look-at="[gps-camera]"
         scale="20 20 20"
         gps-entity-place="latitude: 48.62801856910548; longitude: 8.082144874106907;"
       ></a-text>
-      <a-box material="color: yellow" gps-entity-place="latitude: 48.62801856910548; longitude: 8.082144874106907;"/>
+-->
+      <a-box material="color: yellow" gps-entity-place="latitude: 48.534572717795164; longitude: 8.077597116605864;"/>
       <a-text
         value="Home"
         look-at="[gps-camera]"

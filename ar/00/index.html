@@ -14,90 +14,79 @@
         arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'
         renderer='antialias: true; alpha: true'>
         
-        <!-- Balkon Achern: simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878 -->
         <!-- Terrasse Papa: simulateLatitude: 48.53466773760879; simulateLongitude: 8.077223619016133 -->
+        <!-- Balkon Achern: simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878 -->
         <a-camera gps-camera="alert: true; simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878" rotation-reader> </a-camera>
         <!-- <a-camera gps-projected-camera="positionMinAccuracy: 500" rotation-reader></a-camera> -->
         
+        <!-- animated wind turbines -->
+        <!-- Kreuzung Polizei -->
+        <a-entity
+          gps-entity-place="latitude: 48.62873551358445; longitude: 8.080208278479757;"
+          scale="0.2 0.2 0.2"
+          gltf-model="../02/assets/turbine/scene.gltf"
+          animation-mixer
+        ></a-entity>
+        <!-- unser Garten -->
+        <a-entity
+          gps-entity-place="latitude: 48.62795188651055; longitude: 8.08246125964585;"
+          scale="0.2 0.2 0.2"
+          gltf-model="../02/assets/turbine/scene.gltf"
+          animation-mixer
+        ></a-entity>
+        <!-- Bestandsanlage Hornisgrinde -->
+        <a-entity
+          gps-entity-place="latitude: 48.607373511353295; longitude: 8.201745887873047;"
+          scale="0.2 0.2 0.2"
+          gltf-model="../02/assets/turbine/scene.gltf"
+          animation-mixer
+        ></a-entity>
+        <!-- Bienebuckel Jockele Guck -->
+        <a-entity
+          gps-entity-place="latitude: 48.61171725565487; longitude: 8.09355106895994;"
+          scale="0.2 0.2 0.2"
+          gltf-model="../02/assets/turbine/scene.gltf"
+          animation-mixer
+        ></a-entity>
+        
+        <!-- box in 100m height -->
         <a-box gps-projected-entity-place='latitude: 48.534588258431064; longitude: 8.077248429448483' material='color: red' scale='1 1 1' position='0 100 0'></a-box>
+        <a-box material="color: yellow" gps-entity-place="latitude: 48.5346; longitude: 8.077597116605864;" position='0 100 0'/>
 
-      <a-entity>
-      <a-entity
-        gps-entity-place="latitude: 48.534588258431064; longitude: 8.077248429448483;"
-        scale=".2 .2 .2"
-        gltf-model="../02/assets/logo/greenventory_logo.glb"
-        animation="property: rotation; easing: linear; to: 0 -360 0; loop: true; dur: 5000"
-      ></a-entity>
-      </a-entity>
+        <!-- rotating logo -->
+          <a-entity>
+          <a-entity
+            scale=".2 .2 .2"
+            gltf-model="../02/assets/logo/greenventory_logo.glb"
+            animation="property: rotation; easing: linear; to: 0 -360 0; loop: true; dur: 5000"
+          ></a-entity>
+          </a-entity>
         
-      <a-entity
-      gps-entity-place="latitude: 48.534572717795164; longitude: 8.077597116605864;"
-        scale="0.005 0.005 0.005"
-        gltf-model="../02/assets/animated_wind_turbine/scene.gltf"
-          animation-mixer
-      ></a-entity>
-        
-      <a-entity
-      gps-entity-place="latitude: 48.62874245702349; longitude: 8.080180631632242;"
-        scale="0.005 0.005 0.005"
-        gltf-model="../02/assets/animated_wind_turbine/scene.gltf"
-          animation-mixer
-      ></a-entity>
-        
-      <a-entity
-      gps-entity-place="latitude: 48.607362540360114; longitude: 8.201707178599719;"
-        scale="0.005 0.005 0.005"
-        gltf-model="../02/assets/animated_wind_turbine/scene.gltf"
-          animation-mixer
-      ></a-entity>
-        
-      <a-entity
-      gps-entity-place="latitude: 48.61171020402062; longitude: 8.093555309253905;"
-        scale="0.005 0.005 0.005"
-        gltf-model="../02/assets/animated_wind_turbine/scene.gltf"
-          animation-mixer
-      ></a-entity>
-        
-      <a-entity
-      gps-entity-place="latitude: 48.61171020402062; longitude: 8.093555309253905;"
-        scale="0.005 0.005 0.005"
-        gltf-model="../02/assets/animated_wind_turbine/scene.gltf"
-          animation-mixer
-      ></a-entity>
-        
-      <a-entity
-      gps-entity-place="latitude: 48.62790843066293; longitude: 8.082508893832907;"
-        scale="0.005 0.005 0.005"
-        gltf-model="../02/assets/animated_wind_turbine/scene.gltf"
-          animation-mixer
-      ></a-entity>
-        
-      <a-text
-        value="Hof"
-        look-at="[gps-camera]"
-        scale="20 20 20"
-        gps-entity-place="latitude: 48.62801856910548; longitude: 8.082144874106907;"
-      ></a-text>
-
-      <a-box material="color: yellow" gps-entity-place="latitude: 48.5346; longitude: 8.077597116605864;" position='0 100 0'/>
-      <a-text
-        value="Home"
-        look-at="[gps-camera]"
-        scale="20 20 20"
-        gps-entity-place="latitude: 48.628038052742454; longitude: 8.082059028197861;"
-      ></a-text>
-      <a-text
-        value="Hornisgrinde"
-        look-at="[gps-camera]"
-        scale="20 20 20"
-        gps-entity-place="latitude: 48.60466598953314; longitude: 8.2018070220708;"
-      ></a-text>
-      <a-text
-        value="Papa"
-        look-at="[gps-camera]"
-        scale="20 20 20"
-        gps-entity-place="latitude: 48.53470046481298; longitude: 8.077240679873697;"
-      ></a-text>
+        <!-- some text labels -->
+          <a-text
+            value="Hof"
+            look-at="[gps-camera]"
+            scale="20 20 20"
+            gps-entity-place="latitude: 48.62801856910548; longitude: 8.082144874106907;"
+          ></a-text>
+          <a-text
+            value="Home"
+            look-at="[gps-camera]"
+            scale="20 20 20"
+            gps-entity-place="latitude: 48.628038052742454; longitude: 8.082059028197861;"
+          ></a-text>
+          <a-text
+            value="Hornisgrinde"
+            look-at="[gps-camera]"
+            scale="20 20 20"
+            gps-entity-place="latitude: 48.60466598953314; longitude: 8.2018070220708;"
+          ></a-text>
+          <a-text
+            value="Papa"
+            look-at="[gps-camera]"
+            scale="20 20 20"
+            gps-entity-place="latitude: 48.53470046481298; longitude: 8.077240679873697;"
+          ></a-text>
       
     </a-scene>
   </body>

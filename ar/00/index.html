@@ -11,7 +11,7 @@
         vr-mode-ui="enabled: false"
         arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'
         renderer='antialias: true; alpha: true'>
-            <a-camera gps-projected-camera rotation-reader></a-camera>
+            <a-camera gps-projected-camera="positionMinAccuracy: 500" rotation-reader></a-camera>
             <a-box gps-projected-entity-place='latitude: 48.534588258431064; longitude: 8.077248429448483' material='color: red' scale='1 1 1' position='0 100 0'></a-box>
 
       <a-entity>

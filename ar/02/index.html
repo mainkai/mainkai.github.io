@@ -79,7 +79,7 @@
         
         <a-entity
           position="0 -10 0"
-          scale=".1 .1 .1"
+          scale=".01 .01 .01"
           gltf-model="./assets/solar_panel/scene.gltf"
         ></a-entity>
         <a-entity
@@ -96,6 +96,7 @@
           align="center"
         ></a-text>
         
+        <!-- earth -->
         <a-sphere position="-1 1 -2" 
                material="src: #earth-sphere; transparent: true; opacity: 0.95;"
                animation__rotate = "property: rotation; dur: 20000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;">
@@ -103,7 +104,7 @@
         
         <!-- city -->
         <a-entity
-          position="2 -10 -2"
+          position="2 0 -2"
           scale=".3 .3 .3"
           rotation="0 0 0"
           gltf-model="./assets/city_model_low_poly/scene.gltf"

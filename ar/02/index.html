@@ -20,11 +20,15 @@
       <!-- <a-marker type="pattern" url=".assets/logo/pattern-greenventory_logo_1280x1280.patt"> -->
       <a-marker preset="hiro">
         
-        <!-- box on marker -->
+        <!-- box on marker
         <a-entity geometry="primitive: box; width: 1; height: .1; depth: 1"
                   position="0 .05 0"
                   material="color: gray; opacity: 0.5; wireframe: true">
-        </a-entity>
+        </a-entity> -->
+        <a-entity line="start: -.5 0 -.5; end: -.5 .25 -.5; color: red"
+          line__1="start: .5 0 -.5; end: .5 .25 -.5; color: red"
+          line__2="start: -.5 0 .5; end: -.5 .25 .5; color: red"
+          line__3="start: .5 0 .5; end: .5 .25 .5; color: red"></a-entity>
 
         
         <a-entity>

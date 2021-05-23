@@ -32,7 +32,8 @@
           position="0 .75 0"
           scale="0.02 0.02 0.02"
           gltf-model="./assets/logo/greenventory_logo.glb"
-          animation="property: rotation; to: 0 -360 0; loop: true; dur: 5000"
+          <!-- animation="property: rotation; to: 0 -360 0; loop: true; dur: 5000" -->
+          animation__rotate = "property: rotation; dur: 10000; easing: linear; dir: normal; from:0 0 0; to: 0 -360 0; loop: true;"
         ></a-entity>
         </a-entity>
         <!-- 
@@ -103,8 +104,8 @@
                animation__rotate = "property: rotation; dur: 20000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;">
           <!-- line on earth x y z with x=longitude, y=latitude, z=radius (away from earth) -->
           <a-entity line="start: 0 0 0; end: 0 1 1; color: gray"
-            line__1="start: 0 0 0; end: .2 1 1; color: gray"
-            line__2="start: 0 0 0; end: .5 1 1; color: gray"></a-entity>
+            line__1="start: 0 0 0; end: 1 1 1; color: gray"
+            line__2="start: 0 0 0; end: 3 1 1; color: gray"></a-entity>
         </a-sphere>
         
         <!-- city

@@ -45,7 +45,7 @@
           material="color: #01796f;"
           position="-.5 0.5 0"
           align="center"
-          scale="0.25 0.25 0.25">
+          scale="0.3 0.3 0.3">
         </a-entity>
         <a-entity text-geometry="value: made easy;"
           material="color: #01796f;"
@@ -101,10 +101,10 @@
         <a-sphere position="-1 1 -2" 
                material="src: #earth-sphere; transparent: true; opacity: 0.95;"
                animation__rotate = "property: rotation; dur: 20000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;">
-          <!-- line on earth x y z with z=radius (away from earth), y=latitude, x=longitude-->
-          <a-entity line="start: 0 0 0; end: 2 1 1; color: gray"
-            line__1="start: 2 1 1; end: 2 1 1; color: gray"
-            line__2="start: 2 1 1; end: 2 2 1; color: gray"></a-entity>
+          <!-- line on earth x y z with x=longitude, y=latitude, z=radius (away from earth) -->
+          <a-entity line="start: 0 0 0; end: 0 1 1; color: gray"
+            line__1="start: 0 0 0; end: .2 1 1; color: gray"
+            line__2="start: 0 0 0; end: .5 1 1; color: gray"></a-entity>
         </a-sphere>
         
         <!-- city

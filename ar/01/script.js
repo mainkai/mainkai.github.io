@@ -1,13 +1,12 @@
 window.onload = () => {
-	staticLoadPlaces();
+	load_turbines_json();
 };
 
-function staticLoadPlaces() {
+function load_turbines_json() {
 	
 	fetch("./assets/wind_potential/placed_turbines.geojson")
 	  .then(response => response.json())
-	  .then(json => load_turbines_from_json(json))
-	  .then(json => console.log(json));
+	  .then(json => load_turbines_from_json(json));
 	
 	/*
 	var xmlhttp = new XMLHttpRequest();
@@ -52,7 +51,7 @@ function load_turbines_from_json(json) {
 		let desc = document.createElement('a-text');
 		desc.setAttribute('gps-entity-place', `latitude: ${ latitude }; longitude: ${ longitude };`);
 		desc.setAttribute('value', "Wind " + i);
-		desc.setAttribute('position', `0 "${local_height + json[i].properties.hub_height_m}" 0`);
+		desc.setAttribute('position', `0 ${local_height + json[i].properties.hub_height_m} 0`);
 		desc.setAttribute('look-at', "[gps-camera]");
 		desc.setAttribute('scale', '20 20 20');
 		scene.appendChild(desc);

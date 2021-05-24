@@ -37,7 +37,8 @@ function staticLoadPlaces() {
                
                // add descriptions text for turbine
                   let name = "Wind " + i;
-                  let upper_pos = local_height + json[i].hub_height_m;
+                  let hub_height_m = json[i].hub_height_m;
+                  let upper_pos = local_height + hub_height_m;
                   let desc = document.createElement('a-text');
                   desc.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
                   desc.setAttribute('value', `${name}`);
@@ -45,7 +46,7 @@ function staticLoadPlaces() {
                   desc.setAttribute('look-at', "[gps-camera]");
                   desc.setAttribute('scale', '20 20 20');
                   scene.appendChild(desc);
-                  console.log("added: " + name + " at: " + latitude + ", " + longitude + ", " + local_height + " m");
+                  console.log("added: " + name + " at: " + latitude + ", " + longitude + ", " + local_height + " m, " + hub_height_m + " m");
           }
        }
      };

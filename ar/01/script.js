@@ -53,6 +53,8 @@ function staticLoadPlaces() {
           }
        }
      };
+     xmlhttp.open("GET", "./assets/wind_potential/placed_turbines.geojson", true);
+          xmlhttp.send();
     /*return [
         {
             name: 'wind_hg',

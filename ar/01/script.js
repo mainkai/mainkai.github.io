@@ -13,11 +13,6 @@ function staticLoadPlaces() {
 			console.log(json); // this will show the info it in firebug console
 			let scene = document.querySelector('a-scene');
 			for (var i = 0; i < json.length; i++) {
-				json[i].name = "Wind " + i;
-				json[i].location = {}
-				json[i].location.lat = json[i].geometry.coordinates[1];
-				json[i].location.lon = json[i].geometry.coordinates[0];
-
 				// add wind turbine 3d model
 				let latitude = json[i].geometry.coordinates[1];
 				let longitude = json[i].geometry.coordinates[0];

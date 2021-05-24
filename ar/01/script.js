@@ -8,6 +8,11 @@ function load_turbines_json() {
 	  .then(response => response.json())
 	  .then(json => load_turbines_from_json(json));
 	
+	fetch("https://api.open-elevation.com/api/v1/lookup\?locations\=10,10\|20,20\|41.161758,-8.583933")
+	  .then(response => response.json())
+	  .then(json => console.log(json));
+
+	
 	/*
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
@@ -55,6 +60,6 @@ function load_turbines_from_json(json) {
 		desc.setAttribute('look-at', "[gps-camera]");
 		desc.setAttribute('scale', '20 20 20');
 		scene.appendChild(desc);
-		console.log("added: " + name + " at: " + latitude + ", " + longitude + ", " + local_height + " m, " + json[i].properties.hub_height_m + " m");
+		console.log("added: Wind " + i + " at: " + latitude + ", " + longitude + ", " + local_height + " m, " + json[i].properties.hub_height_m + " m");
 	}
 }

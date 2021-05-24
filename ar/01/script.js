@@ -28,13 +28,15 @@ function staticLoadPlaces() {
          console.log(json); // this will show the info it in firebug console
           for (var i = 0; i < json.length; i++){
                json[i].name = "Wind " + i;
-               json[i].location = {}
+               json[i].location = {};
                json[i].location.lat = json[i].geometry.coordinates[1];
                json[i].location.lon = json[i].geometry.coordinates[0];
           }
-          return json
+          return json;
        }
-     return "";
+     else {
+          return [];
+     }
     /*return [
         {
             name: 'wind_hg',

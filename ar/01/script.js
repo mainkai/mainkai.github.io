@@ -23,7 +23,7 @@ function staticLoadPlaces() {
      xmlhttp.open("GET", "./assets/wind_potential/placed_turbines.geojson", true);
      xmlhttp.send();
      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-         var json = JSON.parse(this.responseText);
+         var json = JSON.parse(xmlhttp.responseText);
          json = json.features
          console.log(json); // this will show the info it in firebug console
           for (var i = 0; i < json.length; i++){
@@ -35,6 +35,7 @@ function staticLoadPlaces() {
           return json;
        }
      else {
+          console.log("got status: " + xmlhttp.status);
           return [];
      }
     /*return [

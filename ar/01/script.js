@@ -16,7 +16,7 @@ function staticLoadPlaces() {
 				// add wind turbine 3d model
 				let latitude = json[i].geometry.coordinates[1];
 				let longitude = json[i].geometry.coordinates[0];
-				let local_height = json[i].local_height;
+				let local_height = json[i].properties.local_height;
 
 				let model = document.createElement('a-entity');
 				model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
@@ -32,7 +32,7 @@ function staticLoadPlaces() {
 
 				// add descriptions text for turbine
 				let name = "Wind " + i;
-				let hub_height_m = json[i].hub_height_m;
+				let hub_height_m = json[i].properties.hub_height_m;
 				let upper_pos = local_height + hub_height_m;
 				let desc = document.createElement('a-text');
 				desc.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);

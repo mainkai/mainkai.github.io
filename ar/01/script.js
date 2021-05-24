@@ -23,7 +23,7 @@ function load_turbines_from_json(json) {
 		let longitude = json[i].geometry.coordinates[0];
 		let local_height = json[i].properties.local_height;
 
-		let model = document.createElement('a-entity');
+		const model = document.createElement('a-entity');
 		//model.setAttribute('gps-entity-place', "latitude: " + latitude + "; longitude: " + longitude + ";");
 		model.setAttribute('gltf-model', '../02/assets/turbine/scene.gltf');
 		/*model.setAttribute('position', {
@@ -40,7 +40,7 @@ function load_turbines_from_json(json) {
 		scene.appendChild(model);
 
 		// add descriptions text for turbine
-		let desc = document.createElement('a-text');
+		const desc = document.createElement('a-text');
 		desc.setAttribute('gps-entity-place', `latitude: ${ latitude }; longitude: ${ longitude };`);
 		desc.setAttribute('value', "Wind " + i);
 		desc.setAttribute('position', `0 ${local_height + json[i].properties.hub_height_m} 0`);

@@ -4,6 +4,26 @@ window.onload = () => {
 };
 
 function staticLoadPlaces() {
+     var xmlhttp = new XMLHttpRequest();
+     xmlhttp.onreadystatechange = function() {
+       if (this.readyState == 4 && this.status == 200) {
+         var json = JSON.parse(this.responseText);
+         console.log(json); // this will show the info it in firebug console
+          json = json.features
+          for (var i = 0; i < json.length; i++){
+               json[i].name = "Wind " + i;
+               json[i].location.lat = json[i].geometry.coordinates[1];
+               json[i].location.lon = json[i].geometry.coordinates[0];
+               json[i].location.lon = json[i].geometry.coordinates[0];
+          }
+          return json
+            
+         //document.getElementById("demo").innerHTML = myObj.name;
+       }
+     };
+     xmlhttp.open("GET", "./assets/wind_potential/placed_turbines.geojson", true);
+     xmlhttp.send(); 
+     /*
      $.getJSON("./assets/wind_potential/placed_turbines.geojson", function(json) {
          console.log(json); // this will show the info it in firebug console
           json = json.features
@@ -15,6 +35,7 @@ function staticLoadPlaces() {
           }
           return json
      });
+     */
     /*return [
         {
             name: 'wind_hg',

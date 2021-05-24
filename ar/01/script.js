@@ -1,5 +1,6 @@
 window.onload = () => {
      let places = staticLoadPlaces();
+     console.log("got places: " + places);
      renderPlaces(places);
 };
 
@@ -17,25 +18,10 @@ function staticLoadPlaces() {
                json[i].location.lon = json[i].geometry.coordinates[0];
           }
           return json
-            
-         //document.getElementById("demo").innerHTML = myObj.name;
        }
      };
      xmlhttp.open("GET", "./assets/wind_potential/placed_turbines.geojson", true);
-     xmlhttp.send(); 
-     /*
-     $.getJSON("./assets/wind_potential/placed_turbines.geojson", function(json) {
-         console.log(json); // this will show the info it in firebug console
-          json = json.features
-          for (var i = 0; i < json.length; i++){
-               json[i].name = "Wind " + i;
-               json[i].location.lat = json[i].geometry.coordinates[1];
-               json[i].location.lon = json[i].geometry.coordinates[0];
-               json[i].location.lon = json[i].geometry.coordinates[0];
-          }
-          return json
-     });
-     */
+     xmlhttp.send();
     /*return [
         {
             name: 'wind_hg',

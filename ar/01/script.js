@@ -10,7 +10,7 @@ function load_turbines_json() {
 	
 	fetch("https://api.open-elevation.com/api/v1/lookup\?locations\=10,10\|20,20\|41.161758,-8.583933")
 	  .then(response => response.json())
-	  .then(json => console.log("elevation result: " + json));
+	  .then(json => console.log("elevation result: " + json.results[0].elevation + "m"));
 
 	
 	/*

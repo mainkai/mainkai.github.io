@@ -1,7 +1,7 @@
 window.onload = () => {
      let places = staticLoadPlaces();
-     console.log("got places: " + places);
-     renderPlaces(places);
+     //console.log("got places: " + places);
+     //renderPlaces(places);
 };
 
 function staticLoadPlaces() {

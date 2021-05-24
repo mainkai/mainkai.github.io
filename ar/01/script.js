@@ -20,7 +20,7 @@ function staticLoadPlaces() {
 
 				let model = document.createElement('a-entity');
 				model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-				model.setAttribute('gltf-model', '../02/assets/turbine/scene.gltf');
+				model.setAttribute('gltf-model', `"../02/assets/turbine/scene.gltf"`);
 				model.setAttribute('position', {
 					x: 0,
 					y: local_height, 

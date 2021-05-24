@@ -25,9 +25,9 @@ function load_turbines_from_json(json) {
 		let local_height = json[i].properties.local_height;
 
 		const model = document.createElement('a-entity');
-		//model.setAttribute('gps-entity-place', "latitude: " + latitude + "; longitude: " + longitude + ";");
+		model.setAttribute('gps-entity-place', "latitude: " + latitude + "; longitude: " + longitude + ";");
 		model.setAttribute('gltf-model', '../02/assets/turbine/scene.gltf');
-		/*model.setAttribute('position', {
+		model.setAttribute('position', {
 			x: 0,
 			y: local_height, 
 			z: 0
@@ -37,7 +37,7 @@ function load_turbines_from_json(json) {
 		model.setAttribute('scale', '30 30 30');
 		model.addEventListener('loaded', () => {
 			window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
-		});*/
+		});
 		scene.appendChild(model);
 
 		// add descriptions text for turbine

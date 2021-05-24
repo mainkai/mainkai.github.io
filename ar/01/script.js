@@ -47,7 +47,7 @@ function staticLoadPlaces() {
                   desc.setAttribute('look-at', "[gps-camera]");
                   desc.setAttribute('scale', '20 20 20');
                   scene.appendChild(desc);
-                  console.log("added: " + name + " at: " + latitude + ", " + longitude);
+                  console.log("added: " + name + " at: " + latitude + ", " + longitude + ", " + local_height + " m");
           }
        }
      };

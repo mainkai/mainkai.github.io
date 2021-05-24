@@ -40,7 +40,7 @@ function staticLoadPlaces() {
 				let hub_height_m = json[i].properties.hub_height_m;
 				let upper_pos = local_height + hub_height_m;
 				let desc = document.createElement('a-text');
-				desc.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
+				desc.setAttribute('gps-entity-place', `latitude: ${ latitude }; longitude: ${ longitude };`);
 				desc.setAttribute('value', `${name}`);
 				desc.setAttribute('position', `0 "${upper_pos}" 0`);
 				desc.setAttribute('look-at', "[gps-camera]");

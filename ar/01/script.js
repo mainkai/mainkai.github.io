@@ -6,7 +6,7 @@ window.onload = () => {
 
 function staticLoadPlaces() {
      var xmlhttp = new XMLHttpRequest();
-     xmlhttp.onreadystatechange = function() {
+     /*xmlhttp.onreadystatechange = function() {
        if (this.readyState == 4 && this.status == 200) {
          var json = JSON.parse(this.responseText);
          json = json.features
@@ -19,9 +19,22 @@ function staticLoadPlaces() {
           }
           return json
        }
-     };
+     };*/
      xmlhttp.open("GET", "./assets/wind_potential/placed_turbines.geojson", true);
      xmlhttp.send();
+     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+         var json = JSON.parse(this.responseText);
+         json = json.features
+         console.log(json); // this will show the info it in firebug console
+          for (var i = 0; i < json.length; i++){
+               json[i].name = "Wind " + i;
+               json[i].location = {}
+               json[i].location.lat = json[i].geometry.coordinates[1];
+               json[i].location.lon = json[i].geometry.coordinates[0];
+          }
+          return json
+       }
+     return "";
     /*return [
         {
             name: 'wind_hg',

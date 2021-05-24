@@ -49,6 +49,7 @@ function staticLoadPlaces() {
                   scene.appendChild(desc);
                
                     console.log("added: " + desc);
+                    alert("added: " + desc);
                
           }
        }

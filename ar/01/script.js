@@ -17,10 +17,11 @@ function staticLoadPlaces() {
 				let latitude = json[i].geometry.coordinates[1];
 				let longitude = json[i].geometry.coordinates[0];
 				let local_height = json[i].properties.local_height;
+				let gltf_file = "../02/assets/turbine/scene.gltf";
 
 				let model = document.createElement('a-entity');
 				model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-				model.setAttribute('gltf-model', `"../02/assets/turbine/scene.gltf"`);
+				model.setAttribute('gltf-model', `${gltf_file`);
 				model.setAttribute('position', {
 					x: 0,
 					y: local_height, 

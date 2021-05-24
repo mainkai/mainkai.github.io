@@ -48,8 +48,8 @@ function staticLoadPlaces() {
                   desc.setAttribute('scale', '20 20 20');
                   scene.appendChild(desc);
                
-                    console.log("added: " + desc);
-                    alert("added: " + desc);
+                    console.log("added: " + name);
+                    //alert("added: " + desc);
                
           }
        }

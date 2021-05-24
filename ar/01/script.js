@@ -1,7 +1,5 @@
 window.onload = () => {
-	let places = staticLoadPlaces();
-	//console.log("got places: " + places);
-	//renderPlaces(places);
+	staticLoadPlaces();
 };
 
 function staticLoadPlaces() {
@@ -52,24 +50,4 @@ function staticLoadPlaces() {
 	};
 	xmlhttp.open("GET", "./assets/wind_potential/placed_turbines.geojson", true);
 	xmlhttp.send();
-	/*return [
-	    {
-	        name: 'wind_hg',
-	        location: {
-	            lat: 48.607377,
-	            lng: 8.201714,
-	        }
-	    },
-	    {
-	        name: 'wind_home',
-	        location: {
-	            lat: 48.628049,
-	            lng: 8.082099,
-	        }
-	    },
-	];*/
-}
-
-function renderPlaces(places) {
-
 }

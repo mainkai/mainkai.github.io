@@ -3,7 +3,6 @@ window.onload = () => {
 };
 
 function load_turbines_json() {
-	
 	fetch("./assets/wind_potential/placed_turbines.geojson")
 	  .then(response => response.json())
 	  .then(json => load_turbines_from_json(json));
@@ -12,18 +11,6 @@ function load_turbines_json() {
 	fetch("https://api.open-elevation.com/api/v1/lookup\?locations\=41.161758,-8.583933")
 	  .then(response => response.json())
 	  .then(json => console.log("elevation result: " + json.results[0].elevation + "m"));
-	
-	/*
-	var xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			var json = JSON.parse(this.responseText);
-			load_turbines_from_json(json);
-		}
-	};
-	xmlhttp.open("GET", "./assets/wind_potential/placed_turbines.geojson", true);
-	xmlhttp.send();
-	*/
 }
 
 function load_turbines_from_json(json) {
@@ -37,7 +24,7 @@ function load_turbines_from_json(json) {
 		let local_height = json[i].properties.local_height;
 
 		let model = document.createElement('a-entity');
-		model.setAttribute('gps-entity-place', "latitude: " + latitude + "; longitude: " + longitude + ";");
+		//model.setAttribute('gps-entity-place', "latitude: " + latitude + "; longitude: " + longitude + ";");
 		model.setAttribute('gltf-model', '../02/assets/turbine/scene.gltf');
 		/*model.setAttribute('position', {
 			x: 0,

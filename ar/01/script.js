@@ -17,7 +17,8 @@ function staticLoadPlaces() {
                json[i].location = {}
                json[i].location.lat = json[i].geometry.coordinates[1];
                json[i].location.lon = json[i].geometry.coordinates[0];
-
+               
+               // add wind turbine 3d model
                   let latitude = json[i].geometry.coordinates[1];
                   let longitude = json[i].geometry.coordinates[0];
                   let local_height = json[i].local_height;
@@ -29,17 +30,14 @@ function staticLoadPlaces() {
                   model.setAttribute('rotation', '0 180 0');
                   model.setAttribute('animation-mixer', '');
                   model.setAttribute('scale', '30 30 30');
-
                   model.addEventListener('loaded', () => {
                       window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
                   });
-
                   scene.appendChild(model);
-
-
+               
+               // add descriptions text for turbine
                   let name = "Wind " + i;
                   let upper_pos = local_height + json[i].hub_height_m;
-
                   let desc = document.createElement('a-text');
                   desc.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
                   desc.setAttribute('value', `${name}`);

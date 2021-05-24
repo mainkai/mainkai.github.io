@@ -1,27 +1,94 @@
-
-
-<!DOCTYPE html>
 <html>
-   <head>
-      <meta charset='utf-8'>
-      <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-      <title>AR wind potentials</title>
-      <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-      <!-- we import arjs version without NFT but with marker + location based support -->
-      <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-      <!-- <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script> -->
-      <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <head>
+        <title>AR location static</title>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+        <!-- Look-at component. We don't need this now, but we will later. -->
+        <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
       <!-- gltf built-in animations support -->
       <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-   </head>
-   <body style='margin: 0; overflow: hidden;'>
-      <a-scene
-         vr-mode-ui="enabled: false"
-         embedded
-         arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'>
-         <!-- <a-camera gps-camera="alert: true;" rotation-reader></a-camera> -->
-         <a-camera gps-camera="simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878" rotation-reader> </a-camera>
-      </a-scene>
-      <script src="./script.js"></script>
-   </body>
+    </head>
+    <body>
+    <a-scene
+        vr-mode-ui="enabled: false"
+        arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'
+        renderer='antialias: true; alpha: true'>
+        
+        <!-- Terrasse Papa: simulateLatitude: 48.53466773760879; simulateLongitude: 8.077223619016133 -->
+        <!-- Balkon Achern: simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878 -->
+        <a-camera gps-camera="alert: true; simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878" rotation-reader> </a-camera>
+        <!-- <a-camera gps-camera="positionMinAccuracy: 500" rotation-reader></a-camera> -->
+        
+        <!-- animated wind turbines -->
+        <!-- Kreuzung Polizei -->
+        <a-entity
+          gps-entity-place="latitude: 48.62873551358445; longitude: 8.080208278479757;"
+          scale="20 20 20"
+          gltf-model="../assets/models/turbine/scene.gltf"
+          animation-mixer
+        ></a-entity>
+        <!-- unser Garten -->
+        <a-entity
+          gps-entity-place="latitude: 48.62795188651055; longitude: 8.08246125964585;"
+          scale="20 20 20"
+          gltf-model="../assets/models/turbine/scene.gltf"
+          animation-mixer
+        ></a-entity>
+        <!-- Bestandsanlage Hornisgrinde -->
+        <a-entity
+          gps-entity-place="latitude: 48.607373511353295; longitude: 8.201745887873047;"
+          scale="20 20 20"
+          gltf-model="../assets/models/turbine/scene.gltf"
+          animation-mixer
+        ></a-entity>
+        <!-- Bienebuckel Jockele Guck -->
+        <a-entity
+          gps-entity-place="latitude: 48.61171725565487; longitude: 8.09355106895994;"
+          scale="20 20 20"
+          gltf-model="../assets/models/turbine/scene.gltf"
+          animation-mixer
+        ></a-entity>
+        
+        <!-- box in 100m height -->
+        <a-box gps-entity-place="latitude: 48.62795188651055; longitude: 8.08246125964585;" material="color: yellow" position='0 100 0'/></a-box>
+        <a-box gps-entity-place='latitude: 48.62795188651055; longitude: 8.08246125964585' material='color: red' position='0 100 0'></a-box>
 
+        <!-- rotating logo unser Garten -->
+          <a-entity>
+          <a-entity
+            gps-entity-place="latitude: 48.62795188651055; longitude: 8.08246125964585;"
+            scale=".2 .2 .2"
+            gltf-model="../assets/models/greenventory_logo/greenventory_logo.glb"
+            animation="property: rotation; easing: linear; to: 0 -360 0; loop: true; dur: 5000"
+          ></a-entity>
+          </a-entity>
+        
+        <!-- some text labels -->
+          <a-text
+            value="Hof"
+            look-at="[gps-camera]"
+            scale="20 20 20"
+            gps-entity-place="latitude: 48.62801856910548; longitude: 8.082144874106907;"
+          ></a-text>
+          <a-text
+            value="Home"
+            look-at="[gps-camera]"
+            scale="20 20 20"
+            gps-entity-place="latitude: 48.628038052742454; longitude: 8.082059028197861;"
+          ></a-text>
+          <a-text
+            value="Hornisgrinde"
+            look-at="[gps-camera]"
+            scale="20 20 20"
+            gps-entity-place="latitude: 48.60466598953314; longitude: 8.2018070220708;"
+          ></a-text>
+          <a-text
+            value="Papa"
+            look-at="[gps-camera]"
+            scale="20 20 20"
+            gps-entity-place="latitude: 48.53470046481298; longitude: 8.077240679873697;"
+          ></a-text>
+      
+    </a-scene>
+  </body>
+</html>

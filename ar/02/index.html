@@ -1,154 +1,27 @@
+
+
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>AR marker</title>
-  </head>
-  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-  <!-- we import arjs version without NFT but with marker + location based support -->
-  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-  <!-- gltf built-in animations support -->
-  <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-  
-  <!-- support 3D text -->
-  <script src="https://unpkg.com/aframe-text-geometry-component@^0.5.0/dist/aframe-text-geometry-component.min.js"></script>
-  
-  <body style="margin : 0px; overflow: hidden;">
-    <a-scene embedded arjs>
-      
-      <a-assets>
-        <img id="earth-sphere" src="./assets/earth-sphere.jpeg" />
-      </a-assets>
-      
-      <!-- <a-marker type="pattern" url=".assets/logo/pattern-greenventory_logo_1280x1280.patt"> -->
-      <a-marker preset="hiro">
-        
-        <!-- box on marker
-        <a-entity geometry="primitive: box; width: 1; height: .1; depth: 1"
-                  position="0 .05 0"
-                  material="color: gray; opacity: 0.5; wireframe: true">
-        </a-entity> -->
-        <a-entity line="start: -.5 0 -.5; end: -.5 .25 -.5; color: red"
-          line__1="start: .5 0 -.5; end: .5 .25 -.5; color: red"
-          line__2="start: -.5 0 .5; end: -.5 .25 .5; color: red"
-          line__3="start: .5 0 .5; end: .5 .25 .5; color: red"></a-entity>
+   <head>
+      <meta charset='utf-8'>
+      <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+      <title>AR wind potentials</title>
+      <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+      <!-- we import arjs version without NFT but with marker + location based support -->
+      <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+      <!-- <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script> -->
+      <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+      <!-- gltf built-in animations support -->
+      <script src="https://raw.githack.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+   </head>
+   <body style='margin: 0; overflow: hidden;'>
+      <a-scene
+         vr-mode-ui="enabled: false"
+         embedded
+         arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'>
+         <!-- <a-camera gps-camera="alert: true;" rotation-reader></a-camera> -->
+         <a-camera gps-camera="simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878" rotation-reader> </a-camera>
+      </a-scene>
+      <script src="./script.js"></script>
+   </body>
 
-        
-        <a-entity>
-        <a-entity
-          position="0 .75 0"
-          scale="0.02 0.02 0.02"
-          gltf-model="./assets/logo/greenventory_logo.glb"
-          animation="property: rotation; dur: 10000; easing: linear; dir: normal; from:0 0 0; to: 0 -360 0; loop: true;"
-        ></a-entity>
-        </a-entity>
-        <!-- 
-          using aframe-text-geometry component
-          can set: bevelSize, bevelThickness, curveSegments, font, height, size, style, value.
-          alignment (centering) may be tricky; try calculating bounding box and repositioning.
-          for more info, see: https://www.npmjs.com/package/aframe-text-geometry-component
-         -->
-        <a-entity text-geometry="value: energy decisions;"
-          material="color: #01796f;"
-          position="-.5 0.5 0"
-          align="center"
-          scale="0.265 0.265 0.265">
-        </a-entity>
-        <a-entity text-geometry="value: made easy;"
-          material="color: #01796f;"
-          position="-.5 0.25 0"
-          align="center"
-          scale="0.4 0.4 0.4">
-        </a-entity>
-        
-        <!-- animated wind turbine -->
-        <a-entity
-          position="-1 0 .25"
-          scale="0.2 0.2 0.2"
-          gltf-model="./assets/turbine/scene.gltf"
-          animation-mixer
-        ></a-entity>
-        <!-- simple white turbine -->
-        <a-entity
-          position="-1 0 .5"
-          scale="0.025 0.025 0.025"
-          gltf-model="./assets/wind_turbine_01/windturbine.gltf"
-        ></a-entity>
-        <a-text
-          value="Wind"
-          scale="1 1 1"
-          position="-.5 2 .25"
-          align="center"
-          side="double"
-        ></a-text>
-        <a-entity line="start: -.75 1.9 .25; end: -.25 1.9 .25; color: gray"
-          line__2="start: -.75 1.9 .25; end: -1.25 1.3 .25; color: gray"></a-entity>
-        
-        <!-- power plant -->
-        <a-entity
-          position="1 0 -3"
-          scale="0.05 0.05 0.05"
-          gltf-model="./assets/low_poly_coal_plant_stylized_-_animated/scene.gltf"
-          animation-mixer
-        ></a-entity>
-        
-        <!-- electric tower -->
-        <a-entity
-          position="1 0 1"
-          scale="0.003 0.003 0.003"
-          rotation="0 45 0"
-          gltf-model="./assets/electric_tower/scene.gltf"
-        ></a-entity>
-        
-        <!-- solar panel image -->
-        <a-image src="./assets/pv_module/pv_module.png" 
-          width=".5" height=".815"
-          position="1 .5 -.5"
-          rotation="-30 0 0"></a-image>
-        <a-text
-          value="Solar"
-          look-at="[camera]"
-          scale="1 1 1"
-          position=".5 1 -.5"
-          align="center"
-          side="double"
-        ></a-text>
-        <a-entity line="start: .25 .9 -.5; end: .75 .9 -.5; color: gray"
-          line__2="start: .75 .9 -.5; end: 1 .5 -.5; color: gray"></a-entity>
-        
-        <!-- earth -->
-        <a-sphere position="-1 1 -2" 
-               material="src: #earth-sphere; transparent: true; opacity: 0.95;"
-               animation__rotate = "property: rotation; dur: 20000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;">
-          <!-- line on earth x y z with x=longitude, y=latitude, z=radius (away from earth) -->
-          <a-entity line="start: 0 0 0; end: 0 1 1; color: gray"
-            line__1="start: 0 1 1; end: .6 1 1; color: gray"</a-entity>
-          <a-text
-            value="place"
-            scale="1 1 1"
-            position="0 1.15 1"
-            side="double"
-          ></a-text>
-        </a-sphere>
-        
-        <!-- city
-        <a-entity
-          position="0 0 0"
-          scale=".3 .3 .3"
-          rotation="0 0 0"
-          gltf-model="./assets/city_model_low_poly/scene.gltf"
-        ></a-entity> -->
-        
-        <!-- terrain
-        <a-entity
-          position="2 0 2"
-          scale=".03 .03 .03"
-          rotation="0 0 0"
-          gltf-model="./assets/free_quick_terrain_test/scene.gltf"
-        ></a-entity> -->
-        
-      </a-marker>
-      <a-entity camera></a-entity>
-    </a-scene>
-    
-  </body>
-</html>

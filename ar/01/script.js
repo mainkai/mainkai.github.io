@@ -10,7 +10,7 @@ function staticLoadPlaces() {
 		if (this.readyState == 4 && this.status == 200) {
 			var json = JSON.parse(this.responseText);
 			json = json.features
-			console.log(json); // this will show the info it in firebug console
+			console.log(json);
 			let scene = document.querySelector('a-scene');
 			for (var i = 0; i < json.length; i++) {
 				// add wind turbine 3d model
@@ -21,7 +21,7 @@ function staticLoadPlaces() {
 
 				let model = document.createElement('a-entity');
 				model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-				model.setAttribute('gltf-model', `${gltf_file`);
+				model.setAttribute('gltf-model', `${gltf_file}`);
 				model.setAttribute('position', {
 					x: 0,
 					y: local_height, 

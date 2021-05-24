@@ -27,7 +27,7 @@ function staticLoadPlaces() {
 				model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
 				model.setAttribute('gltf-model', '../02/assets/turbine/scene.gltf');
 				model.setAttribute('position', `0 ${local_height} 0`);
-				model.setAttribute('rotation', '0 180 0');
+				model.setAttribute('rotation', "0 180 0");
 				model.setAttribute('animation-mixer', '');
 				model.setAttribute('scale', '30 30 30');
 				model.addEventListener('loaded', () => {

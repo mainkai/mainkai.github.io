@@ -22,7 +22,7 @@ function staticLoadPlaces() {
      };*/
      xmlhttp.open("GET", "./assets/wind_potential/placed_turbines.geojson", true);
      xmlhttp.send();
-     while (xmlhttp.readyState != 4) {}
+     //while (xmlhttp.readyState != 4) {}
      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
          var json = JSON.parse(xmlhttp.responseText);
          json = json.features

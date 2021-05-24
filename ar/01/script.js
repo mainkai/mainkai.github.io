@@ -3,6 +3,12 @@ window.onload = () => {
 };
 
 function staticLoadPlaces() {
+	
+	fetch("./assets/wind_potential/placed_turbines.geojson")
+	  .then(response => response.json())
+	  .then(json => console.log(json));
+	
+	/*
 	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -50,4 +56,5 @@ function staticLoadPlaces() {
 	};
 	xmlhttp.open("GET", "./assets/wind_potential/placed_turbines.geojson", true);
 	xmlhttp.send();
+	*/
 }

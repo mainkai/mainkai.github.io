@@ -27,13 +27,16 @@
           scale="20 20 20"
           gltf-model="../assets/models/turbine/scene.gltf"
           animation-mixer
-        ><a-text
-            value="Kreuzung Polizei"
-            look-at="[gps-camera]"
-            scale="5 5 5"
-            position="0 2 0"
-            align="center"
-          ></a-text></a-entity>
+        >
+            <a-text
+                value="Kreuzung Polizei"
+                look-at="[gps-camera]"
+                scale="5 5 5"
+                position="0 2 0"
+                align="center"
+              ></a-text>
+            <a-box material='color: red' scale='10 100 10'></a-box>
+        </a-entity>
         
         <!-- unser Garten -->
         <a-entity

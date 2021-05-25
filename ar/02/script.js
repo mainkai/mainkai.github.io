@@ -14,13 +14,14 @@ function load_turbines_json() {
 
 function update_own_elevation(lat, lon) {
 	// get elevation
-	fetch("https://api.open-elevation.com/api/v1/lookup\?locations\=41.161758,-8.583933")
+	fetch(`https://api.open-elevation.com/api/v1/lookup\?locations\=${lat},${lon}`)
 	  .then(response => response.json())
-	  .then(json => 
+	  .then(json => {
             const position = this.camera.getAttribute('position');
             position.y = json.results[0].elevation + 1.6;
             this.camera.setAttribute('position', position);
 	    console.log("set own elevation to: " + json.results[0].elevation + "m")
+	}
 	);
 	//.then(json => console.log("elevation result: " + json.results[0].elevation + "m"));
 }

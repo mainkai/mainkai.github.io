@@ -55,6 +55,7 @@ function load_turbines_from_json(json) {
 		desc.setAttribute('position', '0 2 0');
 		desc.setAttribute('look-at', "[gps-camera]");
 		desc.setAttribute('scale', '20 20 20');
+		desc.setAttribute('align', 'center');
 		model.appendChild(desc);
 		
 		scene.appendChild(model);

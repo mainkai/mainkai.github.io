@@ -26,9 +26,9 @@
         <!-- gltf-model="../assets/models/wind_turbine_01/windturbine.gltf" -->
         <a-entity
           gps-entity-place="latitude: 48.62873551358445; longitude: 8.080208278479757;"
+          gltf-model="../assets/models/turbine/scene.gltf" animation-mixer
           scale="50 50 50"
           position="0 0 0"
-          gltf-model="../assets/models/turbine/scene.gltf" animation-mixer
         >
             <a-text
                 value="Kreuzung Polizei"
@@ -45,28 +45,59 @@
         <!-- unser Garten -->
         <a-entity
           gps-entity-place="latitude: 48.62795188651055; longitude: 8.08246125964585;"
-          scale="20 20 20"
-          gltf-model="../assets/models/turbine/scene.gltf"
-          animation-mixer
-        ></a-entity>
+          gltf-model="../assets/models/turbine/scene.gltf" animation-mixer
+          scale="50 50 50"
+          position="0 0 0"
+        >
+            <a-text
+                value="Garten"
+                look-at="[gps-camera]"
+                scale="5 5 5"
+                position="0 2 0"
+                align="center"
+              ></a-text>
+            <a-box material='color: blue; wireframe: true' scale='2 10 2' position="0 5 0"></a-box>
+            <a-box material='color: red; wireframe: true' scale='2 6 2' position="0 3 0"></a-box>
+            <a-plane material='color: green; opacity: 0.5' height="5" width="5" rotation="-90 0 0"></a-plane>
+        </a-entity>
+        
         <!-- Bestandsanlage Hornisgrinde -->
         <a-entity
           gps-entity-place="latitude: 48.607373511353295; longitude: 8.201745887873047;"
-          scale="20 20 20"
-          gltf-model="../assets/models/turbine/scene.gltf"
-          animation-mixer
-        ></a-entity>
+          gltf-model="../assets/models/turbine/scene.gltf" animation-mixer
+          scale="50 50 50"
+          position="0 0 0"
+        >
+            <a-text
+                value="Bestandsanlage Hornisgrinde"
+                look-at="[gps-camera]"
+                scale="5 5 5"
+                position="0 2 0"
+                align="center"
+              ></a-text>
+            <a-box material='color: blue; wireframe: true' scale='2 10 2' position="0 5 0"></a-box>
+            <a-box material='color: red; wireframe: true' scale='2 6 2' position="0 3 0"></a-box>
+            <a-plane material='color: green; opacity: 0.5' height="5" width="5" rotation="-90 0 0"></a-plane>
+        </a-entity>
+        
         <!-- Bienebuckel Jockele Guck -->
         <a-entity
           gps-entity-place="latitude: 48.61171725565487; longitude: 8.09355106895994;"
-          scale="20 20 20"
-          gltf-model="../assets/models/turbine/scene.gltf"
-          animation-mixer
-        ></a-entity>
-        
-        <!-- box in 100m height -->
-        <a-box gps-entity-place="latitude: 48.62795188651055; longitude: 8.08246125964585;" material="color: yellow" position='0 100 0'/></a-box>
-        <a-box gps-entity-place='latitude: 48.62795188651055; longitude: 8.08246125964585' material='color: red' position='0 100 0'></a-box>
+          gltf-model="../assets/models/turbine/scene.gltf" animation-mixer
+          scale="50 50 50"
+          position="0 0 0"
+        >
+            <a-text
+                value="Bienebuckel Jockele Guck"
+                look-at="[gps-camera]"
+                scale="5 5 5"
+                position="0 2 0"
+                align="center"
+              ></a-text>
+            <a-box material='color: blue; wireframe: true' scale='2 10 2' position="0 5 0"></a-box>
+            <a-box material='color: red; wireframe: true' scale='2 6 2' position="0 3 0"></a-box>
+            <a-plane material='color: green; opacity: 0.5' height="5" width="5" rotation="-90 0 0"></a-plane>
+        </a-entity>
 
         <!-- rotating logo unser Garten -->
           <a-entity>

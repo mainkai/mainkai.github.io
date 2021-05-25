@@ -53,7 +53,7 @@ function load_turbines_from_json(json) {
 		const desc = document.createElement('a-text');
 		// desc.setAttribute('gps-entity-place', `latitude: ${ latitude }; longitude: ${ longitude };`);
 		desc.setAttribute('value', "Wind " + i);
-		desc.setAttribute('position', `0 ${local_height + json[i].properties.hub_height_m} 0`);
+		desc.setAttribute('position', '0 2 0');
 		desc.setAttribute('look-at', "[gps-camera]");
 		desc.setAttribute('scale', '20 20 20');
 		model.appendChild(desc);

@@ -23,6 +23,7 @@ function load_turbines_from_json(json) {
 		let latitude = json[i].geometry.coordinates[1];
 		let longitude = json[i].geometry.coordinates[0];
 		let local_height = json[i].properties.local_height;
+		let total_turbine_size = json[i].properties.hub_height_m + .5 * json[i].properties.rotor_diameter_m;
 
 		const model = document.createElement('a-entity');
 		model.setAttribute('gps-entity-place', "latitude: " + latitude + "; longitude: " + longitude + ";");
@@ -30,21 +31,23 @@ function load_turbines_from_json(json) {
 		model.setAttribute('position', `0 ${local_height} 0`);
 		model.setAttribute('rotation', "0 180 0");
 		model.setAttribute('animation-mixer', '');
-		model.setAttribute('scale', '30 30 30');
+		model.setAttribute('scale', '${total_turbine_size} ${total_turbine_size} ${total_turbine_size}');
 		model.setAttribute('animation-mixer', '');
 		model.addEventListener('loaded', () => {
 			window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
 		});
-		scene.appendChild(model);
-
+		
 		// add descriptions text for turbine
 		const desc = document.createElement('a-text');
-		desc.setAttribute('gps-entity-place', `latitude: ${ latitude }; longitude: ${ longitude };`);
+		// desc.setAttribute('gps-entity-place', `latitude: ${ latitude }; longitude: ${ longitude };`);
 		desc.setAttribute('value', "Wind " + i);
-		desc.setAttribute('position_', `0 ${local_height + json[i].properties.hub_height_m} 0`);
+		desc.setAttribute('position', `0 ${local_height + json[i].properties.hub_height_m} 0`);
 		desc.setAttribute('look-at', "[gps-camera]");
 		desc.setAttribute('scale', '20 20 20');
-		scene.appendChild(desc);
+		model.appendChild(desc);
+		
+		scene.appendChild(model);
+
 		console.log("added: Wind " + i + " at: " + latitude + ", " + longitude + ", " + local_height + " m, " + json[i].properties.hub_height_m + " m");
 	}
 	//alert("loaded " + json.length + " objects.");

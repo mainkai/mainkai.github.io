@@ -3,7 +3,7 @@ window.onload = () => {
 };
 
 window.addEventListener('gps-camera-update-position', e => {
-	    update_own_elevation(e.detail.position.e.detail.position.longitude, lon);
+	    update_own_elevation(e.detail.position.e.detail.position.latitude, e.detail.position.e.detail.position.longitude)
         });
 
 function load_turbines_json() {
@@ -60,7 +60,7 @@ function load_turbines_from_json(json) {
 		
 		scene.appendChild(model);
 
-		console.log("added: Wind " + i + " at: " + latitude + ", " + longitude + ", " + local_height + " m, " + json[i].properties.hub_height_m + " m");
+		console.log("added: Wind " + i + " at: " + latitude + ", " + longitude + ", " + local_height + " m, " + json[i].properties.hub_height_m + " m, total_turbine_size=" + total_turbine_size + " m");
 	}
 	//alert("loaded " + json.length + " objects.");
 }

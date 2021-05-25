@@ -43,7 +43,7 @@ function load_turbines_from_json(json) {
 		model.setAttribute('position', `0 ${local_height} 0`);
 		model.setAttribute('rotation', "0 180 0");
 		model.setAttribute('animation-mixer', '');
-		model.setAttribute('scale', '${total_turbine_size} ${total_turbine_size} ${total_turbine_size}');
+		model.setAttribute('scale', `${total_turbine_size} ${total_turbine_size} ${total_turbine_size}`);
 		model.setAttribute('animation-mixer', '');
 		model.addEventListener('loaded', () => {
 			window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))

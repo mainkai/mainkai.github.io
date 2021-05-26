@@ -35,7 +35,9 @@ function load_turbines_from_json(json) {
 		let latitude = json[i].geometry.coordinates[1];
 		let longitude = json[i].geometry.coordinates[0];
 		let local_height = json[i].properties.local_height;
-		let total_turbine_size = json[i].properties.hub_height_m + .5 * json[i].properties.rotor_diameter_m;
+		let hub_height_m = json[i].properties.hub_height_m;
+		let rotor_diameter_m = json[i].properties.rotor_diameter_m;
+		let total_turbine_size = hub_height_m + .5 * rotor_diameter_m;
 
 		//const model = document.createElement('a-entity');
 		//model.setAttribute('gltf-model', '../assets/models/turbine/scene.gltf');
@@ -44,14 +46,14 @@ function load_turbines_from_json(json) {
 		model.setAttribute('material', 'color: red; wireframe: true');
 		model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
 		model.setAttribute('position', `0 ${local_height} 0`);
-		model.setAttribute('scale', `${total_turbine_size} ${total_turbine_size} ${total_turbine_size}`);
+		model.setAttribute('scale', `${rotor_diameter_m} ${total_turbine_size} ${rotor_diameter_m}`);
 		model.addEventListener('loaded', () => {
 			window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
 		});
 		
 		// add descriptions text for turbine
 		const desc = document.createElement('a-text');
-		desc.setAttribute('value', i);
+		desc.setAttribute('value', `${i}: {json[i].properties.model}`);
 		desc.setAttribute('position', '0 2 0');
 		desc.setAttribute('look-at', "[gps-camera]");
 		desc.setAttribute('scale', '20 20 20');
@@ -60,7 +62,7 @@ function load_turbines_from_json(json) {
 		
 		scene.appendChild(model);
 
-		console.log("added: Wind " + i + " at: " + latitude + ", " + longitude + ", " + local_height + " m, " + json[i].properties.hub_height_m + " m, total_turbine_size=" + total_turbine_size + " m");
+		console.log("added: Wind " + i + " at: " + latitude + ", " + longitude + ", " + local_height + " m, " + hub_height_m + " m, total_turbine_size=" + total_turbine_size + " m");
 	}
 	//alert("loaded " + json.length + " objects.");
 }

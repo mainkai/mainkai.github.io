@@ -1,5 +1,6 @@
 window.onload = () => {
 	load_turbines_json();
+	load_track_gpx();
 };
 
 window.addEventListener('gps-projected-camera-update-position', e => {
@@ -11,20 +12,6 @@ function load_turbines_json() {
 	fetch("../assets/wind_potentials/Achern/placed_turbines.geojson")
 	  .then(response => response.json())
 	  .then(json => load_turbines_from_json(json));
-}
-
-function update_own_elevation(lat, lon) {
-	// get elevation
-	fetch(`https://api.open-elevation.com/api/v1/lookup\?locations\=${lat},${lon}`)
-	  .then(response => response.json())
-	  .then(json => {
-            const position = this.camera.getAttribute('position');
-            position.y = json.results[0].elevation + 1.6;
-            this.camera.setAttribute('position', position);
-	    console.log("set own elevation to: " + json.results[0].elevation + "m");
-	  }
-	);
-	//.then(json => console.log("elevation result: " + json.results[0].elevation + "m"));
 }
 
 function load_turbines_from_json(json) {
@@ -77,4 +64,40 @@ function load_turbines_from_json(json) {
 		//console.log("added: Wind " + i + " at: " + latitude + ", " + longitude + ", " + local_height + " m, " + hub_height_m + " m, total_turbine_size " + total_turbine_size + " m");
 	}
 	console.log("loaded " + json.length + " objects.");
+}
+
+function load_track_gpx() {
+	fetch("../assets/tracks/2020-03-31 1844 Hausrunde__20200331_1844.gpx")
+	  .then(response => add_track(response));
+}
+
+function add_track(text) {
+	parser = new DOMParser();
+	xmlDoc = parser.parseFromString(text,"text/xml");
+	segments = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("trkseg");
+	
+	for (var i = 0; i < segments.length; i++) {
+		track_points = segments[i].getElementsByTagName("trkpt");
+		for (var j = 0; j < track_points.length; j++) {
+			track_point = track_points[j];
+			lat = track_point.getAttribute("lat");
+			lon = getAttribute("lon");
+			ele = track_point.getElementsByTagName("ele")[0].nodeValue;
+			console.log(`segment ${i}, track_point ${j}: (${lon}, ${lat}), ${ele} m`);
+		}
+	}
+}
+
+function update_own_elevation(lat, lon) {
+	// get elevation
+	fetch(`https://api.open-elevation.com/api/v1/lookup\?locations\=${lat},${lon}`)
+	  .then(response => response.json())
+	  .then(json => {
+            const position = this.camera.getAttribute('position');
+            position.y = json.results[0].elevation + 1.6;
+            this.camera.setAttribute('position', position);
+	    console.log("set own elevation to: " + json.results[0].elevation + "m");
+	  }
+	);
+	//.then(json => console.log("elevation result: " + json.results[0].elevation + "m"));
 }

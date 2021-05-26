@@ -72,6 +72,7 @@ function load_track_gpx() {
 }
 
 function add_track(text) {
+	console.log(`parsing ${text}...`);
 	parser = new DOMParser();
 	xmlDoc = parser.parseFromString(text,"text/xml");
 	segments = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("trkseg");

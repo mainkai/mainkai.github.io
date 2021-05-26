@@ -90,7 +90,8 @@ function add_track(text) {
 			console.log(`segment ${i}, track_point ${j}: (${lon}, ${lat}), ${ele} m`);
 			
 			const line = document.createElement('a-entity');
-			line.setAttribute('line', `start: ${lon} ${ele} ${lat}; end: ${lon} ${ele+10} ${lat}; color: green`);
+			line.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
+			line.setAttribute('line', `start: 0 ${ele} 0; end: 0 ${ele+10} 0; color: green`);
 			scene.appendChild(line);
 		}
 	}

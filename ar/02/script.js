@@ -52,10 +52,16 @@ function load_turbines_from_json(json) {
 			window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
 		});
 		
+		// add line from turbine to text
+		const line = document.createElement('a-entity');
+		line.setAttribute('line__1', `start: 0 ${hub_height_m} 0; end: 0 ${total_turbine_size + 2} 0; color: gray`);
+		line.setAttribute('line__2', `start: 0 ${total_turbine_size + 2} 0; end: 5 ${total_turbine_size + 2} 0; color: gray`);
+		model.appendChild(line);
+		
 		// add descriptions text for turbine
 		const desc = document.createElement('a-text');
 		desc.setAttribute('value', `${i}: ${json[i].properties.model}`);
-		desc.setAttribute('position', '0 2 0');
+		desc.setAttribute('position', `0 ${total_turbine_size + 2} 0`);
 		desc.setAttribute('look-at', "[gps-projected-camera]");
 		desc.setAttribute('scale', '10 10 10');
 		desc.setAttribute('align', 'center');

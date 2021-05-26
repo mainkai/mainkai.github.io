@@ -42,12 +42,15 @@ function load_turbines_from_json(json) {
 
 		//const model = document.createElement('a-entity');
 		//model.setAttribute('gltf-model', '../assets/models/turbine/scene.gltf');
+		//model.setAttribute('scale', `${rotor_diameter_m} ${total_turbine_size} ${rotor_diameter_m}`);
 		//model.setAttribute('animation-mixer', '');
 		const model = document.createElement('a-box');
 		model.setAttribute('material', 'color: red; wireframe: true');
 		model.setAttribute('gps-projected-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
 		model.setAttribute('position', `0 ${local_height} 0`);
-		model.setAttribute('scale', `${rotor_diameter_m} ${total_turbine_size} ${rotor_diameter_m}`);
+		model.setAttribute('height', total_turbine_size);
+		model.setAttribute('width', rotor_diameter_m);
+		model.setAttribute('depth', rotor_diameter_m);
 		model.addEventListener('loaded', () => {
 			window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
 		});

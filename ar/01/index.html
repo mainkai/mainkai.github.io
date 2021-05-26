@@ -17,8 +17,8 @@
         
         <!-- Terrasse Papa: simulateLatitude: 48.53466773760879; simulateLongitude: 8.077223619016133 -->
         <!-- Balkon Achern: simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878 -->
-        <a-camera gps-camera="alert: true; simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878" rotation-reader> </a-camera>
-        <!-- <a-camera gps-camera="positionMinAccuracy: 500" rotation-reader></a-camera> -->
+        <!-- <a-camera gps-camera="simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878" rotation-reader> </a-camera> -->
+        <a-camera gps-camera="positionMinAccuracy: 500" rotation-reader></a-camera>
         
         <!-- animated wind turbines -->
         <!-- Kreuzung Polizei -->
@@ -103,6 +103,17 @@
           <a-entity>
           <a-entity
             gps-entity-place="latitude: 48.62795188651055; longitude: 8.08246125964585;"
+            scale=".2 .2 .2"
+            gltf-model="../assets/models/greenventory_logo/greenventory_logo.glb"
+            animation="property: rotation; easing: linear; to: 0 -360 0; loop: true; dur: 5000"
+          ></a-entity>
+          </a-entity>
+
+        <!-- rotating logo greenventory -->
+          <a-entity>
+          <a-entity
+            gps-entity-place="latitude: 48.031089724330634; longitude: 7.855074920181268;"
+            position="0 5 0"
             scale=".2 .2 .2"
             gltf-model="../assets/models/greenventory_logo/greenventory_logo.glb"
             animation="property: rotation; easing: linear; to: 0 -360 0; loop: true; dur: 5000"

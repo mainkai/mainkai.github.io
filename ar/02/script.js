@@ -68,7 +68,8 @@ function load_turbines_from_json(json) {
 
 function load_track_gpx() {
 	fetch("../assets/tracks/2020-03-31 1844 Hausrunde__20200331_1844.gpx")
-	  .then(response => add_track(response));
+	  .then(response => response.text())
+	  .then(text => add_track(text));
 }
 
 function add_track(text) {

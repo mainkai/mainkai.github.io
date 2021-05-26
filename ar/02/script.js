@@ -67,7 +67,7 @@ function load_turbines_from_json(json) {
 		desc.setAttribute('value', `${i}: ${json[i].properties.model}, ${json[i].properties.p_nominal_kw} kW`);
 		desc.setAttribute('position', `${2 * rotor_diameter_m} ${total_turbine_size + rotor_diameter_m} 0`);
 		desc.setAttribute('look-at', "[gps-projected-camera]");
-		desc.setAttribute('scale', '10 10 10');
+		desc.setAttribute('scale', '100 100 100');
 		line.appendChild(desc);
 		
 		scene.appendChild(model);

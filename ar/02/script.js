@@ -47,7 +47,7 @@ function load_turbines_from_json(json) {
 		const model = document.createElement('a-box');
 		model.setAttribute('material', 'color: red; wireframe: true');
 		model.setAttribute('gps-projected-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-		model.setAttribute('position', `0 ${local_height} 0`);
+		model.setAttribute('position', `0 ${local_height + .5 * total_turbine_size} 0`);
 		model.setAttribute('height', total_turbine_size);
 		model.setAttribute('width', rotor_diameter_m);
 		model.setAttribute('depth', rotor_diameter_m);

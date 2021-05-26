@@ -76,7 +76,7 @@ function add_track(text) {
 	console.log(`parsing ${text}...`);
 	parser = new DOMParser();
 	xmlDoc = parser.parseFromString(text,"text/xml");
-	console.log(`parsed xmlDoc: ${xmlDoc}...`);
+	//console.log(`parsed xmlDoc: ${xmlDoc}...`);
 	segments = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("trkseg");
 	
 	for (var i = 0; i < segments.length; i++) {
@@ -84,7 +84,7 @@ function add_track(text) {
 		for (var j = 0; j < track_points.length; j++) {
 			track_point = track_points[j];
 			lat = track_point.getAttribute("lat");
-			lon = getAttribute("lon");
+			lon = track_point.getAttribute("lon");
 			ele = track_point.getElementsByTagName("ele")[0].nodeValue;
 			console.log(`segment ${i}, track_point ${j}: (${lon}, ${lat}), ${ele} m`);
 		}

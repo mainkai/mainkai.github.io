@@ -84,7 +84,7 @@ function add_track(text) {
 	
 	const desc = document.createElement('a-text');
 	desc.setAttribute('value', trk_name);
-	desc.setAttribute('gps-projected-entity-place', `latitude: ${segments[0].getElementsByTagName("trkpt")[0].getAttribute("lat")}; longitude: ${segments[0].getElementsByTagName("trkpt")[0].getAttribute("lon")};`);
+	desc.setAttribute('gps-projected-entity-place', `latitude: ${segments[0].getElementsByTagName("trkpt")[10].getAttribute("lat")}; longitude: ${segments[0].getElementsByTagName("trkpt")[10].getAttribute("lon")};`);
 	desc.setAttribute('position', `0 ${50} 0`);
 	desc.setAttribute('scale', '500 500 500');
 	scene.appendChild(desc);

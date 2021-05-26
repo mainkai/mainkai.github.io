@@ -80,15 +80,14 @@ function add_track(text) {
 	segments = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("trkseg");
 	trk_name = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("name")[0].innerHTML;
 	
-	let scene = document.querySelector('a-scene');
-	
+	const track_ent = document.createElement('a-entity');
 	const desc = document.createElement('a-text');
 	desc.setAttribute('value', trk_name);
 	desc.setAttribute('gps-projected-entity-place', `latitude: ${segments[0].getElementsByTagName("trkpt")[0].getAttribute("lat")}; longitude: ${segments[0].getElementsByTagName("trkpt")[0].getAttribute("lon")};`);
 	desc.setAttribute('position', `0 ${50} 0`);
 	desc.setAttribute('scale', '50 50 50');
 	desc.setAttribute('look-at', "[gps-projected-camera]");
-	scene.appendChild(desc);
+	track_ent.appendChild(desc);
 	
 	for (var i = 0; i < segments.length; i++) {
 		track_points = segments[i].getElementsByTagName("trkpt");
@@ -103,9 +102,11 @@ function add_track(text) {
 			line_.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
 			line_.setAttribute('line', `start: 0 ${ele} 0; end: 0 ${ele+50} 0; color: green`);
 			line_.setAttribute('material', 'opacity: 0.5');
-			scene.appendChild(line_);
+			track_ent.appendChild(line_);
 		}
 	}
+	let scene = document.querySelector('a-scene');
+	scene.appendChild(track_ent);
 }
 
 function update_own_elevation(lat, lon) {

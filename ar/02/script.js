@@ -45,14 +45,14 @@ function load_turbines_from_json(json) {
 		// add line from turbine to text
 		const line = document.createElement('a-entity');
 		line.setAttribute('line', `start: 0 ${hub_height_m} 0; end: ${rotor_diameter_m} ${total_turbine_size + rotor_diameter_m} 0; color: white`);
-		line.setAttribute('line__1', `start: ${rotor_diameter_m} ${total_turbine_size + rotor_diameter_m} 0; end: ${rotor_diameter_m + 10} ${total_turbine_size + rotor_diameter_m} 0; color: white`);
+		line.setAttribute('line__1', `start: ${rotor_diameter_m} ${total_turbine_size + rotor_diameter_m} 0; end: ${rotor_diameter_m + 20} ${total_turbine_size + rotor_diameter_m} 0; color: white`);
 		line.setAttribute('look-at', "[gps-projected-camera]");
 		model.appendChild(line);
 		
 		// add text description for turbine
 		const desc = document.createElement('a-text');
 		desc.setAttribute('value', `${i}: ${json[i].properties.model}, ${json[i].properties.p_nominal_kw} kW`);
-		desc.setAttribute('position', `${-rotor_diameter_m - 20} ${total_turbine_size + rotor_diameter_m} 0`);
+		desc.setAttribute('position', `${-rotor_diameter_m - 30} ${total_turbine_size + rotor_diameter_m} 0`);
 		desc.setAttribute('align', 'left');
 		//desc.setAttribute('baseline', 'bottom');
 		desc.setAttribute('look-at', "[gps-projected-camera]");

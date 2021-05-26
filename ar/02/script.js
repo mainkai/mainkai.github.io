@@ -54,8 +54,9 @@ function load_turbines_from_json(json) {
 		
 		// add line from turbine to text
 		const line = document.createElement('a-entity');
-		line.setAttribute('line', `start: 0 ${hub_height_m} 0; end: 0 ${total_turbine_size + 2} 0; color: gray`);
-		line.setAttribute('line__1', `start: 0 ${total_turbine_size + 2} 0; end: 5 ${total_turbine_size + 2} 0; color: gray`);
+		line.setAttribute('line', `start: 0 0 0; end: 0 ${hub_height_m} 0; color: green`);
+		line.setAttribute('line__1', `start: 0 ${hub_height_m} 0; end: 0 ${total_turbine_size + 2} 0; color: gray`);
+		line.setAttribute('line__2', `start: 0 ${total_turbine_size + 2} 0; end: 5 ${total_turbine_size + 2} 0; color: blue`);
 		model.appendChild(line);
 		
 		// add descriptions text for turbine

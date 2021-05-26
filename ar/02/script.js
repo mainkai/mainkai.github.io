@@ -87,7 +87,7 @@ function add_track(text) {
 			lat = track_point.getAttribute("lat");
 			lon = track_point.getAttribute("lon");
 			let ele = parseFloat(track_point.getElementsByTagName("ele")[0].innerHTML);
-			console.log(`segment ${i}, track_point ${j}: (${lon}, ${lat}), ${ele} m -> ${ele_up} m`);
+			console.log(`segment ${i}, track_point ${j}: (${lon}, ${lat}), ${ele} m);
 			
 			const line_ = document.createElement('a-entity');
 			line_.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);

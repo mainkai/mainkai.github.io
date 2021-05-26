@@ -1,10 +1,10 @@
 window.onload = () => {
 	load_turbines_json();
-	update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
 };
 
 window.addEventListener('gps-projected-camera-update-position', e => {
-	    update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
+	    console.log("updating own elevation...");
+	    //update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
         });
 
 function load_turbines_json() {

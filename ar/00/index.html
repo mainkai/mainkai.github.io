@@ -17,6 +17,7 @@
       
       <a-assets>
         <img id="earth-sphere" src="../assets/images/earth-sphere/earth-sphere.jpeg" />
+        <img id="earth_night" src="../assets/images/earth_night/BlackMarble_2016_01deg.jpg" />
       </a-assets>
       
       <!-- <a-marker type="pattern" url="../assets/patterns/pattern-greenventory_logo_1280x1280.patt"> -->
@@ -41,12 +42,6 @@
           animation="property: rotation; dur: 10000; easing: linear; dir: normal; from:0 0 0; to: 0 -360 0; loop: true;"
         ></a-entity>
         </a-entity>
-        <!-- 
-          using aframe-text-geometry component
-          can set: bevelSize, bevelThickness, curveSegments, font, height, size, style, value.
-          alignment (centering) may be tricky; try calculating bounding box and repositioning.
-          for more info, see: https://www.npmjs.com/package/aframe-text-geometry-component
-         -->
         <a-entity text-geometry="value: energy decisions;"
           material="color: #01796f;"
           position="-.5 0.5 0"
@@ -128,6 +123,11 @@
             position="0 1.15 1"
             side="double"
           ></a-text>
+        </a-sphere>
+        
+        <a-sphere position="-3 2 -3" 
+               material="src: #earth_night; transparent: true; opacity: 0.95;"
+               animation__rotate = "property: rotation; dur: 20000; easing: linear; dir: normal; from:0 0 0; to: 0 360 0; loop: true;">
         </a-sphere>
         
       </a-marker>

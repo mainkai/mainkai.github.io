@@ -89,6 +89,7 @@ function add_track(text) {
 	desc.setAttribute('look-at', "[gps-projected-camera]");
 	track_ent.appendChild(desc);
 	
+	// add vertical line for each point
 	for (var i = 0; i < segments.length; i++) {
 		track_points = segments[i].getElementsByTagName("trkpt");
 		for (var j = 0; j < track_points.length; j++) {
@@ -107,6 +108,21 @@ function add_track(text) {
 	}
 	let scene = document.querySelector('a-scene');
 	scene.appendChild(track_ent);
+	/*
+	for (var i = 0; i < segments.length; i++) {
+		track_points = segments[i].getElementsByTagName("trkpt");
+		for (var j = 0; j < track_points.length - 1; j++) {
+			// add polygon for each segment
+			let points = []; //vertices of Your shape
+			points.push( new THREE.Vector2( 0, 0 ) );
+			points.push( new THREE.Vector2( 3, 0 ) );
+			points.push( new THREE.Vector2( 5, 2 ) );
+			points.push( new THREE.Vector2( 5, 5 ) );
+			const mesh = new THREE.Mesh(new THREE.ShapeGeometry(new THREE.Shape(points)), new THREE.MeshBasicMaterial({color: f.properties.color, opacity: this.data.opacity, transparent: true}));
+			this.el.setObject3D(mesh);
+		}
+	}
+	*/
 }
 
 function update_own_elevation(lat, lon) {

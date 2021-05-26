@@ -90,7 +90,7 @@ function add_track(text) {
 			console.log(`segment ${i}, track_point ${j}: (${lon}, ${lat}), ${ele} m`);
 			
 			const line = document.createElement('a-entity');
-			line.setAttribute('line', `start: ${lon} ${ele} ${lon}; end: ${lon} ${ele+10} ${lon}; color: green`);
+			line.setAttribute('line', `start: ${lon} ${ele} ${lat}; end: ${lon} ${ele+10} ${lat}; color: green`);
 			scene.appendChild(line);
 		}
 	}

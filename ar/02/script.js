@@ -78,8 +78,17 @@ function add_track(text) {
 	xmlDoc = parser.parseFromString(text,"text/xml");
 	//console.log(`parsed xmlDoc: ${xmlDoc}...`);
 	segments = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("trkseg");
+	trk_name = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("name")[0].innerHTML;
 	
 	let scene = document.querySelector('a-scene');
+	
+	const desc = document.createElement('a-text');
+	desc.setAttribute('value', trk_name);
+	desc.setAttribute('gps-projected-entity-place', `latitude: ${track_points[j].getAttribute("lat")}; longitude: ${track_points[j].getAttribute("lon")};`);
+	desc.setAttribute('position', `0 ${50} 0`);
+	desc.setAttribute('scale', '500 500 500');
+	scene.appendChild(desc);
+	
 	for (var i = 0; i < segments.length; i++) {
 		track_points = segments[i].getElementsByTagName("trkpt");
 		for (var j = 0; j < track_points.length; j++) {
@@ -87,11 +96,11 @@ function add_track(text) {
 			lat = track_point.getAttribute("lat");
 			lon = track_point.getAttribute("lon");
 			ele = parseFloat(track_point.getElementsByTagName("ele")[0].innerHTML);
-			console.log(`segment ${i}, track_point ${j}: (${lon}, ${lat}), ${ele} m`);
+			//console.log(`segment ${i}, track_point ${j}: (${lon}, ${lat}), ${ele} m`);
 			
 			const line_ = document.createElement('a-entity');
 			line_.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
-			line_.setAttribute('line', `start: 0 ${ele} 0; end: 0 ${ele+25} 0; color: green`);
+			line_.setAttribute('line', `start: 0 ${ele} 0; end: 0 ${ele+50} 0; color: green`);
 			scene.appendChild(line_);
 		}
 	}

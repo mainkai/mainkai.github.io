@@ -44,8 +44,8 @@ function load_turbines_from_json(json) {
 		
 		// add line from turbine to text
 		const line = document.createElement('a-entity');
-		line.setAttribute('line', `start: 0 ${hub_height_m} 0; end: ${rotor_diameter_m} ${total_turbine_size + rotor_diameter_m} 0; color: gray`);
-		line.setAttribute('line__1', `start: ${rotor_diameter_m} ${total_turbine_size + rotor_diameter_m} 0; end: ${rotor_diameter_m + 500} ${total_turbine_size + rotor_diameter_m} 0; color: gray`);
+		line.setAttribute('line', `start: 0 ${hub_height_m} 0; end: ${rotor_diameter_m} ${total_turbine_size + rotor_diameter_m} 0; color: white`);
+		line.setAttribute('line__1', `start: ${rotor_diameter_m} ${total_turbine_size + rotor_diameter_m} 0; end: ${rotor_diameter_m + 10} ${total_turbine_size + rotor_diameter_m} 0; color: white`);
 		line.setAttribute('look-at', "[gps-projected-camera]");
 		model.appendChild(line);
 		

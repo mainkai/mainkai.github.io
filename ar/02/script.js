@@ -87,6 +87,7 @@ function add_track(text) {
 	desc.setAttribute('gps-projected-entity-place', `latitude: ${segments[0].getElementsByTagName("trkpt")[10].getAttribute("lat")}; longitude: ${segments[0].getElementsByTagName("trkpt")[10].getAttribute("lon")};`);
 	desc.setAttribute('position', `0 ${50} 0`);
 	desc.setAttribute('scale', '500 500 500');
+	desc.setAttribute('look-at', "[gps-projected-camera]");
 	scene.appendChild(desc);
 	
 	for (var i = 0; i < segments.length; i++) {

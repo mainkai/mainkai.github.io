@@ -89,10 +89,10 @@ function add_track(text) {
 			ele = track_point.getElementsByTagName("ele")[0].innerHTML;
 			console.log(`segment ${i}, track_point ${j}: (${lon}, ${lat}), ${ele} m`);
 			
-			const line = document.createElement('a-entity');
-			line.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
-			line.setAttribute('line', `start: 0 ${ele} 0; end: 0 ${ele+25} 0; color: green`);
-			scene.appendChild(line);
+			const line_ = document.createElement('a-entity');
+			line_.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
+			line_.setAttribute('line', `start: 0 ${ele} 0; end: 0 ${ ele+25 } 0; color: green`);
+			scene.appendChild(line_);
 		}
 	}
 }

@@ -91,7 +91,7 @@ function add_track(text) {
 			
 			const line = document.createElement('a-entity');
 			line.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
-			line.setAttribute('line', `start: 0 ${ele} 0; end: 0 ${ele+10} 0; color: green`);
+			line.setAttribute('line', `start: 0 ${ele} 0; end: 0 ${ele+25} 0; color: green`);
 			scene.appendChild(line);
 		}
 	}

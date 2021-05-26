@@ -85,7 +85,7 @@ function add_track(text) {
 			track_point = track_points[j];
 			lat = track_point.getAttribute("lat");
 			lon = track_point.getAttribute("lon");
-			ele = track_point.getElementsByTagName("ele")[0].nodeValue;
+			ele = track_point.getElementsByTagName("ele")[0].innerHTML;
 			console.log(`segment ${i}, track_point ${j}: (${lon}, ${lat}), ${ele} m`);
 		}
 	}

@@ -4,7 +4,7 @@ window.onload = () => {
 
 window.addEventListener('gps-projected-camera-update-position', e => {
 	    console.log("updating own elevation...");
-	    //update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
+	    update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
         });
 
 function load_turbines_json() {
@@ -63,7 +63,7 @@ function load_turbines_from_json(json) {
 		
 		scene.appendChild(model);
 
-		console.log("added: Wind " + i + " at: " + latitude + ", " + longitude + ", " + local_height + " m, " + hub_height_m + " m, total_turbine_size=" + total_turbine_size + " m");
+		//console.log("added: Wind " + i + " at: " + latitude + ", " + longitude + ", " + local_height + " m, " + hub_height_m + " m, total_turbine_size " + total_turbine_size + " m");
 	}
-	//alert("loaded " + json.length + " objects.");
+	console.log("loaded " + json.length + " objects.");
 }

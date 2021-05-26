@@ -75,6 +75,7 @@ function add_track(text) {
 	console.log(`parsing ${text}...`);
 	parser = new DOMParser();
 	xmlDoc = parser.parseFromString(text,"text/xml");
+	console.log(`parsed xmlDoc: ${xmlDoc}...`);
 	segments = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("trkseg");
 	
 	for (var i = 0; i < segments.length; i++) {

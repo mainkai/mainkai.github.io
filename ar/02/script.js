@@ -27,12 +27,13 @@ function load_turbines_from_json(json) {
 		let rotor_diameter_m = json[i].properties.rotor_diameter_m;
 		let total_turbine_size = hub_height_m + .5 * rotor_diameter_m;
 
-		//const model = document.createElement('a-entity');
+		const model = document.createElement('a-entity');
 		//model.setAttribute('gltf-model', '../assets/models/turbine/scene.gltf');
+		model.setAttribute('gltf-model', '../assets/models/generic_wind_turbine_v136_125.5h_145d/scene.gltf');
 		//model.setAttribute('scale', `${rotor_diameter_m} ${total_turbine_size} ${rotor_diameter_m}`);
-		//model.setAttribute('animation-mixer', '');
-		const model = document.createElement('a-box');
-		model.setAttribute('material', 'color: red; wireframe: true');
+		model.setAttribute('animation-mixer', '');
+		//const model = document.createElement('a-box');
+		//model.setAttribute('material', 'color: red; wireframe: true');
 		model.setAttribute('gps-projected-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
 		model.setAttribute('position', `0 ${local_height + .5 * total_turbine_size} 0`);
 		model.setAttribute('height', total_turbine_size);

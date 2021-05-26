@@ -2,7 +2,7 @@ window.onload = () => {
 	load_turbines_json();
 };
 
-window.addEventListener('gps-camera-update-position', e => {
+window.addEventListener('gps-projected-camera-update-position', e => {
 	    update_own_elevation(e.detail.position.latitude, e.detail.position.longitude)
         });
 
@@ -44,7 +44,7 @@ function load_turbines_from_json(json) {
 		//model.setAttribute('animation-mixer', '');
 		const model = document.createElement('a-box');
 		model.setAttribute('material', 'color: red; wireframe: true');
-		model.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
+		model.setAttribute('gps-projected-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
 		model.setAttribute('position', `0 ${local_height} 0`);
 		model.setAttribute('scale', `${rotor_diameter_m} ${total_turbine_size} ${rotor_diameter_m}`);
 		model.addEventListener('loaded', () => {
@@ -55,7 +55,7 @@ function load_turbines_from_json(json) {
 		const desc = document.createElement('a-text');
 		desc.setAttribute('value', `${i}: ${json[i].properties.model}`);
 		desc.setAttribute('position', '0 2 0');
-		desc.setAttribute('look-at', "[gps-camera]");
+		desc.setAttribute('look-at', "[gps-projected-camera]");
 		desc.setAttribute('scale', '10 10 10');
 		desc.setAttribute('align', 'center');
 		model.appendChild(desc);

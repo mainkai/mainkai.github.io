@@ -1,9 +1,10 @@
 window.onload = () => {
 	load_turbines_json();
+	update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
 };
 
 window.addEventListener('gps-projected-camera-update-position', e => {
-	    update_own_elevation(e.detail.position.latitude, e.detail.position.longitude)
+	    update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
         });
 
 function load_turbines_json() {
@@ -21,7 +22,7 @@ function update_own_elevation(lat, lon) {
             position.y = json.results[0].elevation + 1.6;
             this.camera.setAttribute('position', position);
 	    console.log("set own elevation to: " + json.results[0].elevation + "m");
-	}
+	  }
 	);
 	//.then(json => console.log("elevation result: " + json.results[0].elevation + "m"));
 }

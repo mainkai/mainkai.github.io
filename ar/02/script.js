@@ -79,6 +79,7 @@ function add_track(text) {
 	//console.log(`parsed xmlDoc: ${xmlDoc}...`);
 	segments = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("trkseg");
 	
+	let scene = document.querySelector('a-scene');
 	for (var i = 0; i < segments.length; i++) {
 		track_points = segments[i].getElementsByTagName("trkpt");
 		for (var j = 0; j < track_points.length; j++) {
@@ -87,6 +88,10 @@ function add_track(text) {
 			lon = track_point.getAttribute("lon");
 			ele = track_point.getElementsByTagName("ele")[0].innerHTML;
 			console.log(`segment ${i}, track_point ${j}: (${lon}, ${lat}), ${ele} m`);
+			
+			const line = document.createElement('a-entity');
+			line.setAttribute('line', `start: ${lon} ${ele} ${lon}; end: ${lon} ${ele+10} ${lon}; color: green`);
+			scene.appendChild(line);
 		}
 	}
 }

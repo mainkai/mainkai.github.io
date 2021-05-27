@@ -14,17 +14,17 @@
   <script src="./script.js"></script>
    </head>
    <body style='margin: 0; overflow: hidden;'>
+      <div id='hud' style="font-size: 100%; top: 90%; left: 0%;">
+         FOV<span id='fov'></span>
+         Lat<span id='lat'></span>
+         Lon<span id='lon'></span>
+         Alt<span id='alt'></span>m
+     </div>
       <a-scene
          vr-mode-ui="enabled: false"
          arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false;'>
         <a-camera gps-projected-camera="alert: true;" rotation-reader></a-camera>
         <!-- <a-camera gps-projected-camera="simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878; simulateAltitude: 200;" rotation-reader> </a-camera> -->
-      <div id='hud' style="font-size: 100%; top: 90%; left: 0%;">
-            FOV<span id='fov'></span>
-            Lat<span id='lat'></span>
-            Lon<span id='lon'></span>
-            Alt<span id='alt'></span>m
-        </div>
 </a-scene>
     
    </body>

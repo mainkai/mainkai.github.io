@@ -6,6 +6,8 @@ window.onload = () => {
 window.addEventListener('gps-projected-camera-update-position', e => {
 	    console.log("updating own elevation...");
 	    update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
+
+//entity.getAttribute('distance')
         });
 
 function load_turbines_json() {

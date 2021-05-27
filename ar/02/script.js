@@ -6,6 +6,11 @@ window.onload = () => {
 window.addEventListener('gps-projected-camera-update-position', e => {
 	    console.log("updating own elevation...");
 	    update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
+	
+	var elements = document.getElementsByTagName('a-entity');
+	for (var i=0; i<elements.length; i++) {
+		console.log(i + ": " + elements[i].getAttribute('distance') + " m away.");
+	}
 
 //entity.getAttribute('distance')
         });

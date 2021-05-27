@@ -4,7 +4,11 @@ window.onload = () => {
 };
 
 window.addEventListener('gps-projected-camera-update-position', e => {
-	    console.log("updating own elevation...");
+	    
+
+ document.getElementById('lon').innerHTML = e.detail.position.longitude.toFixed(4);
+ document.getElementById('lat').innerHTML = e.detail.position.latitude.toFixed(4);
+console.log("updating own elevation...");
 	    update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
 	
 		// identify closest object
@@ -156,8 +160,6 @@ function update_own_elevation(lat, lon) {
             this.camera.setAttribute('position', position);
 	    console.log("set own elevation to: " + json.results[0].elevation + "m");
 document.getElementById('alt').innerHTML = json.results[0].elevation;
- document.getElementById('lon').innerHTML = lon.toFixed(4);
- document.getElementById('lat').innerHTML = lat.toFixed(4);
 	  }
 	);
 	//.then(json => console.log("elevation result: " + json.results[0].elevation + "m"));

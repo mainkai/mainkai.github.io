@@ -7,16 +7,27 @@ window.addEventListener('gps-projected-camera-update-position', e => {
 	    console.log("updating own elevation...");
 	    update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
 	
-	var elements = document.getElementsByTagName('a-entity');
-	for (var i=0; i<elements.length; i++) {
-		console.log(i + ": " + elements[i].getAttribute('distance') + " m away.");
-	}
-
-//entity.getAttribute('distance')
+		// identify closest object
+		var elements = document.getElementsByTagName('a-entity');
+		min_dist = Number.POSITIVE_INFINITY;
+		min_idx = -1;
+		for (var i=0; i<elements.length; i++) {
+			dist = elements[i].getAttribute('distance');
+			console.log(i + ": " + dist + " m away.");
+			if(dist <= min_dist){
+				min_dist = dist;
+				min_idx = i;
+			}
+		}
+		// draw line to closest
+		closest = elements[i][min_idx];
+		const line = document.createElement('a-entity');
+		line.setAttribute('line', `start: 0 0 0; end: closest.position.x closest.position.y closest.position.z; color: white`);
+		document.querySelector('a-scene').appendChild(line);
         });
 
 function load_turbines_json() {
-	fetch("../assets/wind_potentials/Freiburg/placed_turbines.geojson")
+	fetch("../assets/wind_potentials/Freiburg/Number.POSITIVE_INFINITYplaced_turbines.geojson")
 	  .then(response => response.json())
 	  .then(json => load_turbines_from_json(json));
 }

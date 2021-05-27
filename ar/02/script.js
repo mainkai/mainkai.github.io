@@ -13,6 +13,7 @@ window.addEventListener('gps-projected-camera-update-position', e => {
 		min_idx = -1;
 		for (var i=0; i<elements.length; i++) {
 			dist = elements[i].getAttribute('distance');
+			//var dist = markerRoot1.position.distanceTo(markerRoot2.position)
 			console.log(i + ": " + dist + " m away.");
 			if(dist <= min_dist){
 				min_dist = dist;

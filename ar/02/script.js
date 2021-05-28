@@ -5,7 +5,7 @@ window.onload = () => {
 
 window.addEventListener('gps-projected-camera-update-position', e => {
 	    
-
+document.getElementById('lon').innerHTML = e;
  document.getElementById('lon').innerHTML = e.detail.position.longitude.toFixed(4);
  document.getElementById('lat').innerHTML = e.detail.position.latitude.toFixed(4);
 console.log("updating own elevation...");

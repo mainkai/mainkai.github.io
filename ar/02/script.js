@@ -4,7 +4,7 @@ document.getElementById('fov')[0].innerHTML = "test";
 	//load_track_gpx();
 
 const camera = document.querySelector('a-camera');
-    document.getElementById('fov').innerHTML = camera.getAttribute('fov'); 
+    document.getElementById('fov')[0].innerHTML = camera.getAttribute('fov'); 
 };
 
 window.addEventListener('gps-projected-camera-update-position', e => {
@@ -36,7 +36,7 @@ console.log("updating own elevation...");
         });
 
 function load_turbines_json() {
-	fetch("../assets/wind_potentials/Oberkirch/placed_turbines.geojson")
+	fetch("../assets/wind_potentials/Achern/placed_turbines.geojson")
 	  .then(response => response.json())
 	  .then(json => load_turbines_from_json(json));
 }

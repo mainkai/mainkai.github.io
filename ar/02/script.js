@@ -1,6 +1,7 @@
 window.onload = () => {
 	console.log(document.getElementById('fov'));
 	document.getElementById('fov').innerHTML = "test";
+	console.log(document.getElementById('fov'));
 	load_turbines_json();
 	//load_track_gpx();
 	

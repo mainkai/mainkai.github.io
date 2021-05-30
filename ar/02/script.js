@@ -9,9 +9,10 @@ window.onload = () => {
 };
 
 window.addEventListener('gps-projected-camera-update-position', e => {
-	document.getElementById('lon').innerHTML = e;
+	//document.getElementById('lon').innerHTML = e;
 	document.getElementById('lon').innerHTML = e.detail.position.longitude.toFixed(4);
 	document.getElementById('lat').innerHTML = e.detail.position.latitude.toFixed(4);
+	console.log(document.getElementById('lon').innerHTML);
 	console.log("updating own elevation...");
 	update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
 	

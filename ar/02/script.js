@@ -128,6 +128,9 @@ function add_track(text) {
 			const line_ = document.createElement('a-entity');
 			line_.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
 			line_.setAttribute('line', `start: 0 ${ele} 0; end: 0 ${ele+50} 0; color: green`);
+			//if(j < track_points.length - 1){	// add line to next point
+			//	line_.setAttribute('line__2', `start: 0 ${ele} 0; end: 0 ${ele+50} 0; color: green`);
+			//}
 			line_.setAttribute('material', 'opacity: 0.5');
 			track_ent.appendChild(line_);
 		}

@@ -1,11 +1,11 @@
 window.onload = () => {
 	document.getElementById('fov').innerHTML = "Paragraph changed!";
-	console.log(document.getElementById('fov').innerHTML);
 	load_turbines_json();
 	//load_track_gpx();
 	
 	const camera = document.querySelector('a-camera');
-	//document.getElementById('fov').innerHTML = camera.getAttribute('fov'); 
+	document.getElementById('fov').innerHTML = camera.getAttribute('fov'); 
+	console.log(document.getElementById('fov').innerHTML);
 };
 
 window.addEventListener('gps-projected-camera-update-position', e => {

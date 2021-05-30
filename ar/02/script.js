@@ -6,7 +6,7 @@ window.onload = () => {
 	//load_track_gpx();
 	
 	const camera = document.querySelector('a-camera');
-	document.getElementById('fov').innerHTML = camera.getAttribute('fov'); 
+	//document.getElementById('fov').innerHTML = camera.getAttribute('fov'); 
 };
 
 window.addEventListener('gps-projected-camera-update-position', e => {

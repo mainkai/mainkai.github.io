@@ -165,10 +165,10 @@ function update_own_elevation(lat, lon) {
 	  .then(json => {
             const position = this.camera.getAttribute('position');
             position.y = json.results[0].elevation + 1.6;
-//todo: parse float? 
+		//todo: parse float? 
             this.camera.setAttribute('position', position);
 	    console.log("set own elevation to: " + json.results[0].elevation + "m");
-document.getElementById('alt')[0].innerHTML = json.results[0].elevation;
+		document.getElementById('alt').innerHTML = json.results[0].elevation;
 	  }
 	);
 	//.then(json => console.log("elevation result: " + json.results[0].elevation + "m"));

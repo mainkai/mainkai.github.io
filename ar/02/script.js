@@ -1,18 +1,11 @@
 window.onload = () => {
 	document.getElementById('fov').innerHTML = "test";
-	//console.log(document.getElementById('fov').innerHTML);
 	load_turbines_json();
 	//load_track_gpx();
-	
-	/*
-	const camera = document.querySelector('a-camera');
-	console.log(camera);
-	document.getElementById('fov').innerHTML = camera.getAttribute('fov');
-	console.log(document.getElementById('fov').innerHTML);
-	*/
 };
 
 window.addEventListener('gps-projected-camera-update-position', e => {
+	console.log("Event: gps-projected-camera-update-position");
 	//document.getElementById('lon').innerHTML = e;
 	document.getElementById('lon').innerHTML = e.detail.position.longitude.toFixed(4);
 	document.getElementById('lat').innerHTML = e.detail.position.latitude.toFixed(4);

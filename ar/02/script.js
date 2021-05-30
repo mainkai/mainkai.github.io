@@ -1,17 +1,17 @@
 window.onload = () => {
-document.getElementById('fov')[0].innerHTML = "test";
+document.getElementById('fov').innerHTML = "test";
 	load_turbines_json();
 	//load_track_gpx();
 
 const camera = document.querySelector('a-camera');
-    document.getElementById('fov')[0].innerHTML = camera.getAttribute('fov'); 
+    document.getElementById('fov').innerHTML = camera.getAttribute('fov'); 
 };
 
 window.addEventListener('gps-projected-camera-update-position', e => {
 	    
-document.getElementById('lon')[0].innerHTML = e;
- document.getElementById('lon')[0].innerHTML = e.detail.position.longitude.toFixed(4);
- document.getElementById('lat')[0].innerHTML = e.detail.position.latitude.toFixed(4);
+document.getElementById('lon').innerHTML = e;
+ document.getElementById('lon').innerHTML = e.detail.position.longitude.toFixed(4);
+ document.getElementById('lat').innerHTML = e.detail.position.latitude.toFixed(4);
 console.log("updating own elevation...");
 	    update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
 	

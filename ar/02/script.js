@@ -1,8 +1,6 @@
 window.onload = () => {
-	console.log(document.getElementById('fov'));
 	document.getElementById('fov').innerHTML = "Paragraph changed!";
 	console.log(document.getElementById('fov').innerHTML);
-	console.log(document.getElementById('fov'));
 	load_turbines_json();
 	//load_track_gpx();
 	

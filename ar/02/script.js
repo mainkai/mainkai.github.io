@@ -1,38 +1,38 @@
 window.onload = () => {
-document.getElementById('fov').innerHTML = "test";
+	console.log(document.getElementById('fov'));
+	document.getElementById('fov').innerHTML = "test";
 	load_turbines_json();
 	//load_track_gpx();
-
-const camera = document.querySelector('a-camera');
-    document.getElementById('fov').innerHTML = camera.getAttribute('fov'); 
+	
+	const camera = document.querySelector('a-camera');
+	document.getElementById('fov').innerHTML = camera.getAttribute('fov'); 
 };
 
 window.addEventListener('gps-projected-camera-update-position', e => {
-	    
-document.getElementById('lon').innerHTML = e;
- document.getElementById('lon').innerHTML = e.detail.position.longitude.toFixed(4);
- document.getElementById('lat').innerHTML = e.detail.position.latitude.toFixed(4);
-console.log("updating own elevation...");
-	    update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
+	document.getElementById('lon').innerHTML = e;
+	document.getElementById('lon').innerHTML = e.detail.position.longitude.toFixed(4);
+	document.getElementById('lat').innerHTML = e.detail.position.latitude.toFixed(4);
+	console.log("updating own elevation...");
+	update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
 	
-		// identify closest object
-		var elements = document.getElementsByTagName('a-entity');
-		min_dist = Number.POSITIVE_INFINITY;
-		min_idx = -1;
-		for (var i=0; i<elements.length; i++) {
-			dist = elements[i].getAttribute('distance');
-			//var dist = markerRoot1.position.distanceTo(markerRoot2.position)
-			console.log(i + ": " + dist + " m away.");
-			if(dist <= min_dist){
-				min_dist = dist;
-				min_idx = i;
-			}
+	// identify closest object
+	var elements = document.getElementsByTagName('a-entity');
+	min_dist = Number.POSITIVE_INFINITY;
+	min_idx = -1;
+	for (var i=0; i<elements.length; i++) {
+		dist = elements[i].getAttribute('distance');
+		//var dist = markerRoot1.position.distanceTo(markerRoot2.position)
+		console.log(i + ": " + dist + " m away.");
+		if(dist <= min_dist){
+			min_dist = dist;
+			min_idx = i;
 		}
-		// draw line to closest
-		closest = elements[i][min_idx];
-		const line = document.createElement('a-entity');
-		line.setAttribute('line', `start: 0 0 0; end: closest.position.x closest.position.y closest.position.z; color: white`);
-		document.querySelector('a-scene').appendChild(line);
+	}
+	// draw line to closest
+	closest = elements[i][min_idx];
+	const line = document.createElement('a-entity');
+	line.setAttribute('line', `start: 0 0 0; end: closest.position.x closest.position.y closest.position.z; color: white`);
+	document.querySelector('a-scene').appendChild(line);
         });
 
 function load_turbines_json() {

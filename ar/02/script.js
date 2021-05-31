@@ -1,7 +1,9 @@
 window.onload = () => {
-	document.getElementById('fov').innerHTML = "test";
 	load_turbines_json();
 	//load_track_gpx();
+	document.getElementById('fov').innerHTML = "...";
+	document.getElementById('lon').innerHTML = "...";
+	document.getElementById('lat').innerHTML = "...";
 };
 
 window.addEventListener('gps-camera-update-position', e => {

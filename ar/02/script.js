@@ -4,7 +4,7 @@ window.onload = () => {
 	//load_track_gpx();
 };
 
-window.addEventListener('gps-projected-camera-update-position', e => {
+window.addEventListener('gps-camera-update-position', e => {
 	console.log("Event: gps-projected-camera-update-position");
 	//document.getElementById('lon').innerHTML = e;
 	document.getElementById('lon').innerHTML = e.detail.position.longitude.toFixed(4);

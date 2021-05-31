@@ -6,6 +6,11 @@ window.onload = () => {
 	document.getElementById('lat').innerHTML = "...";
 };
 
+window.addEventListener( "fake-loc-updated", e => {
+		document.getElementById('lon').innerHTML = e.detail.lon.toFixed(4);
+		document.getElementById('lat').innerHTML = e.detail.lat.toFixed(4);
+        });
+
 window.addEventListener('gps-camera-update-position', e => {
 	console.log("Event: gps-projected-camera-update-position");
 	//document.getElementById('lon').innerHTML = e;

@@ -1,17 +1,14 @@
 window.onload = () => {
 	load_turbines_json();
 	load_track_gpx();
-	document.getElementById('fov').innerHTML = "";
-	document.getElementById('lon').innerHTML = "...";
-	document.getElementById('lat').innerHTML = "...";
 };
 
 window.addEventListener('gps-camera-update-position', e => {
 	console.log("Event: gps-projected-camera-update-position");
-	//document.getElementById('lon').innerHTML = e;
 	document.getElementById('lon').innerHTML = e.detail.position.longitude.toFixed(4);
 	document.getElementById('lat').innerHTML = e.detail.position.latitude.toFixed(4);
-	console.log(document.getElementById('lon').innerHTML);
+	document.getElementById('dat').innerHTML = new Date().toLocaleString();
+	
 	console.log("updating own elevation...");
 	update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
 	
@@ -101,10 +98,9 @@ function load_track_gpx() {
 }
 
 function add_track(text) {
-	console.log(`parsing ${text}...`);
+	//console.log(`parsing ${text}...`);
 	parser = new DOMParser();
 	xmlDoc = parser.parseFromString(text,"text/xml");
-	//console.log(`parsed xmlDoc: ${xmlDoc}...`);
 	segments = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("trkseg");
 	trk_name = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("name")[0].innerHTML;
 	

@@ -1,6 +1,6 @@
 window.onload = () => {
 	load_turbines_json();
-	//load_track_gpx();
+	load_track_gpx();
 	document.getElementById('fov').innerHTML = "";
 	document.getElementById('lon').innerHTML = "...";
 	document.getElementById('lat').innerHTML = "...";

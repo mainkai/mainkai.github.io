@@ -26,7 +26,7 @@ window.addEventListener('gps-camera-update-position', e => {
 		}
 	}
 	// draw line to closest
-	closest = elements[i][min_idx];
+	closest = elements[min_idx];
 	const line = document.createElement('a-entity');
 	line.setAttribute('line', `start: 0 0 0; end: closest.position.x closest.position.y closest.position.z; color: white`);
 	document.querySelector('a-scene').appendChild(line);

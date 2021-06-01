@@ -153,8 +153,9 @@ function add_track(text) {
 }
 
 function update_own_elevation(lat, lon) {
-	console.log("retrieving own elevation...");
-	fetch(`https://api.open-elevation.com/api/v1/lookup\?locations\=${lat},${lon}`)
+	url = `https://api.open-elevation.com/api/v1/lookup\?locations\=${lat},${lon}`;
+	console.log("retrieving own elevation from "+url+"...");
+	fetch(url)
 	  .then(response => response.json())
 	  .then(json => {
 	    console.log(json);

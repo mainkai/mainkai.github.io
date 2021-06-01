@@ -9,7 +9,6 @@ window.addEventListener('gps-camera-update-position', e => {
 	document.getElementById('lat').innerHTML = e.detail.position.latitude.toFixed(4);
 	document.getElementById('dat').innerHTML = new Date().toLocaleString();
 	
-	console.log("updating own elevation...");
 	update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
 	
 	// identify closest object
@@ -157,6 +156,7 @@ function update_own_elevation(lat, lon) {
 	fetch(`https://api.open-elevation.com/api/v1/lookup\?locations\=${lat},${lon}`)
 	  .then(response => response.json())
 	  .then(json => {
+	    console.log(json);
             const position = this.camera.getAttribute('position');
             position.y = json.results[0].elevation + 1.6;
 		//todo: parse float? 

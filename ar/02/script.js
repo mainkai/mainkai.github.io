@@ -40,7 +40,7 @@ function load_turbines_json() {
 
 function load_turbines_from_json(json) {
 	json = json.features
-	console.log(json);
+	//console.log(json);
 	let scene = document.querySelector('a-scene');
 	for (var i = 0; i < json.length; i++) {
 		// add wind turbine 3D model

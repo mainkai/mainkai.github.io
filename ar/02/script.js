@@ -153,7 +153,7 @@ function add_track(text) {
 }
 
 function update_own_elevation(lat, lon) {
-	// get elevation
+	console.log("retrieving own elevation...");
 	fetch(`https://api.open-elevation.com/api/v1/lookup\?locations\=${lat},${lon}`)
 	  .then(response => response.json())
 	  .then(json => {
@@ -162,7 +162,7 @@ function update_own_elevation(lat, lon) {
 		//todo: parse float? 
             this.camera.setAttribute('position', position);
 	    console.log("set own elevation to: " + json.results[0].elevation + "m");
-		document.getElementById('alt').innerHTML = json.results[0].elevation;
+	    document.getElementById('alt').innerHTML = json.results[0].elevation;
 	  }
 	);
 	//.then(json => console.log("elevation result: " + json.results[0].elevation + "m"));

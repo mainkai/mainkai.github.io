@@ -36,7 +36,7 @@ window.addEventListener('gps-camera-update-position', e => {
         });
 
 function load_turbines_json() {
-	fetch("../assets/wind_potentials/Freiburg/placed_turbines.geojson")
+	fetch("../assets/wind_potentials/Achern/placed_turbines.geojson")
 	  .then(response => response.json())
 	  .then(json => load_turbines_from_json(json));
 }

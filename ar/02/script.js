@@ -156,16 +156,16 @@ function add_track(text) {
 function update_own_elevation(lat, lon) {
 	url = `https://api.open-elevation.com/api/v1/lookup\?locations\=${lat},${lon}`;
 
-	fetch(url)
-	  .then(response => response.json())
-	  .then(data => console.log(data));
+	//fetch(url)
+	//  .then(response => response.json())
+	//  .then(data => console.log(data));
 
 	console.log("retrieving own elevation from "+url);
 	fetch(url)
 	  .then(response => response.json())
 	  .then(json => {
 	    console.log(json);
-	    let camera = document.getElementById('a-camera');
+	    let camera = document.getElementsByTagName('a-camera')[0];
             const position = camera.getAttribute('position');
             position.y = json.results[0].elevation + 1.6; //todo: parse float? 
             camera.setAttribute('position', position);

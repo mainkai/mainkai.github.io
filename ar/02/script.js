@@ -5,11 +5,9 @@ window.onload = () => {
 };
 
 window.addEventListener('gps-camera-update-position', e => {
-	console.log("Event: gps-projected-camera-update-position");
 	document.getElementById('lon').innerHTML = e.detail.position.longitude.toFixed(4);
 	document.getElementById('lat').innerHTML = e.detail.position.latitude.toFixed(4);
 	document.getElementById('dat').innerHTML = new Date().toLocaleString();
-	
 	update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
 	
 	// identify closest object
@@ -17,8 +15,8 @@ window.addEventListener('gps-camera-update-position', e => {
 	min_dist = Number.POSITIVE_INFINITY;
 	min_idx = -1;
 	for (var i=0; i<elements.length; i++) {
-		dist = elements[i].getAttribute('distance');
-		//dist = elements[i].getAttribute('distanceMsg');
+		//dist = elements[i].getAttribute('distance');
+		dist = elements[i].getAttribute('distanceMsg');
 		//var dist = camera.position.distanceTo(elements[i].position)
 		console.log(i + ": " + dist + " m away.");
 		if(dist <= min_dist){
@@ -154,8 +152,8 @@ function add_track(text) {
 }
 
 function update_own_elevation(lat, lon) {
-	//url = `https://api.open-elevation.com/api/v1/lookup\?locations\=${lat},${lon}`;
-	url = `https://api.opentopodata.org/v1/srtm30m?locations=${lat},${lon}`;
+	url = `https://api.open-elevation.com/api/v1/lookup\?locations\=${lat},${lon}`;
+	//url = `https://api.opentopodata.org/v1/srtm30m?locations=${lat},${lon}`;
 
 	console.log("retrieving own elevation from "+url);
 	fetch(url)

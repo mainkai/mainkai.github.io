@@ -16,8 +16,9 @@ window.addEventListener('gps-camera-update-position', e => {
 	min_idx = -1;
 	for (var i=0; i<elements.length; i++) {
 		//dist = elements[i].getAttribute('distance');
-		dist = elements[i].getAttribute('distanceMsg');
-		//var dist = camera.position.distanceTo(elements[i].position)
+		//dist = elements[i].getAttribute('distanceMsg');
+		let camera = document.getElementsByTagName('a-camera')[0];
+		var dist = camera.position.distanceTo(elements[i].position)
 		console.log(i + ": " + dist + " m away.");
 		if(dist <= min_dist){
 			min_dist = dist;

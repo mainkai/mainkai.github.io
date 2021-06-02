@@ -1,7 +1,7 @@
 window.onload = () => {
 	load_turbines_json();
 	load_track_gpx();
-	load_osm_ways();
+	//load_osm_ways();
 };
 
 window.addEventListener('gps-camera-update-position', e => {
@@ -165,9 +165,10 @@ function update_own_elevation(lat, lon) {
 	  .then(response => response.json())
 	  .then(json => {
 	    console.log(json);
-            const position = this.camera.getAttribute('position');
+	    let camera = document.getElementById('a-camera');
+            const position = camera.getAttribute('position');
             position.y = json.results[0].elevation + 1.6; //todo: parse float? 
-            this.camera.setAttribute('position', position);
+            camera.setAttribute('position', position);
 	    console.log("set own elevation to: " + json.results[0].elevation + "m");
 	    document.getElementById('alt').innerHTML = json.results[0].elevation;
 	  }

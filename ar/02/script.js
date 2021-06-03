@@ -12,6 +12,7 @@ window.addEventListener('gps-camera-update-position', e => {
 	
 	// identify closest object
 	//var elements = document.getElementsByTagName('a-entity');
+	let camera = document.getElementsByTagName('a-camera')[0];
 	var elements = document.querySelector('[gps-projected-entity-place]');
 	min_dist = Number.POSITIVE_INFINITY;
 	min_idx = -1;
@@ -20,7 +21,8 @@ window.addEventListener('gps-camera-update-position', e => {
 		//dist = elements[i].getAttribute('distanceMsg');
 		//let camera = document.getElementsByTagName('a-camera')[0];
 		//var dist = elements[i].position.distanceTo(camera.getAttribute('position'));
-		const distance = elements[i].getAttribute('distance');
+		//const distance = elements[i].getAttribute('distance');
+		var dist = dist(camera.getAttribute('position')[0], camera.getAttribute('position')[2], elements[i].getAttribute('position')[0], elements[i].getAttribute('position')[2]);
 		console.log(i + ": " + dist + " m away.");
 		if(dist <= min_dist){
 			min_dist = dist;
@@ -172,4 +174,35 @@ function update_own_elevation(lat, lon) {
 	    document.getElementById('alt').innerHTML = ele;
 	  }
 	);
+}
+
+function dist(x1,y1,x2,y2) {
+        var dx = x2-x1, dy = y2-y1;
+        return Math.sqrt(dx*dx + dy*dy);
+}
+
+// from old osmeditor2 code - comments as follows:     
+// find the distance from a point to a line     
+// based on theory at:     
+// astronomy.swin.edu.au/~pbourke/geometry/pointline/     
+// given equation was proven starting with dot product     
+
+// Now returns an object containing the distance, the intersection point 
+//and the proportion, in case we need these
+
+function haversineDistToLine(x, y, p1, p2)  {         
+	var u = ((x-p1[0])*(p2[0]-p1[0])+(y-p1[1])*(p2[1]-p1[1])) / (Math.pow(p2[0]-p1[0],2)+Math.pow(p2[1]-p1[1],2));        
+	var xintersection = p1[0]+u*(p2[0]-p1[0]), yintersection=p1[1]+u*(p2[1]-p1[1]);   
+	return (u>=0&&u<=1) ? {distance: this.haversineDist(x,y,xintersection,yintersection), intersection: [xintersection, yintersection], proportion:u} : null;
+}
+
+function haversineDist(lon1, lat1, lon2, lat2){            
+	var R = 6371000;            
+	var dlon=(lon2-lon1)*(Math.PI / 180);            
+	var dlat=(lat2-lat1)*(Math.PI / 180);            
+	var slat=Math.sin(dlat/2);            
+	var slon=Math.sin(dlon/2);            
+	var a = slat*slat + Math.cos(lat1*(Math.PI/180))*Math.cos(lat2*(Math.PI/180))*slon*slon;            
+	var c = 2 *Math.asin(Math.min(1,Math.sqrt(a)));            
+	return R*c;        
 }

@@ -11,14 +11,16 @@ window.addEventListener('gps-camera-update-position', e => {
 	update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
 	
 	// identify closest object
-	var elements = document.getElementsByTagName('a-entity');
+	//var elements = document.getElementsByTagName('a-entity');
+	var elements = document.querySelector('[gps-projected-entity-place]');
 	min_dist = Number.POSITIVE_INFINITY;
 	min_idx = -1;
 	for (var i=0; i<elements.length; i++) {
 		//dist = elements[i].getAttribute('distance');
 		//dist = elements[i].getAttribute('distanceMsg');
-		let camera = document.getElementsByTagName('a-camera')[0];
-		var dist = elements[i].position.distanceTo(camera.getAttribute('position'))
+		//let camera = document.getElementsByTagName('a-camera')[0];
+		//var dist = elements[i].position.distanceTo(camera.getAttribute('position'));
+		const distance = elements[i].getAttribute('distance');
 		console.log(i + ": " + dist + " m away.");
 		if(dist <= min_dist){
 			min_dist = dist;

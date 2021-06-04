@@ -43,10 +43,6 @@ window.addEventListener('gps-camera-update-position', e => {
 function load_osm_ways(lat, lon, tags) {
 	radius = 500;
 	query = "[timeout:900][out:json];(";
-		//+`way['highway'](around:${radius},${lat},${lon});`
-		//+`way['power'='line'](around:${radius},${lat},${lon});`
-		//+`way['man_made'='pipeline'](around:${radius},${lat},${lon});`
-		//+`);out body geom;`;
 	for (var t = 0; t < tags.length; t+=2) {
 		if(tags[t+1].length > 0){
 			query += `way['${tags[t]}'](around:${radius},${lat},${lon});`;
@@ -63,6 +59,7 @@ function load_osm_ways(lat, lon, tags) {
 		// parse json
 		console.log(json);
 		ways = json.elements;
+		console.log("found " + ways.length + " ways.");
 		for (var w = 0; w < ways.length; w++) {
 			tags = json.elements[w].tags;
 			nodes = json.elements[w].geometry;

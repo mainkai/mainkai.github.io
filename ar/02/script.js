@@ -40,9 +40,22 @@ window.addEventListener('gps-camera-update-position', e => {
 	//load_osm_ways(e.detail.position.latitude, e.detail.position.longitude);
         });
 
-function load_osm_ways(lat, lon) {
+function load_osm_ways(lat, lon, tags) {
 	radius = 500;
-	query = `[timeout:900][out:json];(way['highway'](around:${radius},${lat},${lon});way['power'='line'](around:${radius},${lat},${lon});way['man_made'='pipeline'](around:${radius},${lat},${lon}););out body geom;`;
+	query = "[timeout:900][out:json];(";
+		//+`way['highway'](around:${radius},${lat},${lon});`
+		//+`way['power'='line'](around:${radius},${lat},${lon});`
+		//+`way['man_made'='pipeline'](around:${radius},${lat},${lon});`
+		//+`);out body geom;`;
+	for (var t = 0; t < tags.length; t+=2) {
+		if(tags[i].length > 0){
+			query += `way['${tags[i]}'](around:${radius},${lat},${lon});`;
+		}
+		else {
+			query += `way['${tags[i]}'='${tags[i+1]}'](around:${radius},${lat},${lon});`;
+		}
+	}
+	query += ");out body geom;";
 	url = "https://overpass-api.de/api/interpreter?data=" + encodeURIComponent(query);
 	fetch(url)
 	  .then(response => response.json())

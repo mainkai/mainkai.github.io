@@ -37,7 +37,7 @@ window.addEventListener('gps-camera-update-position', e => {
 	document.querySelector('a-scene').appendChild(line);
 	
 	
-	//load_osm_ways(e.detail.position.latitude, e.detail.position.longitude);
+	load_osm_ways(e.detail.position.latitude, e.detail.position.longitude);
         });
 
 function load_osm_ways(lat, lon) {
@@ -47,6 +47,7 @@ function load_osm_ways(lat, lon) {
 	  .then(response => response.json())
 	  .then(json => {
 		// parse json
+		console.log("OSM Ways: " + json);
 		
 	});
 }

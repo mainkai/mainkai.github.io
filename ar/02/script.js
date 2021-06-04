@@ -48,11 +48,11 @@ function load_osm_ways(lat, lon, tags) {
 		//+`way['man_made'='pipeline'](around:${radius},${lat},${lon});`
 		//+`);out body geom;`;
 	for (var t = 0; t < tags.length; t+=2) {
-		if(tags[i].length > 0){
-			query += `way['${tags[i]}'](around:${radius},${lat},${lon});`;
+		if(tags[t+1].length > 0){
+			query += `way['${tags[t]}'](around:${radius},${lat},${lon});`;
 		}
 		else {
-			query += `way['${tags[i]}'='${tags[i+1]}'](around:${radius},${lat},${lon});`;
+			query += `way['${tags[t]}'='${tags[t+1]}'](around:${radius},${lat},${lon});`;
 		}
 	}
 	query += ");out body geom;";

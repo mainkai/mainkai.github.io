@@ -48,7 +48,17 @@ function load_osm_ways(lat, lon) {
 	  .then(json => {
 		// parse json
 		console.log(json);
-		
+		ways = json.elements;
+		for (var w = 0; w < ways.length; w++) {
+			tags = json.elements[w].tags;
+			nodes = json.elements[w].geometry;
+			console.log("way with tags " + tags);
+			for (var n = 0; n < nodes.length; n++) {
+				lat = nodes[n].lat;
+				lon = nodes[n].lon;
+				console.log("node at " + lat + ", " + lon);
+			}
+		}
 	});
 }
 

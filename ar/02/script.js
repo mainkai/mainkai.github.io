@@ -36,8 +36,8 @@ window.addEventListener('gps-camera-update-position', e => {
 	line.setAttribute('line', `start: 0 0 0; end: closest.position.x closest.position.y closest.position.z; color: white`);
 	document.querySelector('a-scene').appendChild(line);
 	
-	
-	//load_osm_ways(e.detail.position.latitude, e.detail.position.longitude);
+	const tags = ['highway', '', 'power', 'line', 'man_made', 'pipeline'];
+	load_osm_ways(e.detail.position.latitude, e.detail.position.longitude, tags);
         });
 
 function load_osm_ways(lat, lon, tags) {

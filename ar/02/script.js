@@ -47,7 +47,7 @@ function load_osm_ways(lat, lon) {
 	  .then(response => response.json())
 	  .then(json => {
 		// parse json
-		console.log("OSM Ways: " + json);
+		console.log(json);
 		
 	});
 }

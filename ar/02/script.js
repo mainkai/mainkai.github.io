@@ -52,11 +52,11 @@ function load_osm_ways(lat, lon) {
 		for (var w = 0; w < ways.length; w++) {
 			tags = json.elements[w].tags;
 			nodes = json.elements[w].geometry;
-			console.log("way with tags " + tags);
+			//console.log("way with tags " + tags);
 			for (var n = 0; n < nodes.length; n++) {
 				lat = nodes[n].lat;
 				lon = nodes[n].lon;
-				console.log("node at " + lat + ", " + lon);
+				//console.log("node at " + lat + ", " + lon);
 			}
 		}
 	});
@@ -190,7 +190,7 @@ function update_own_elevation(lat, lon) {
 	fetch(url)
 	  .then(response => response.json())
 	  .then(json => {
-	    console.log(json);
+	    //console.log(json);
 	    let ele = parseFloat(json.results[0].elevation);
 	    let camera = document.getElementsByTagName('a-camera')[0];
             const position = camera.getAttribute('position');

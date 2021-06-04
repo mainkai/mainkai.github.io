@@ -9,37 +9,12 @@ window.addEventListener('gps-camera-update-position', e => {
 	document.getElementById('dat').innerHTML = new Date().toLocaleString();
 	update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
 	
-	// identify closest object
-	//var elements = document.getElementsByTagName('a-entity');
-	// filter gps-projected-entity-place
-	let camera = document.getElementsByTagName('a-camera')[0];
-	var elements = document.querySelectorAll('[gps-projected-entity-place]');
-	min_dist = Number.POSITIVE_INFINITY;
-	min_idx = -1;
-	console.log(elements.length + " elements, searching closest...");
-	for (var i=0; i<elements.length; i++) {
-		console.log(elements[i]);
-		//var dist = dist(camera.getAttribute('position')[0], camera.getAttribute('position')[2], elements[i].getAttribute('position')[0], elements[i].getAttribute('position')[2]);
-		var dist = elements[i].getAttribute('distance');
-		console.log(i + ": " + dist + " m away.");
-		if(dist <= min_dist){
-			min_dist = dist;
-			min_idx = i;
-		}
-		//dist = elements[i].getAttribute('distance');
-		//dist = elements[i].getAttribute('distanceMsg');
-		//let camera = document.getElementsByTagName('a-camera')[0];
-		//var dist = elements[i].position.distanceTo(camera.getAttribute('position'));
-		//const distance = elements[i].getAttribute('distance');
-	}
-	// draw line to closest
-	closest = elements[min_idx];
-	const line = document.createElement('a-entity');
-	line.setAttribute('line', `start: 0 0 0; end: closest.position.x closest.position.y closest.position.z; color: white`);
-	document.querySelector('a-scene').appendChild(line);
-	
+	// load some ways from OSM
 	const tags = ['highway', '', 'power', 'line', 'man_made', 'pipeline'];
 	load_osm_ways(e.detail.position.latitude, e.detail.position.longitude, tags);
+	
+	// draw line to closest entity
+	line_to_closest();
         });
 
 this.loaded = false;
@@ -78,6 +53,37 @@ function load_osm_ways(lat, lon, tags) {
 		}
 		this.loaded = true;
 	});
+}
+
+function line_to_closest() {
+	// identify closest object
+	//var elements = document.getElementsByTagName('a-entity');
+	// filter gps-projected-entity-place
+	let camera = document.getElementsByTagName('a-camera')[0];
+	var elements = document.querySelectorAll('[gps-projected-entity-place]');
+	min_dist = Number.POSITIVE_INFINITY;
+	min_idx = -1;
+	console.log(elements.length + " elements, searching closest...");
+	for (var i=0; i<elements.length; i++) {
+		console.log(elements[i]);
+		//var dist = dist(camera.getAttribute('position')[0], camera.getAttribute('position')[2], elements[i].getAttribute('position')[0], elements[i].getAttribute('position')[2]);
+		var dist = elements[i].getAttribute('distance');
+		console.log(i + ": " + dist + " m away.");
+		if(dist <= min_dist){
+			min_dist = dist;
+			min_idx = i;
+		}
+		//dist = elements[i].getAttribute('distance');
+		//dist = elements[i].getAttribute('distanceMsg');
+		//let camera = document.getElementsByTagName('a-camera')[0];
+		//var dist = elements[i].position.distanceTo(camera.getAttribute('position'));
+		//const distance = elements[i].getAttribute('distance');
+	}
+	// draw line to closest
+	closest = elements[min_idx];
+	const line = document.createElement('a-entity');
+	line.setAttribute('line', `start: 0 0 0; end: closest.position.x closest.position.y closest.position.z; color: white`);
+	document.querySelector('a-scene').appendChild(line);
 }
 
 function load_turbines_json() {

@@ -37,19 +37,33 @@ function load_osm_ways(lat, lon, tags) {
 	fetch(url)
 	  .then(response => response.json())
 	  .then(json => {
+		var camera = document.querySelector('[gps-projected-camera]');
+		_cameraGps = camera.components['gps-projected-camera'];
 		// parse json
 		console.log(json);
 		ways = json.elements;
 		console.log("found " + ways.length + " ways.");
+		const track_ent = document.createElement('a-entity');
 		for (var w = 0; w < ways.length; w++) {
 			tags = json.elements[w].tags;
 			nodes = json.elements[w].geometry;
 			//console.log("way with tags " + tags);
+			const line_ = document.createElement('a-entity');
+			//line_.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
+			var lastWorldPos;
 			for (var n = 0; n < nodes.length; n++) {
 				lat = nodes[n].lat;
 				lon = nodes[n].lon;
 				//console.log("node at " + lat + ", " + lon);
+				var worldPos = _cameraGps.latLonToWorld(lat, lon);
+				
+				if(j > 0){	// add line to next point
+					line_.setAttribute('line__'+n, `start: lastWorldPos[0] 0 lastWorldPos[1]; end: worldPos[0] 0 worldPos[1]; color: red`);
+				}
+				lastWorldPos = worldPos;
 			}
+			line_.setAttribute('material', 'opacity: 0.5');
+			track_ent.appendChild(line_);
 		}
 		this.loaded = true;
 	});
@@ -59,7 +73,8 @@ function line_to_closest() {
 	// identify closest object
 	//var elements = document.getElementsByTagName('a-entity');
 	// filter gps-projected-entity-place
-	let camera = document.getElementsByTagName('a-camera')[0];
+	//let camera = document.getElementsByTagName('a-camera')[0];
+	var camera = document.querySelector('[gps-projected-camera]');
 	var elements = document.querySelectorAll('[gps-projected-entity-place]');
 	min_dist = Number.POSITIVE_INFINITY;
 	min_idx = -1;

@@ -40,7 +40,11 @@ window.addEventListener('gps-camera-update-position', e => {
 	load_osm_ways(e.detail.position.latitude, e.detail.position.longitude, tags);
         });
 
+this.loaded = false;
 function load_osm_ways(lat, lon, tags) {
+	if(this.loaded === true) {
+		return;
+	}
 	radius = 500;
 	query = "[timeout:900][out:json];(";
 	for (var t = 0; t < tags.length; t+=2) {
@@ -70,6 +74,7 @@ function load_osm_ways(lat, lon, tags) {
 				//console.log("node at " + lat + ", " + lon);
 			}
 		}
+		this.loaded = true;
 	});
 }
 

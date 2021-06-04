@@ -41,7 +41,7 @@ window.addEventListener('gps-camera-update-position', e => {
         });
 
 function load_osm_ways(lat, lon) {
-	query = "[timeout:900][out:json];(way["highway"](around:5000,48.6279,8.0820);way["power"="line"](around:5000,48.6279,8.0820);way["man_made"="pipeline"](around:5000,48.6279,8.0820););out body geom;"
+	query = "[timeout:900][out:json];(way['highway'](around:5000,48.6279,8.0820);way['power'='line'](around:5000,48.6279,8.0820);way['man_made'='pipeline'](around:5000,48.6279,8.0820););out body geom;"
 	url = "https://overpass-api.de/api/interpreter?data=" + encodeURIComponent(query);
 	fetch(url)
 	  .then(response => response.json())

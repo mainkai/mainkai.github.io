@@ -35,6 +35,7 @@ function load_osm_ways(lat, lon, tags) {
 	}
 	query += ");out body geom;";
 	url = "https://overpass-api.de/api/interpreter?data=" + encodeURIComponent(query);
+	console.log((url);
 	fetch(url)
 	  .then(response => response.json())
 	  .then(json => {

@@ -8,13 +8,13 @@ window.addEventListener('gps-camera-update-position', e => {
 	document.getElementById('lat').innerHTML = e.detail.position.latitude.toFixed(4);
 	document.getElementById('dat').innerHTML = new Date().toLocaleString();
 	update_own_elevation(e.detail.position.latitude, e.detail.position.longitude)
-	.then(
+	.then({
 	
 		// load some ways from OSM
 		//const tags = ['highway', '', 'power', 'line', 'man_made', 'pipeline'];
 		const tags = ['highway', ''];
 		load_osm_ways(e.detail.position.latitude, e.detail.position.longitude, tags);
-	);
+	});
 	
 	// draw line to closest entity
 	line_to_closest();

@@ -243,7 +243,7 @@ function update_own_elevation(lat, lon) {
 		// load some ways from OSM
 		//const tags = ['highway', '', 'power', 'line', 'man_made', 'pipeline'];
 		const tags = ['highway', ''];
-		load_osm_ways(e.detail.position.latitude, e.detail.position.longitude, tags);
+		load_osm_ways(lat, lon, tags);
 	  }
 	);
 }

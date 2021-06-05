@@ -54,8 +54,9 @@ function load_osm_ways(lat, lon, tags) {
 			for (var n = 0; n < nodes.length; n++) {
 				lat = nodes[n].lat;
 				lon = nodes[n].lon;
-				//console.log("node at " + lat + ", " + lon);
+				console.log("node at " + lat + ", " + lon);
 				var worldPos = _cameraGps.latLonToWorld(lat, lon);
+				console.log(worldPos);
 				
 				if(n > 0){	// add line to next point
 					line_.setAttribute('line__'+n, `start: lastWorldPos[0] 0 lastWorldPos[1]; end: worldPos[0] 0 worldPos[1]; color: red`);

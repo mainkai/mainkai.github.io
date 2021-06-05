@@ -27,10 +27,10 @@ function load_osm_ways(lat, lon, tags) {
 	query = "[timeout:900][out:json];(";
 	for (var t = 0; t < tags.length; t+=2) {
 		if(tags[t+1].length > 0){
-			query += `way['${tags[t]}'](around:${radius},${lat},${lon});`;
+			query += `way['${tags[t]}'='${tags[t+1]}'](around:${radius},${lat},${lon});`;
 		}
 		else {
-			query += `way['${tags[t]}'='${tags[t+1]}'](around:${radius},${lat},${lon});`;
+			query += `way['${tags[t]}'](around:${radius},${lat},${lon});`;
 		}
 	}
 	query += ");out body geom;";

@@ -58,8 +58,8 @@ function load_osm_ways(lat, lon, tags) {
 				var worldPos = _cameraGps.latLonToWorld(lat, lon);
 				console.log(worldPos);
 				
-				if(n > 0){	// add line to next point
-					line_.setAttribute('line__'+n, `start: lastWorldPos[0] 0 lastWorldPos[1]; end: worldPos[0] 0 worldPos[1]; color: red`);
+				if(n > 0){	// add line from previous point
+					line_.setAttribute('line__'+n, `start: ${lastWorldPos[0]} 0 ${lastWorldPos[1]}; end: ${worldPos[0]} 0 ${worldPos[1]}; color: red`);
 				}
 				lastWorldPos = worldPos;
 			}

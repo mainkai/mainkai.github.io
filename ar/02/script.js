@@ -41,6 +41,7 @@ function load_osm_ways(lat, lon, tags) {
 	  .then(json => {
 		var camera = document.querySelector('[gps-projected-camera]');
 		_cameraGps = camera.components['gps-projected-camera'];
+		ele = camera.getAttribute('position')[1];
 		// parse json
 		console.log(json);
 		ways = json.elements;
@@ -61,7 +62,7 @@ function load_osm_ways(lat, lon, tags) {
 				//console.log(worldPos);
 				
 				if(n > 0){	// add line from previous point
-					line_.setAttribute('line__'+n, `start: ${lastWorldPos[0]} 0 ${lastWorldPos[1]}; end: ${worldPos[0]} 0 ${worldPos[1]}; color: red`);
+					line_.setAttribute('line__'+n, `start: ${lastWorldPos[0]} ${ele} ${lastWorldPos[1]}; end: ${worldPos[0]} ${ele} ${worldPos[1]}; color: red`);
 				}
 				lastWorldPos = worldPos;
 			}

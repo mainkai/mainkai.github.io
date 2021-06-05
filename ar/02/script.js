@@ -22,7 +22,7 @@ function load_osm_ways(lat, lon, tags) {
 	if(this.loaded === true) {
 		return;
 	}
-	radius = 500;
+	radius = 50;
 	query = "[timeout:900][out:json];(";
 	for (var t = 0; t < tags.length; t+=2) {
 		if(tags[t+1].length > 0){

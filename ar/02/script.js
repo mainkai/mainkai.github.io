@@ -65,6 +65,8 @@ function load_osm_ways(lat, lon, tags) {
 			line_.setAttribute('material', 'opacity: 0.5');
 			track_ent.appendChild(line_);
 		}
+		let scene = document.querySelector('a-scene');
+		scene.appendChild(track_ent);
 		this.loaded = true;
 	});
 }

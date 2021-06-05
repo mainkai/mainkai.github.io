@@ -36,7 +36,8 @@ function load_osm_ways(lat, lon, tags) {
 	  .then(json => {
 		var camera = document.querySelector('[gps-projected-camera]');
 		_cameraGps = camera.components['gps-projected-camera'];
-		var ele = camera.getAttribute('position')[1];
+		//var ele = camera.getAttribute('position')[1];
+		ele = parseFloat(track_point.getElementsByTagName("ele")[0].innerHTML);
 		// parse json
 		console.log(json);
 		ways = json.elements;

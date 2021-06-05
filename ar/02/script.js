@@ -10,7 +10,8 @@ window.addEventListener('gps-camera-update-position', e => {
 	update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
 	
 	// load some ways from OSM
-	const tags = ['highway', '', 'power', 'line', 'man_made', 'pipeline'];
+	//const tags = ['highway', '', 'power', 'line', 'man_made', 'pipeline'];
+	const tags = ['highway', ''];
 	load_osm_ways(e.detail.position.latitude, e.detail.position.longitude, tags);
 	
 	// draw line to closest entity
@@ -54,9 +55,9 @@ function load_osm_ways(lat, lon, tags) {
 			for (var n = 0; n < nodes.length; n++) {
 				lat = nodes[n].lat;
 				lon = nodes[n].lon;
-				console.log("node at " + lat + ", " + lon);
+				//console.log("node at " + lat + ", " + lon);
 				var worldPos = _cameraGps.latLonToWorld(lat, lon);
-				console.log(worldPos);
+				//console.log(worldPos);
 				
 				if(n > 0){	// add line from previous point
 					line_.setAttribute('line__'+n, `start: ${lastWorldPos[0]} 0 ${lastWorldPos[1]}; end: ${worldPos[0]} 0 ${worldPos[1]}; color: red`);

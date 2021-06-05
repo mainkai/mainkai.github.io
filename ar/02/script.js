@@ -7,14 +7,7 @@ window.addEventListener('gps-camera-update-position', e => {
 	document.getElementById('lon').innerHTML = e.detail.position.longitude.toFixed(4);
 	document.getElementById('lat').innerHTML = e.detail.position.latitude.toFixed(4);
 	document.getElementById('dat').innerHTML = new Date().toLocaleString();
-	update_own_elevation(e.detail.position.latitude, e.detail.position.longitude)
-	.then({
-	
-		// load some ways from OSM
-		//const tags = ['highway', '', 'power', 'line', 'man_made', 'pipeline'];
-		const tags = ['highway', ''];
-		load_osm_ways(e.detail.position.latitude, e.detail.position.longitude, tags);
-	});
+	update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
 	
 	// draw line to closest entity
 	line_to_closest();
@@ -245,6 +238,12 @@ function update_own_elevation(lat, lon) {
             camera.setAttribute('position', position);
 	    console.log("set own elevation to: " + ele + "m");
 	    document.getElementById('alt').innerHTML = ele;
+		
+		
+		// load some ways from OSM
+		//const tags = ['highway', '', 'power', 'line', 'man_made', 'pipeline'];
+		const tags = ['highway', ''];
+		load_osm_ways(e.detail.position.latitude, e.detail.position.longitude, tags);
 	  }
 	);
 }

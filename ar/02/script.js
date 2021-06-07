@@ -7,11 +7,31 @@ window.addEventListener('gps-camera-update-position', e => {
 	document.getElementById('lon').innerHTML = e.detail.position.longitude.toFixed(4);
 	document.getElementById('lat').innerHTML = e.detail.position.latitude.toFixed(4);
 	document.getElementById('dat').innerHTML = new Date().toLocaleString();
-	update_own_elevation(e.detail.position.latitude, e.detail.position.longitude);
+	update_own_elevation(e.detail.position.latitude.toFixed(4), e.detail.position.longitude.toFixed(4));
 	
 	// draw line to closest entity
 	line_to_closest();
         });
+
+// a simple memoize function that takes in a function
+// and returns a memoized function
+const memoize = (fn) => {
+  let cache = {};
+  return (...args) => {
+    //let n = args[0];  // just taking one argument here
+    let n = (() => {let concat = ''; for (let i = 0; i < args.length; i++) {concat += args[i];} return concat;})();
+    if (n in cache) {
+      console.log('Fetching from cache');
+      return cache[n];
+    }
+    else {
+      console.log('Calculating result');
+      let result = fn(n);
+      cache[n] = result;
+      return result;
+    }
+  }
+}
 
 this.loaded = false;
 function load_osm_ways(lat, lon, tags, link_by_or, radius, color) {
@@ -257,6 +277,8 @@ function update_own_elevation(lat, lon) {
 	  }
 	);
 }
+
+//const update_own_elevation_memoized = memoize(update_own_elevation);
 
 function dist(x1,y1,x2,y2) {
         var dx = x2-x1, dy = y2-y1;

@@ -14,19 +14,23 @@ window.addEventListener('gps-camera-update-position', e => {
         });
 
 this.loaded = false;
-function load_osm_ways(lat, lon, tags) {
+function load_osm_ways(lat, lon, tags, link_by_or, radius) {
 	if(this.loaded === true) {
 		return;
 	}
-	radius = 50;
 	query = "[timeout:900][out:json];(";
-	for (var t = 0; t < tags.length; t+=2) {
-		if(tags[t+1].length > 0){
-			query += `way['${tags[t]}'='${tags[t+1]}'](around:${radius},${lat},${lon});`;
+	if(link_by_or){
+		for (var t = 0; t < tags.length; t+=2) {
+			if(tags[t+1].length > 0){
+				query += `way['${tags[t]}'='${tags[t+1]}'](around:${radius},${lat},${lon});`;
+			}
+			else {
+				query += `way['${tags[t]}'](around:${radius},${lat},${lon});`;
+			}
 		}
-		else {
-			query += `way['${tags[t]}'](around:${radius},${lat},${lon});`;
-		}
+	}
+	else {
+		// TODO
 	}
 	query += ");out body geom;";
 	url = "https://overpass-api.de/api/interpreter?data=" + encodeURIComponent(query);
@@ -241,10 +245,10 @@ function update_own_elevation(lat, lon) {
 	    document.getElementById('alt').innerHTML = ele;
 		
 		
-		// load some ways from OSM
-		//const tags = ['highway', '', 'power', 'line', 'man_made', 'pipeline'];
-		const tags = ['highway', ''];
-		load_osm_ways(lat, lon, tags);
+		// load power grid lines from OSM
+		const tags = ['power', 'line', 'power', 'minor_line', 'power', 'cable'];
+		//const tags = ['highway', ''];
+		load_osm_ways(lat, lon, tags, true, 5000);
 	  }
 	);
 }

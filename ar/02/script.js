@@ -14,7 +14,7 @@ window.addEventListener('gps-camera-update-position', e => {
         });
 
 this.loaded = false;
-function load_osm_ways(lat, lon, tags, link_by_or, radius) {
+function load_osm_ways(lat, lon, tags, link_by_or, radius, color) {
 	if(this.loaded === true) {
 		return;
 	}
@@ -62,7 +62,11 @@ function load_osm_ways(lat, lon, tags, link_by_or, radius) {
 				//console.log(worldPos);
 				
 				if(n > 0){	// add line from previous point
-					line_.setAttribute('line__'+n, `start: ${lastWorldPos[0]} ${ele} ${lastWorldPos[1]}; end: ${worldPos[0]} ${ele} ${worldPos[1]}; color: red`);
+					line_.setAttribute('line__'+n, 
+							   `start: ${lastWorldPos[0]} ${ele} ${lastWorldPos[1]}; `
+							   +`end: ${worldPos[0]} ${ele} ${worldPos[1]}; `
+							   +`color: ${color}`
+							  );
 				}
 				lastWorldPos = worldPos;
 			}
@@ -245,10 +249,11 @@ function update_own_elevation(lat, lon) {
 	    document.getElementById('alt').innerHTML = ele;
 		
 		
-		// load power grid lines from OSM
-		const tags = ['power', 'line', 'power', 'minor_line', 'power', 'cable'];
-		//const tags = ['highway', ''];
-		load_osm_ways(lat, lon, tags, true, 5000);
+		// load some ways from OSM
+		//load_osm_ways(lat, lon, ['highway', ''], true, 50, "black");
+		load_osm_ways(lat, lon, ['power', 'line', 'power', 'minor_line', 'power', 'cable'], true, 5000, "red");
+		load_osm_ways(lat, lon, ['type', 'gas', 'type', 'natural_gas', 'substance', 'gas', 'substance', 'natural_gas'], true, 5000, "yellow");
+		load_osm_ways(lat, lon, ['type', 'heat', 'substance', 'heat'], true, 5000, "orange");
 	  }
 	);
 }

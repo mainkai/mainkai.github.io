@@ -210,24 +210,27 @@ function add_track(text) {
 	}
 	console.log(`track ${trk_name} with ${segments.length} segments.`);
 	
+	// extract track starting point
+	track_point = segments[0].getElementsByTagName("trkpt")[0]
+	lat = track_point.getAttribute("lat");
+	lon = track_point.getAttribute("lon");
+	
+	// add track name at starting point
 	const track_ent = document.createElement('a-entity');
 	const desc = document.createElement('a-text');
 	desc.setAttribute('value', trk_name);
-	desc.setAttribute('gps-projected-entity-place', `latitude: ${segments[0].getElementsByTagName("trkpt")[0].getAttribute("lat")}; longitude: ${segments[0].getElementsByTagName("trkpt")[0].getAttribute("lon")};`);
+	desc.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
 	desc.setAttribute('position', `0 ${50} 0`);
 	desc.setAttribute('scale', '50 50 50');
 	desc.setAttribute('look-at', "[gps-projected-camera]");
 	track_ent.appendChild(desc);
 	
 	// add rotating greenventory logo at track starting point
-	track_point = segments[0].getElementsByTagName("trkpt")[0]
-	lat = track_point.getAttribute("lat");
-	lon = track_point.getAttribute("lon");
 	const gv_logo = document.createElement('a-entity');
 	gv_logo.setAttribute('gltf-model', '../assets/models/greenventory_logo/greenventory_logo_neu.glb');
 	gv_logo.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
-	gv_logo.setAttribute('position', `0 5 0`);
-	gv_logo.setAttribute('scale', `.2 .2 .2`);
+	gv_logo.setAttribute('position', `0 50 0`);
+	//gv_logo.setAttribute('scale', `.2 .2 .2`);
 	gv_logo.setAttribute('animation', `property: rotation; easing: linear; to: 0 -360 0; loop: true; dur: 5000`);
 	track_ent.appendChild(gv_logo);
 	console.log(`added logo at: (${lon}, ${lat})`);

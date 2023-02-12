@@ -272,6 +272,11 @@ function add_track(text) {
 			//}
 			line_.setAttribute('material', 'opacity: 0.5');
 			track_ent.appendChild(line_);
+			
+			// add 2 triangles to next point
+			//if(j < track_points.length - 1){
+			//	TODO: ...
+			//}
 		}
 	}
 	let scene = document.querySelector('a-scene');

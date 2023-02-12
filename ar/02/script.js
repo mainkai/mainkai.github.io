@@ -1,4 +1,5 @@
 window.onload = () => {
+	logo_greenventory(48.0170229, 7.8294565);  // add greenventory logo at office location
 	load_turbines_json();
 	load_track_gpx();
 };
@@ -131,6 +132,31 @@ function line_to_closest() {
 	document.querySelector('a-scene').appendChild(line);
 }
 
+
+
+function logo_greenventory(lat, lon) {
+	// add rotating greenventory logo at given location
+	let scene = document.querySelector('a-scene');
+	const gv_logo = document.createElement('a-entity');
+	//gv_logo.setAttribute('gltf-model', '../assets/models/greenventory_logo/greenventory_logo_neu.glb');
+	gv_logo.setAttribute('gltf-model', '../assets/models/greenventory_logo/greenventory_logo_neu_000000.glb');
+	gv_logo.setAttribute('gps-projected-entity-place', `latitude: ${office_lat}; longitude: ${office_lon};`);
+	gv_logo.setAttribute('position', `0 50 0`);
+	//gv_logo.setAttribute('scale', `.2 .2 .2`);
+	gv_logo.setAttribute('animation', `property: rotation; easing: linear; to: 0 -360 0; loop: true; dur: 5000`);
+	gv_logo.setAttribute('material', `opacity: 0.8; transparent: true`);
+	track_ent.appendChild(gv_logo);
+	const gv_logo2 = document.createElement('a-entity');
+	gv_logo2.setAttribute('gltf-model', '../assets/models/greenventory_logo/greenventory_logo_neu_00ff00.glb');
+	gv_logo2.setAttribute('gps-projected-entity-place', `latitude: ${office_lat}; longitude: ${office_lon};`);
+	gv_logo2.setAttribute('position', `0 50 0`);
+	//gv_logo2.setAttribute('scale', `.2 .2 .2`);
+	gv_logo2.setAttribute('animation', `property: rotation; easing: linear; to: 0 360 0; loop: true; dur: 5000`);
+	gv_logo2.setAttribute('material', `opacity: 0.8; transparent: true`);
+	track_ent.appendChild(gv_logo2);
+	console.log(`added logo at: (${lon}, ${lat})`);
+}
+
 function load_turbines_json() {
 	fetch("../assets/wind_potentials/Oberkirch/placed_turbines.geojson")
 	  .then(response => response.json())
@@ -226,22 +252,7 @@ function add_track(text) {
 	track_ent.appendChild(desc);
 	
 	// add rotating greenventory logo at track starting point
-	const gv_logo = document.createElement('a-entity');
-	//gv_logo.setAttribute('gltf-model', '../assets/models/greenventory_logo/greenventory_logo_neu.glb');
-	gv_logo.setAttribute('gltf-model', '../assets/models/greenventory_logo/greenventory_logo_neu_000000.glb');
-	gv_logo.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
-	gv_logo.setAttribute('position', `0 50 0`);
-	//gv_logo.setAttribute('scale', `.2 .2 .2`);
-	gv_logo.setAttribute('animation', `property: rotation; easing: linear; to: 0 -360 0; loop: true; dur: 5000`);
-	track_ent.appendChild(gv_logo);
-	const gv_logo2 = document.createElement('a-entity');
-	gv_logo2.setAttribute('gltf-model', '../assets/models/greenventory_logo/greenventory_logo_neu_00ff00.glb');
-	gv_logo2.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
-	gv_logo2.setAttribute('position', `0 50 0`);
-	//gv_logo2.setAttribute('scale', `.2 .2 .2`);
-	gv_logo2.setAttribute('animation', `property: rotation; easing: linear; to: 0 360 0; loop: true; dur: 5000`);
-	track_ent.appendChild(gv_logo2);
-	console.log(`added logo at: (${lon}, ${lat})`);
+	logo_greenventory(lat, lon);
 	
 	// add vertical line for each point
 	for (var i = 0; i < segments.length; i++) {

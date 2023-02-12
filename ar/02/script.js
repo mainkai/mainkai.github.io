@@ -185,7 +185,7 @@ function load_turbines_from_json(json) {
 		
 		scene.appendChild(model);
 
-		//console.log("added: Wind " + i + " at: " + latitude + ", " + longitude + ", " + local_height + " m, " + hub_height_m + " m, total_turbine_size " + total_turbine_size + " m");
+		console.log("added: Wind " + i + " at: " + latitude + ", " + longitude + ", " + local_height + " m, " + hub_height_m + " m, total_turbine_size " + total_turbine_size + " m");
 	}
 	console.log("loaded " + json.length + " wind turbines.");
 }

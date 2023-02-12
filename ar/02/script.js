@@ -299,8 +299,8 @@ function update_own_elevation(lat, lon) {
 	    console.log("set own elevation to: " + ele + "m");
 	    document.getElementById('alt').innerHTML = ele;
 		
-		
 		// load some ways from OSM
+	    	console.log("loading OSM ways...");
 		//load_osm_ways(lat, lon, ['highway', ''], true, 50, "black");
 		load_osm_ways(lat, lon, ['power', 'line', 'power', 'minor_line', 'power', 'cable'], true, 5000, "red");
 		load_osm_ways(lat, lon, ['type', 'gas', 'type', 'natural_gas', 'substance', 'gas', 'substance', 'natural_gas'], true, 5000, "yellow");

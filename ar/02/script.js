@@ -191,7 +191,7 @@ function load_turbines_from_json(json) {
 }
 
 function load_track_gpx() {
-	fetch("../assets/tracks/2020-03-31 1844 Hausrunde__20200331_1844.gpx")
+	fetch("../assets/tracks/2022-12-24_13-40_Sat Flow Trail kurz.gpx")
 	  .then(response => response.text())
 	  .then(text => add_track(text));
 }

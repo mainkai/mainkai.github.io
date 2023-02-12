@@ -1,6 +1,6 @@
 window.onload = () => {
-	load_turbines_json();
 	load_track_gpx();
+	load_turbines_json();
 };
 
 window.addEventListener('gps-camera-update-position', e => {
@@ -187,7 +187,7 @@ function load_turbines_from_json(json) {
 
 		//console.log("added: Wind " + i + " at: " + latitude + ", " + longitude + ", " + local_height + " m, " + hub_height_m + " m, total_turbine_size " + total_turbine_size + " m");
 	}
-	console.log("loaded " + json.length + " objects.");
+	console.log("loaded " + json.length + " wind turbines.");
 }
 
 function load_track_gpx() {

@@ -212,6 +212,18 @@ function add_track(text) {
 	desc.setAttribute('look-at', "[gps-projected-camera]");
 	track_ent.appendChild(desc);
 	
+	// add rotating greenventory logo at track starting point
+	track_point = segments[0].getElementsByTagName("trkpt")[0]
+	lat = track_point.getAttribute("lat");
+	lon = track_point.getAttribute("lon");
+	const gv_logo = document.createElement('a-entity');
+	gv_logo.setAttribute('gltf-model', '../assets/models/greenventory_logo/greenventory_logo_neu.glb');
+	gv_logo.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
+	gv_logo.setAttribute('position', `0 5 0`);
+	gv_logo.setAttribute('scale', `.2 .2 .2`);
+	gv_logo.setAttribute('animation', `property: rotation; easing: linear; to: 0 -360 0; loop: true; dur: 5000`);
+	track_ent.appendChild(gv_logo);
+	
 	// add vertical line for each point
 	for (var i = 0; i < segments.length; i++) {
 		track_points = segments[i].getElementsByTagName("trkpt");

@@ -1,6 +1,6 @@
 window.onload = () => {
-	load_track_gpx();
 	load_turbines_json();
+	load_track_gpx();
 };
 
 window.addEventListener('gps-camera-update-position', e => {
@@ -197,11 +197,13 @@ function load_track_gpx() {
 }
 
 function add_track(text) {
-	console.log(`parsing ${text}...`);
+	console.log(`parsing track...`);
+	//console.log(`parsing ${text}...`);
 	parser = new DOMParser();
 	xmlDoc = parser.parseFromString(text,"text/xml");
 	segments = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("trkseg");
 	trk_name = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("name")[0].innerHTML;
+	console.log(`track ${trk_name} with ${segments.length} segments.`);
 	
 	const track_ent = document.createElement('a-entity');
 	const desc = document.createElement('a-text');

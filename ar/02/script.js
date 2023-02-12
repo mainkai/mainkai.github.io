@@ -202,7 +202,12 @@ function add_track(text) {
 	parser = new DOMParser();
 	xmlDoc = parser.parseFromString(text,"text/xml");
 	segments = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("trkseg");
-	trk_name = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("name")[0].innerHTML;
+	try {
+	  trk_name = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("name")[0].innerHTML;
+	} catch (error) {
+	  console.error(error);
+	  trk_name = "undefined";
+	}
 	console.log(`track ${trk_name} with ${segments.length} segments.`);
 	
 	const track_ent = document.createElement('a-entity');

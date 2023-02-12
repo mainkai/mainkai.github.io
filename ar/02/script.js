@@ -285,28 +285,35 @@ function dist(x1,y1,x2,y2) {
         return Math.sqrt(dx*dx + dy*dy);
 }
 
-// from old osmeditor2 code - comments as follows:     
-// find the distance from a point to a line     
-// based on theory at:     
-// astronomy.swin.edu.au/~pbourke/geometry/pointline/     
-// given equation was proven starting with dot product     
+// find the distance from a point to a line
+function haversineDistToLine(x, y, p1, p2) {
+  // Calculate the dot product of vectors (x,y) and (p2-p1)
+  var u = ((x-p1[0])*(p2[0]-p1[0])+(y-p1[1])*(p2[1]-p1[1])) / (Math.pow(p2[0]-p1[0],2)+Math.pow(p2[1]-p1[1],2));
 
-// Now returns an object containing the distance, the intersection point 
-//and the proportion, in case we need these
+  // Calculate the intersection point between the line segment defined by p1 and p2 and the perpendicular line passing through (x,y)
+  var xintersection = p1[0]+u*(p2[0]-p1[0]), yintersection=p1[1]+u*(p2[1]-p1[1]);
 
-function haversineDistToLine(x, y, p1, p2)  {         
-	var u = ((x-p1[0])*(p2[0]-p1[0])+(y-p1[1])*(p2[1]-p1[1])) / (Math.pow(p2[0]-p1[0],2)+Math.pow(p2[1]-p1[1],2));        
-	var xintersection = p1[0]+u*(p2[0]-p1[0]), yintersection=p1[1]+u*(p2[1]-p1[1]);   
-	return (u>=0&&u<=1) ? {distance: this.haversineDist(x,y,xintersection,yintersection), intersection: [xintersection, yintersection], proportion:u} : null;
+  // Check if the intersection point is within the line segment defined by p1 and p2
+  return (u>=0&&u<=1) ? 
+  // If the intersection point is within the line segment, return the haversine distance between (x,y) and the intersection point, the coordinates of the intersection point, and the proportion of the distance between p1 and p2 that the intersection point is at
+    {distance: this.haversineDist(x,y,xintersection,yintersection), intersection: [xintersection, yintersection], proportion:u} : 
+    // If the intersection point is not within the line segment, return null
+    null;
 }
 
 function haversineDist(lon1, lat1, lon2, lat2){            
-	var R = 6371000;            
-	var dlon=(lon2-lon1)*(Math.PI / 180);            
-	var dlat=(lat2-lat1)*(Math.PI / 180);            
-	var slat=Math.sin(dlat/2);            
-	var slon=Math.sin(dlon/2);            
-	var a = slat*slat + Math.cos(lat1*(Math.PI/180))*Math.cos(lat2*(Math.PI/180))*slon*slon;            
-	var c = 2 *Math.asin(Math.min(1,Math.sqrt(a)));            
+	//Radius of the earth
+	var R = 6371000;
+	//Conversion of longitude and latitide differences to radians
+	var dlon=(lon2-lon1)*(Math.PI / 180);
+	var dlat=(lat2-lat1)*(Math.PI / 180);
+	//Calculate sin of half of latitude and longitude difference
+	var slat=Math.sin(dlat/2);
+	var slon=Math.sin(dlon/2);
+	//Calculate haversine distance
+	var a = slat*slat + Math.cos(lat1*(Math.PI/180))*Math.cos(lat2*(Math.PI/180))*slon*slon;
+	var c = 2 *Math.asin(Math.min(1,Math.sqrt(a)));
+	//Return distance between two points
 	return R*c;        
 }
+

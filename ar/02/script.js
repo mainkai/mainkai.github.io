@@ -227,7 +227,7 @@ function add_track(text) {
 	
 	// add rotating greenventory logo at track starting point
 	const gv_logo = document.createElement('a-entity');
-	gv_logo.setAttribute('gltf-model', '../assets/models/greenventory_logo/greenventory_logo_neu.glb');
+	//gv_logo.setAttribute('gltf-model', '../assets/models/greenventory_logo/greenventory_logo_neu.glb');
 	gv_logo.setAttribute('gltf-model', '../assets/models/greenventory_logo/greenventory_logo_neu_000000.glb');
 	gv_logo.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
 	gv_logo.setAttribute('position', `0 50 0`);

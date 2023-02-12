@@ -197,7 +197,7 @@ function load_track_gpx() {
 }
 
 function add_track(text) {
-	//console.log(`parsing ${text}...`);
+	console.log(`parsing ${text}...`);
 	parser = new DOMParser();
 	xmlDoc = parser.parseFromString(text,"text/xml");
 	segments = xmlDoc.getElementsByTagName("gpx")[0].getElementsByTagName("trk")[0].getElementsByTagName("trkseg");
@@ -223,6 +223,7 @@ function add_track(text) {
 	gv_logo.setAttribute('scale', `.2 .2 .2`);
 	gv_logo.setAttribute('animation', `property: rotation; easing: linear; to: 0 -360 0; loop: true; dur: 5000`);
 	track_ent.appendChild(gv_logo);
+	console.log(`added logo at: (${lon}, ${lat})`);
 	
 	// add vertical line for each point
 	for (var i = 0; i < segments.length; i++) {
@@ -232,7 +233,7 @@ function add_track(text) {
 			lat = track_point.getAttribute("lat");
 			lon = track_point.getAttribute("lon");
 			ele = parseFloat(track_point.getElementsByTagName("ele")[0].innerHTML);
-			//console.log(`segment ${i}, track_point ${j}: (${lon}, ${lat}), ${ele} m`);
+			console.log(`segment ${i}, track_point ${j}: (${lon}, ${lat}), ${ele} m`);
 			
 			const line_ = document.createElement('a-entity');
 			line_.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);

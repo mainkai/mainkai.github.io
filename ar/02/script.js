@@ -145,7 +145,7 @@ function logo_greenventory(lat, lon) {
 	//gv_logo.setAttribute('scale', `.2 .2 .2`);
 	gv_logo.setAttribute('animation', `property: rotation; easing: linear; to: 0 -360 0; loop: true; dur: 5000`);
 	gv_logo.setAttribute('material', `opacity: 0.8; transparent: true`);
-	track_ent.appendChild(gv_logo);
+	scene.appendChild(gv_logo);
 	const gv_logo2 = document.createElement('a-entity');
 	gv_logo2.setAttribute('gltf-model', '../assets/models/greenventory_logo/greenventory_logo_neu_00ff00.glb');
 	gv_logo2.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
@@ -153,7 +153,7 @@ function logo_greenventory(lat, lon) {
 	//gv_logo2.setAttribute('scale', `.2 .2 .2`);
 	gv_logo2.setAttribute('animation', `property: rotation; easing: linear; to: 0 360 0; loop: true; dur: 5000`);
 	gv_logo2.setAttribute('material', `opacity: 0.8; transparent: true`);
-	track_ent.appendChild(gv_logo2);
+	scene.appendChild(gv_logo2);
 	console.log(`added logo at: (${lon}, ${lat})`);
 }
 

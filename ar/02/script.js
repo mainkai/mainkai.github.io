@@ -300,8 +300,8 @@ function add_track(text) {
 }
 
 function update_own_elevation(lat, lon) {
-	url = `https://api.open-elevation.com/api/v1/lookup\?locations\=${lat},${lon}`;
-	//url = `https://api.opentopodata.org/v1/srtm30m?locations=${lat},${lon}`;
+	//url = `https://api.open-elevation.com/api/v1/lookup\?locations\=${lat},${lon}`;
+	url = `https://api.opentopodata.org/v1/srtm30m?locations=${lat},${lon}`;
 
 	console.log("retrieving own elevation from "+url);
 	fetch(url)
@@ -314,6 +314,7 @@ function update_own_elevation(lat, lon) {
             position.y = ele + 1.6;
             camera.setAttribute('position', position);
 	    console.log("set own elevation to: " + ele + "m");
+	    <a-toast message=`set own elevation to: ${ele} m` action="Got it"></a-toast>
 	    document.getElementById('alt').innerHTML = ele;
 		
 		// load some ways from OSM

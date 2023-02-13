@@ -302,6 +302,7 @@ function add_track(text) {
 function update_own_elevation(lat, lon) {
 	//url = `https://api.open-elevation.com/api/v1/lookup\?locations\=${lat},${lon}`;
 	url = `https://api.opentopodata.org/v1/srtm30m?locations=${lat},${lon}`;
+	// url = `https://api.open-meteo.com/v1/elevation?latitude=${lat}&longitude=${lon}`;
 
 	console.log("retrieving own elevation from "+url);
 	fetch(url)

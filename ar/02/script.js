@@ -1,7 +1,7 @@
 window.onload = () => {
 	logo_greenventory(48.0170229, 7.8294565);  // add greenventory logo at office location
 	load_turbines_json();
-	load_track_gpx();
+	//load_track_gpx();
 };
 
 window.addEventListener('gps-camera-update-position', e => {
@@ -296,6 +296,7 @@ function add_track(text) {
 		}
 	}
 	*/
+	console.log(`added track to scene`);
 }
 
 function update_own_elevation(lat, lon) {
@@ -316,11 +317,11 @@ function update_own_elevation(lat, lon) {
 	    document.getElementById('alt').innerHTML = ele;
 		
 		// load some ways from OSM
-	    	console.log("loading OSM ways...");
+	    	//console.log("loading OSM ways...");
 		//load_osm_ways(lat, lon, ['highway', ''], true, 50, "black");
-		load_osm_ways(lat, lon, ['power', 'line', 'power', 'minor_line', 'power', 'cable'], true, 5000, "red");
-		load_osm_ways(lat, lon, ['type', 'gas', 'type', 'natural_gas', 'substance', 'gas', 'substance', 'natural_gas'], true, 5000, "yellow");
-		load_osm_ways(lat, lon, ['type', 'heat', 'substance', 'heat'], true, 5000, "orange");
+		//load_osm_ways(lat, lon, ['power', 'line', 'power', 'minor_line', 'power', 'cable'], true, 5000, "red");
+		//load_osm_ways(lat, lon, ['type', 'gas', 'type', 'natural_gas', 'substance', 'gas', 'substance', 'natural_gas'], true, 5000, "yellow");
+		//load_osm_ways(lat, lon, ['type', 'heat', 'substance', 'heat'], true, 5000, "orange");
 	  }
 	);
 }

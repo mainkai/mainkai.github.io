@@ -314,7 +314,7 @@ function update_own_elevation(lat, lon) {
             position.y = ele + 1.6;
             camera.setAttribute('position', position);
 	    console.log("set own elevation to: " + ele + "m");
-	    <a-toast message=`set own elevation to: ${ele} m` action="Got it"></a-toast>
+	    // <a-toast message=`set own elevation to: ${ele} m` action="Got it"></a-toast>
 	    document.getElementById('alt').innerHTML = ele;
 		
 		// load some ways from OSM

@@ -140,7 +140,7 @@ function logo_greenventory(lat, lon) {
 	const gv_logo = document.createElement('a-entity');
 	//gv_logo.setAttribute('gltf-model', '../assets/models/greenventory_logo/greenventory_logo_neu.glb');
 	gv_logo.setAttribute('gltf-model', '../assets/models/greenventory_logo/greenventory_logo_neu_000000.glb');
-	gv_logo.setAttribute('gps-projected-entity-place', `latitude: ${office_lat}; longitude: ${office_lon};`);
+	gv_logo.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
 	gv_logo.setAttribute('position', `0 50 0`);
 	//gv_logo.setAttribute('scale', `.2 .2 .2`);
 	gv_logo.setAttribute('animation', `property: rotation; easing: linear; to: 0 -360 0; loop: true; dur: 5000`);
@@ -148,7 +148,7 @@ function logo_greenventory(lat, lon) {
 	track_ent.appendChild(gv_logo);
 	const gv_logo2 = document.createElement('a-entity');
 	gv_logo2.setAttribute('gltf-model', '../assets/models/greenventory_logo/greenventory_logo_neu_00ff00.glb');
-	gv_logo2.setAttribute('gps-projected-entity-place', `latitude: ${office_lat}; longitude: ${office_lon};`);
+	gv_logo2.setAttribute('gps-projected-entity-place', `latitude: ${lat}; longitude: ${lon};`);
 	gv_logo2.setAttribute('position', `0 50 0`);
 	//gv_logo2.setAttribute('scale', `.2 .2 .2`);
 	gv_logo2.setAttribute('animation', `property: rotation; easing: linear; to: 0 360 0; loop: true; dur: 5000`);

@@ -147,3 +147,65 @@ function showDebugInfo(text) {
     const debugInfo = document.querySelector('#debugInfo');
     debugInfo.setAttribute('text', `value: ${text}; color: #FFF; width: 6;`);
 }
+
+const tileCache = {};
+
+async function fetchTile(url) {
+  if (tileCache[url]) {
+    return tileCache[url];
+  }
+
+  const response = await fetch(url);
+  const blob = await response.blob();
+  const img = new Image();
+  img.crossOrigin = "Anonymous";
+  img.src = URL.createObjectURL(blob);
+
+  return new Promise((resolve, reject) => {
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      ctx.drawImage(img, 0, 0);
+
+      tileCache[url] = ctx;
+      resolve(ctx);
+    };
+
+    img.onerror = (err) => {
+      reject(err);
+    };
+  });
+}
+
+async function getElevation(lat, lng, zoom = 14) {
+  const tileSize = 256;
+  const worldWidth = Math.pow(2, zoom) * tileSize;
+
+  const x = Math.floor(((lng + 180) / 360) * worldWidth / tileSize);
+  const y = Math.floor((1 - Math.log(Math.tan((lat * Math.PI) / 180) + 1 / Math.cos((lat * Math.PI) / 180)) / Math.PI) * worldWidth / (2 * tileSize));
+
+  const url = `https://s3.amazonaws.com/elevation-tiles-prod/terrarium/${zoom}/${x}/${y}.png`;
+
+  const ctx = await fetchTile(url);
+
+  const px = Math.floor(((lng + 180) / 360) * worldWidth) % tileSize;
+  const py = Math.floor((1 - Math.log(Math.tan((lat * Math.PI) / 180) + 1 / Math.cos((lat * Math.PI) / 180)) / Math.PI) * worldWidth / 2) % tileSize;
+
+  const imageData = ctx.getImageData(px, py, 1, 1);
+  const [r, g, b] = imageData.data;
+
+  const elevation = (r * 256 + g + b / 256) - 32768;
+  return elevation;
+}
+
+// // Usage
+// getElevation(37.7749, -122.4194)
+//   .then((elevation) => {
+//     console.log(`Elevation at given coordinates: ${elevation} meters`);
+//   })
+//   .catch((err) => {
+//     console.error(err);
+//   });

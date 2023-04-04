@@ -26,28 +26,77 @@ function createWindTurbineEntity(turbine) {
 
 
 
-(async () => {
-    const scene = document.querySelector('a-scene');
-    const userLatitude = scene.getAttribute('gps-camera').getAttribute('latitude');
-    const userLongitude = scene.getAttribute('gps-camera').getAttribute('longitude');
-  
-    console.log('User location:', userLatitude, userLongitude);
-    showToast('User location fetched');
-    showDebugInfo(`User location: ${userLatitude.toFixed(5)}, ${userLongitude.toFixed(5)}`);
-  
-    await updateCameraElevation(userLatitude, userLongitude);
-  
-    const turbines = await fetchWindTurbines(userLatitude, userLongitude, 10000);
-    console.log('Wind turbines fetched:', turbines);
-    showToast('Wind turbines fetched');
-  
-    for (const turbine of turbines) {
-      const elevation = await getElevation(turbine.lat, turbine.lon);
-      const turbineEntity = createWindTurbineEntity(turbine, elevation);
-      scene.appendChild(turbineEntity);
-    }
-  })();
-  
+// (async () => {
+//     const scene = document.querySelector('a-scene');
+//     const userLatitude = scene.getAttribute('gps-camera').getAttribute('latitude');
+//     const userLongitude = scene.getAttribute('gps-camera').getAttribute('longitude');
+
+//     console.log('User location:', userLatitude, userLongitude);
+//     showToast('User location fetched');
+//     showDebugInfo(`User location: ${userLatitude.toFixed(5)}, ${userLongitude.toFixed(5)}`);
+
+//     await updateCameraElevation(userLatitude, userLongitude);
+
+//     const turbines = await fetchWindTurbines(userLatitude, userLongitude, 10000);
+//     console.log('Wind turbines fetched:', turbines);
+//     showToast('Wind turbines fetched');
+
+//     for (const turbine of turbines) {
+//       const elevation = await getElevation(turbine.lat, turbine.lon);
+//       const turbineEntity = createWindTurbineEntity(turbine, elevation);
+//       scene.appendChild(turbineEntity);
+//     }
+//   })();
+
+window.onload = () => {
+    let testEntityAdded = false;
+
+    const el = document.querySelector("[gps-new-camera]");
+
+    el.addEventListener("gps-camera-update-position", e => {
+        if (!testEntityAdded) {
+            alert(`Got first GPS position: lon ${e.detail.position.longitude} lat ${e.detail.position.latitude}`);
+
+            console.log('User location:', e.detail.position.latitude, e.detail.position.longitude);
+            showToast('User location fetched');
+            showDebugInfo(`User location: ${e.detail.position.latitude.toFixed(5)}, ${e.detail.position.longitude.toFixed(5)}`);
+
+            await updateCameraElevation(userLatitude, userLongitude);
+
+            // add wind turbines
+            const turbines = await fetchWindTurbines(userLatitude, userLongitude, 10000);
+            console.log('Wind turbines fetched:', turbines);
+            showToast('Wind turbines fetched');
+
+            for (const turbine of turbines) {
+                const elevation = await getElevation(turbine.lat, turbine.lon);
+                const turbineEntity = createWindTurbineEntity(turbine, elevation);
+                document.querySelector("a-scene").appendChild(turbineEntity);
+            }
+
+
+            // Add a box to the north of the initial GPS position
+            const entity = document.createElement("a-box");
+            entity.setAttribute("scale", {
+                x: 20,
+                y: 20,
+                z: 20
+            });
+            entity.setAttribute('material', {
+                color: 'red'
+            });
+            entity.setAttribute('gps-new-entity-place', {
+                latitude: e.detail.position.latitude + 0.001,
+                longitude: e.detail.position.longitude
+            });
+            document.querySelector("a-scene").appendChild(entity);
+
+
+        }
+        testEntityAdded = true;
+    });
+};
+
 
 
 function createWindTurbineEntity(turbine, altitude) {
@@ -88,5 +137,4 @@ function showToast(message, duration = 3000) {
 function showDebugInfo(text) {
     const debugInfo = document.querySelector('#debugInfo');
     debugInfo.setAttribute('text', `value: ${text}; color: #FFF; width: 6;`);
-  }
-  
+}

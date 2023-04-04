@@ -24,7 +24,15 @@ function createWindTurbineEntity(turbine) {
     return entity;
 }
 
-
+// get elevation data:
+// tileSize: 256,
+//   maxZoom: 15,
+//   getSourceUrl: ({x, y, z}) => {
+//     return `https://s3.amazonaws.com/elevation-tiles-prod/terrarium/${z}/${x}/${y}.png`;
+//   },
+//   getElevation: ({r, g, b, a}) => {
+//     return (r * 256 + g + b / 256) - 32768;
+//   }
 
 // (async () => {
 //     const scene = document.querySelector('a-scene');
@@ -55,10 +63,10 @@ window.onload = () => {
 
     el.addEventListener("gps-camera-update-position", e => {
         if (!testEntityAdded) {
-            alert(`Got first GPS position: lon ${e.detail.position.longitude} lat ${e.detail.position.latitude}`);
+            // alert(`Got first GPS position: lon ${e.detail.position.longitude} lat ${e.detail.position.latitude}`);
 
             console.log('User location:', e.detail.position.latitude, e.detail.position.longitude);
-            showToast('User location fetched');
+            showToast(`User location: ${e.detail.position.latitude.toFixed(5)}, ${e.detail.position.longitude.toFixed(5)}`);
             showDebugInfo(`User location: ${e.detail.position.latitude.toFixed(5)}, ${e.detail.position.longitude.toFixed(5)}`);
 
             updateCameraElevation(userLatitude, userLongitude);
@@ -66,7 +74,8 @@ window.onload = () => {
             // add wind turbines
             const turbines = fetchWindTurbines(userLatitude, userLongitude, 10000);
             console.log('Wind turbines fetched:', turbines);
-            showToast('Wind turbines fetched');
+            //showToast('Wind turbines fetched');
+            showToast(`got ${turbines.size} wind turbines`);
 
             for (const turbine of turbines) {
                 const elevation = getElevation(turbine.lat, turbine.lon);

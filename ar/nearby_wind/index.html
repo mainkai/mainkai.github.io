@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AR.js Wind Turbines App</title>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+</head>
+<body>
+  <a-scene vr-mode-ui="enabled: false" arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
+    <a-text id="debugInfo" position="0 1.5 -3" text="value: Debug info; color: #FFF; width: 6;"></a-text>
+  </a-scene>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -61,15 +61,15 @@ window.onload = () => {
             showToast('User location fetched');
             showDebugInfo(`User location: ${e.detail.position.latitude.toFixed(5)}, ${e.detail.position.longitude.toFixed(5)}`);
 
-            await updateCameraElevation(userLatitude, userLongitude);
+            updateCameraElevation(userLatitude, userLongitude);
 
             // add wind turbines
-            const turbines = await fetchWindTurbines(userLatitude, userLongitude, 10000);
+            const turbines = fetchWindTurbines(userLatitude, userLongitude, 10000);
             console.log('Wind turbines fetched:', turbines);
             showToast('Wind turbines fetched');
 
             for (const turbine of turbines) {
-                const elevation = await getElevation(turbine.lat, turbine.lon);
+                const elevation = getElevation(turbine.lat, turbine.lon);
                 const turbineEntity = createWindTurbineEntity(turbine, elevation);
                 document.querySelector("a-scene").appendChild(turbineEntity);
             }

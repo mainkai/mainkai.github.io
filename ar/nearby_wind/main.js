@@ -182,19 +182,18 @@ async function fetchTile(url) {
 
 async function getElevation(lat, lng, zoom = 14) {
   const tileSize = 256;
-  const worldWidth = Math.pow(2, zoom) * tileSize;
 
-  const x = Math.floor(((lng + 180) / 360) * worldWidth / tileSize);
-  const y = Math.floor((1 - Math.log(Math.tan((lat * Math.PI) / 180) + 1 / Math.cos((lat * Math.PI) / 180)) / Math.PI) * worldWidth / (2 * tileSize));
+  const tileX = Math.floor(((lng + 180) / 360) * Math.pow(2, zoom));
+  const tileY = Math.floor((1 - Math.log(Math.tan((lat * Math.PI) / 180) + 1 / Math.cos((lat * Math.PI) / 180)) / Math.PI) * Math.pow(2, zoom - 1));
 
-  const url = `https://s3.amazonaws.com/elevation-tiles-prod/terrarium/${zoom}/${x}/${y}.png`;
+  const url = `https://s3.amazonaws.com/elevation-tiles-prod/terrarium/${zoom}/${tileX}/${tileY}.png`;
 
   const ctx = await fetchTile(url);
 
-  const px = Math.floor(((lng + 180) / 360) * worldWidth) % tileSize;
-  const py = Math.floor((1 - Math.log(Math.tan((lat * Math.PI) / 180) + 1 / Math.cos((lat * Math.PI) / 180)) / Math.PI) * worldWidth / 2) % tileSize;
+  const pixelX = Math.floor(((lng + 180) / 360) * Math.pow(2, zoom) * tileSize) % tileSize;
+  const pixelY = Math.floor((1 - Math.log(Math.tan((lat * Math.PI) / 180) + 1 / Math.cos((lat * Math.PI) / 180)) / Math.PI) * Math.pow(2, zoom - 1) * tileSize) % tileSize;
 
-  const imageData = ctx.getImageData(px, py, 1, 1);
+  const imageData = ctx.getImageData(pixelX, pixelY, 1, 1);
   const [r, g, b] = imageData.data;
 
   const elevation = (r * 256 + g + b / 256) - 32768;

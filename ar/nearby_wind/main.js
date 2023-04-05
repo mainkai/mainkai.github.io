@@ -33,29 +33,14 @@ window.onload = () => {
 
     el.addEventListener("gps-camera-update-position", e => {
         if (!testEntityAdded) {
-            // alert(`Got first GPS position: lon ${e.detail.position.longitude} lat ${e.detail.position.latitude}`);
-
-            console.log('User location:', e.detail.position.latitude, e.detail.position.longitude);
+            // console.log('User location:', e.detail.position.latitude, e.detail.position.longitude);
             showToast(`User location: ${e.detail.position.latitude.toFixed(5)}, ${e.detail.position.longitude.toFixed(5)}`);
-            showDebugInfo(`User location: ${e.detail.position.latitude.toFixed(5)}, ${e.detail.position.longitude.toFixed(5)}`);
 
             updateCameraElevation(e.detail.position.latitude, e.detail.position.longitude);
 
             // add wind turbines (in 50 km radius)
-            // const turbines = fetchWindTurbines(e.detail.position.latitude, e.detail.position.longitude, 50000);
-            // console.log('Wind turbines fetched:', turbines);
-            // showToast(`got ${turbines.length} wind turbines`);
-
-            // for (const turbine of turbines) {
-            //     const elevation = getElevation(turbine.lat, turbine.lon);
-            //     const turbineEntity = createWindTurbineEntity(turbine, elevation);
-            //     document.querySelector("a-scene").appendChild(turbineEntity);
-            // }
-
-            // do it async
             fetchWindTurbines(e.detail.position.latitude, e.detail.position.longitude, 50000)
             .then((turbines) => {
-                console.log(`got ${turbines.length} wind turbines`);
                 showToast(`got ${turbines.length} wind turbines`);
 
                 for (const turbine of turbines) {
@@ -108,10 +93,11 @@ async function updateCameraElevation(latitude, longitude) {
     // const camera = document.querySelector('[gps-camera]');
     const camera = document.querySelector('[gps-new-camera]');
     camera.setAttribute('position', `0 ${elevation + 1.6} 0`);
-    console.log(`camera elevation set to: ${elevation + 1.6}`);
+    showToast(`camera elevation set to: ${elevation + 1.6}`);
 }
 
 function showToast(message, duration = 3000) {
+    console.log(`showing toast: ${message}`)
     const toast = document.createElement('div');
     toast.style.position = 'fixed';
     toast.style.bottom = '10px';
@@ -128,11 +114,6 @@ function showToast(message, duration = 3000) {
     setTimeout(() => {
         document.body.removeChild(toast);
     }, duration);
-}
-
-function showDebugInfo(text) {
-    const debugInfo = document.querySelector('#debugInfo');
-    debugInfo.setAttribute('text', `value: ${text}; color: #FFF; width: 6;`);
 }
 
 const tileCache = {};
@@ -190,7 +171,8 @@ async function getElevation(lat, lng, zoom = 15) {  // max Zoom is 15 -> resolut
   const [r, g, b] = imageData.data;
 
   const elevation = (r * 256 + g + b / 256) - 32768;
-  console.log(`got elevation: ${elevation} meters`);
+  //console.log(`got elevation: ${elevation} meters`);
+  showToast(`got elevation: ${elevation} meters`);
   return elevation;
 }
 

@@ -39,10 +39,10 @@ window.onload = () => {
             showToast(`User location: ${e.detail.position.latitude.toFixed(5)}, ${e.detail.position.longitude.toFixed(5)}`);
             showDebugInfo(`User location: ${e.detail.position.latitude.toFixed(5)}, ${e.detail.position.longitude.toFixed(5)}`);
 
-            updateCameraElevation(userLatitude, userLongitude);
+            updateCameraElevation(e.detail.position.latitude, e.detail.position.longitude);
 
             // add wind turbines
-            const turbines = fetchWindTurbines(userLatitude, userLongitude, 10000);
+            const turbines = fetchWindTurbines(e.detail.position.latitude, e.detail.position.longitude, 10000);
             console.log('Wind turbines fetched:', turbines);
             showToast(`got ${turbines.length} wind turbines`);
 

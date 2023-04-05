@@ -177,7 +177,7 @@ async function getElevation(lat, lng, zoom = 15) {  // max Zoom is 15 -> resolut
 
   const elevation = (r * 256 + g + b / 256) - 32768;
   //console.log(`got elevation: ${elevation} meters`);
-  showToast(`got elevation: ${elevation} meters`);
+  showToast(`got elevation: ${elevation} m for ${lat}, ${lng}`);
   return elevation;
 }
 

@@ -66,7 +66,7 @@ function load_osm_ways(lat, lon, tags, link_by_or, radius, color) {
 		// parse json
 		console.log(json);
 		ways = json.elements;
-		console.log("found " + ways.length + " ways.");
+		showToast(`found ${ways.length} ways`);
 		const track_ent = document.createElement('a-entity');
 		for (var w = 0; w < ways.length; w++) {
 			tags = json.elements[w].tags;
@@ -109,7 +109,7 @@ function line_to_closest() {
 	var elements = document.querySelectorAll('[gps-projected-entity-place]');
 	min_dist = Number.POSITIVE_INFINITY;
 	min_idx = -1;
-	console.log(elements.length + " elements, searching closest...");
+	showToast(`${elements.length} elements, searching closest...`);
 	for (var i=0; i<elements.length; i++) {
 		console.log(elements[i]);
 		//var dist = dist(camera.getAttribute('position')[0], camera.getAttribute('position')[2], elements[i].getAttribute('position')[0], elements[i].getAttribute('position')[2]);
@@ -154,7 +154,7 @@ function logo_greenventory(lat, lon) {
 	gv_logo2.setAttribute('animation', `property: rotation; easing: linear; to: 0 360 0; loop: true; dur: 5000`);
 	gv_logo2.setAttribute('material', `opacity: 0.8; transparent: true`);
 	scene.appendChild(gv_logo2);
-	console.log(`added logo at: (${lon}, ${lat})`);
+	showToast(`added logo at: (${lon}, ${lat})`);
 }
 
 function load_turbines_json() {
@@ -213,7 +213,7 @@ function load_turbines_from_json(json) {
 
 		console.log("added: Wind " + i + " at: " + latitude + ", " + longitude + ", " + local_height + " m, " + hub_height_m + " m, total_turbine_size " + total_turbine_size + " m");
 	}
-	console.log("loaded " + json.length + " wind turbines.");
+	showToast(`loaded ${json.length} wind turbines.`);
 }
 
 function load_track_gpx() {
@@ -234,7 +234,7 @@ function add_track(text) {
 	  console.error(error);
 	  trk_name = "undefined";
 	}
-	console.log(`track ${trk_name} with ${segments.length} segments.`);
+	showToast(`track ${trk_name} with ${segments.length} segments.`);
 	
 	// extract track starting point
 	track_point = segments[0].getElementsByTagName("trkpt")[0]
@@ -296,7 +296,7 @@ function add_track(text) {
 		}
 	}
 	*/
-	console.log(`added track to scene`);
+	showToast(`added track to scene`);
 }
 
 function update_own_elevation(lat, lon) {
@@ -337,7 +337,7 @@ function update_own_elevation(lat, lon) {
             const position = camera.getAttribute('position');
             position.y = ele + 1.6;
             camera.setAttribute('position', position);
-	    console.log("set own elevation to: " + ele + "m");
+			showToast("set own elevation to: " + ele + "m");
 	    // <a-toast message=`set own elevation to: ${ele} m` action="Got it"></a-toast>
 	    document.getElementById('alt').innerHTML = ele;
 	})
@@ -441,4 +441,24 @@ async function getElevation(lat, lng, zoom = 15) {  // max Zoom is 15 -> resolut
 
   const elevation = (r * 256 + g + b / 256) - 32768;
   return elevation;
+}
+
+function showToast(message, duration = 3000) {
+    console.log(`showing toast: ${message}`)
+    const toast = document.createElement('div');
+    toast.style.position = 'fixed';
+    toast.style.bottom = '10px';
+    toast.style.left = '50%';
+    toast.style.transform = 'translateX(-50%)';
+    toast.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    toast.style.color = 'white';
+    toast.style.padding = '10px';
+    toast.style.borderRadius = '5px';
+    toast.style.zIndex = '1000';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        document.body.removeChild(toast);
+    }, duration);
 }

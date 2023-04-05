@@ -89,7 +89,7 @@ function createWindTurbineEntity(turbine, altitude) {
     entity.setAttribute('gps-entity-place', `latitude: ${turbine.lat}; longitude: ${turbine.lon}`);
     entity.setAttribute('geometry', 'primitive: cylinder; radius: 0.5; height: 10');
     entity.setAttribute('material', 'color: green');
-    entity.setAttribute('scale', '5 5 5');
+    entity.setAttribute('scale', '100 200 100');
     entity.setAttribute('position', `0 ${altitude} 0`);
     return entity;
 }

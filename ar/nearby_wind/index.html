@@ -11,7 +11,8 @@
     </head>
     <body>
         <a-scene vr-mode-ui='enabled: false' arjs='sourceType: webcam; videoTexture: true; debugUIEnabled: false'>
-            <a-camera gps-new-camera='gpsMinDistance: 5'></a-camera>
+            <!-- <a-camera gps-new-camera='gpsMinDistance: 5'></a-camera> -->
+            <a-camera gps-new-camera="simulateLatitude: 48.628140715010474; simulateLongitude: 8.082108285881878; simulateAltitude: 200; gpsMinDistance: 5;"> </a-camera>
             <a-text id="debugInfo" position="0 1.5 -3" text="value: Debug info; color: #FFF; width: 6;"></a-text>
         </a-scene>
         <script src="main.js"></script>

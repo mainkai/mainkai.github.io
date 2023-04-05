@@ -10,7 +10,9 @@ async function fetchWindTurbines(latitude, longitude, radius) {
         >;
         out skel qt;
     `;
-    const response = await fetch(`https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`);
+    const url = `https://overpass-api.de/api/interpreter?data=${encodeURIComponent(query)}`;
+    console.log(`fetching wind turbines from: ${url}`);
+    const response = await fetch(url);
     const data = await response.json();
     return data.elements;
 }
@@ -180,18 +182,23 @@ async function fetchTile(url) {
   });
 }
 
-async function getElevation(lat, lng, zoom = 14) {
+async function getElevation(lat, lng, zoom = 14) {  // z 14 -> resolution ~10m/pixel https://wiki.openstreetmap.org/wiki/Zoom_levels
   const tileSize = 256;
 
-  const tileX = Math.floor(((lng + 180) / 360) * Math.pow(2, zoom));
-  const tileY = Math.floor((1 - Math.log(Math.tan((lat * Math.PI) / 180) + 1 / Math.cos((lat * Math.PI) / 180)) / Math.PI) * Math.pow(2, zoom - 1));
+  // pre-calculate multiplicator to reuse for tile number and pixels calculation
+  const xMul = ((lng + 180) / 360) * Math.pow(2, zoom);
+  // const yMul = (1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) * Math.pow(2, zoom - 1);
+  const yMul = (1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, zoom);  // https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#ECMAScript_(JavaScript/ActionScript,_etc.)
+
+  const tileX = Math.floor(xMul);
+  const tileY = Math.floor(yMul);
 
   const url = `https://s3.amazonaws.com/elevation-tiles-prod/terrarium/${zoom}/${tileX}/${tileY}.png`;
 
   const ctx = await fetchTile(url);
 
-  const pixelX = Math.floor(((lng + 180) / 360) * Math.pow(2, zoom) * tileSize) % tileSize;
-  const pixelY = Math.floor((1 - Math.log(Math.tan((lat * Math.PI) / 180) + 1 / Math.cos((lat * Math.PI) / 180)) / Math.PI) * Math.pow(2, zoom - 1) * tileSize) % tileSize;
+  const pixelX = Math.floor(xMul * tileSize) % tileSize;
+  const pixelY = Math.floor(yMul * tileSize) % tileSize;
 
   const imageData = ctx.getImageData(pixelX, pixelY, 1, 1);
   const [r, g, b] = imageData.data;

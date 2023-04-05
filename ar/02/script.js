@@ -300,16 +300,39 @@ function add_track(text) {
 }
 
 function update_own_elevation(lat, lon) {
-	url = `https://api.open-elevation.com/api/v1/lookup\?locations\=${lat},${lon}`;
-	// url = `https://api.opentopodata.org/v1/srtm30m?locations=${lat},${lon}`;  // gives CORS error
-	// url = `https://api.open-meteo.com/v1/elevation?latitude=${lat}&longitude=${lon}`;
+	// url = `https://api.open-elevation.com/api/v1/lookup\?locations\=${lat},${lon}`;
+	// // url = `https://api.opentopodata.org/v1/srtm30m?locations=${lat},${lon}`;  // gives CORS error
+	// // url = `https://api.open-meteo.com/v1/elevation?latitude=${lat}&longitude=${lon}`;
 
-	console.log("retrieving own elevation from "+url);
-	fetch(url)
-	  .then(response => response.json())
-	  .then(json => {
-	    //console.log(json);
-	    let ele = parseFloat(json.results[0].elevation);
+	// console.log("retrieving own elevation from "+url);
+	// fetch(url)
+	//   .then(response => response.json())
+	//   .then(json => {
+	//     //console.log(json);
+	//     let ele = parseFloat(json.results[0].elevation);
+	//     let camera = document.getElementsByTagName('a-camera')[0];
+    //         const position = camera.getAttribute('position');
+    //         position.y = ele + 1.6;
+    //         camera.setAttribute('position', position);
+	//     console.log("set own elevation to: " + ele + "m");
+	//     // <a-toast message=`set own elevation to: ${ele} m` action="Got it"></a-toast>
+	//     document.getElementById('alt').innerHTML = ele;
+		
+	// 	// load some ways from OSM
+	//     	//console.log("loading OSM ways...");
+	// 	//load_osm_ways(lat, lon, ['highway', ''], true, 50, "black");
+	// 	//load_osm_ways(lat, lon, ['power', 'line', 'power', 'minor_line', 'power', 'cable'], true, 5000, "red");
+	// 	//load_osm_ways(lat, lon, ['type', 'gas', 'type', 'natural_gas', 'substance', 'gas', 'substance', 'natural_gas'], true, 5000, "yellow");
+	// 	//load_osm_ways(lat, lon, ['type', 'heat', 'substance', 'heat'], true, 5000, "orange");
+	//   }
+	// );
+
+	// new alternative way
+	console.log("retrieving own elevation from aws tiles");
+	getElevation(lat, lon)
+	.then((elevation) => {
+		console.log(`Elevation at given coordinates: ${elevation} meters`);
+	    let ele = parseFloat(elevation);
 	    let camera = document.getElementsByTagName('a-camera')[0];
             const position = camera.getAttribute('position');
             position.y = ele + 1.6;
@@ -317,15 +340,10 @@ function update_own_elevation(lat, lon) {
 	    console.log("set own elevation to: " + ele + "m");
 	    // <a-toast message=`set own elevation to: ${ele} m` action="Got it"></a-toast>
 	    document.getElementById('alt').innerHTML = ele;
-		
-		// load some ways from OSM
-	    	//console.log("loading OSM ways...");
-		//load_osm_ways(lat, lon, ['highway', ''], true, 50, "black");
-		//load_osm_ways(lat, lon, ['power', 'line', 'power', 'minor_line', 'power', 'cable'], true, 5000, "red");
-		//load_osm_ways(lat, lon, ['type', 'gas', 'type', 'natural_gas', 'substance', 'gas', 'substance', 'natural_gas'], true, 5000, "yellow");
-		//load_osm_ways(lat, lon, ['type', 'heat', 'substance', 'heat'], true, 5000, "orange");
-	  }
-	);
+	})
+	.catch((err) => {
+		console.error(err);
+	});
 }
 
 //const update_own_elevation_memoized = memoize(update_own_elevation);
@@ -367,3 +385,60 @@ function haversineDist(lon1, lat1, lon2, lat2){
 	return R*c;        
 }
 
+const tileCache = {};
+
+async function fetchTile(url) {
+  if (tileCache[url]) {
+    return tileCache[url];
+  }
+
+  console.log(`fetching tile from: ${url}`);
+  const response = await fetch(url);
+  const blob = await response.blob();
+  const img = new Image();
+  img.crossOrigin = "Anonymous";
+  img.src = URL.createObjectURL(blob);
+
+  return new Promise((resolve, reject) => {
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      ctx.drawImage(img, 0, 0);
+
+      tileCache[url] = ctx;
+      resolve(ctx);
+    };
+
+    img.onerror = (err) => {
+      reject(err);
+    };
+  });
+}
+
+async function getElevation(lat, lng, zoom = 15) {  // max Zoom is 15 -> resolution ~4.777m/pixel -> 1,2km x 1,2km per tile https://wiki.openstreetmap.org/wiki/Zoom_levels
+  const tileSize = 256;
+
+  // pre-calculate multiplicator to reuse for tile number and pixels calculation
+  const xMul = ((lng + 180) / 360) * Math.pow(2, zoom);
+  // const yMul = (1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) * Math.pow(2, zoom - 1);
+  const yMul = (1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, zoom);  // https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#ECMAScript_(JavaScript/ActionScript,_etc.)
+
+  const tileX = Math.floor(xMul);
+  const tileY = Math.floor(yMul);
+
+  const url = `https://s3.amazonaws.com/elevation-tiles-prod/terrarium/${zoom}/${tileX}/${tileY}.png`;
+
+  const ctx = await fetchTile(url);
+
+  const pixelX = Math.floor(xMul * tileSize) % tileSize;
+  const pixelY = Math.floor(yMul * tileSize) % tileSize;
+
+  const imageData = ctx.getImageData(pixelX, pixelY, 1, 1);
+  const [r, g, b] = imageData.data;
+
+  const elevation = (r * 256 + g + b / 256) - 32768;
+  return elevation;
+}

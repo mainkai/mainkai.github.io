@@ -96,7 +96,6 @@ function createWindTurbineEntity(turbine, altitude) {
 
 async function updateCameraElevation(latitude, longitude) {
     const elevation = await getElevation(latitude, longitude);
-    // const camera = document.querySelector('[gps-camera]');
     const camera = document.querySelector('[gps-new-camera]');
     camera.setAttribute('position', `0 ${elevation + 1.6} 0`);
     showToast(`camera elevation set to: ${elevation + 1.6}`);

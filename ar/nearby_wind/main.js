@@ -26,38 +26,6 @@ function createWindTurbineEntity(turbine) {
     return entity;
 }
 
-// get elevation data:
-// tileSize: 256,
-//   maxZoom: 15,
-//   getSourceUrl: ({x, y, z}) => {
-//     return `https://s3.amazonaws.com/elevation-tiles-prod/terrarium/${z}/${x}/${y}.png`;
-//   },
-//   getElevation: ({r, g, b, a}) => {
-//     return (r * 256 + g + b / 256) - 32768;
-//   }
-
-// (async () => {
-//     const scene = document.querySelector('a-scene');
-//     const userLatitude = scene.getAttribute('gps-camera').getAttribute('latitude');
-//     const userLongitude = scene.getAttribute('gps-camera').getAttribute('longitude');
-
-//     console.log('User location:', userLatitude, userLongitude);
-//     showToast('User location fetched');
-//     showDebugInfo(`User location: ${userLatitude.toFixed(5)}, ${userLongitude.toFixed(5)}`);
-
-//     await updateCameraElevation(userLatitude, userLongitude);
-
-//     const turbines = await fetchWindTurbines(userLatitude, userLongitude, 10000);
-//     console.log('Wind turbines fetched:', turbines);
-//     showToast('Wind turbines fetched');
-
-//     for (const turbine of turbines) {
-//       const elevation = await getElevation(turbine.lat, turbine.lon);
-//       const turbineEntity = createWindTurbineEntity(turbine, elevation);
-//       scene.appendChild(turbineEntity);
-//     }
-//   })();
-
 window.onload = () => {
     let testEntityAdded = false;
 
@@ -76,8 +44,7 @@ window.onload = () => {
             // add wind turbines
             const turbines = fetchWindTurbines(userLatitude, userLongitude, 10000);
             console.log('Wind turbines fetched:', turbines);
-            //showToast('Wind turbines fetched');
-            showToast(`got ${turbines.size} wind turbines`);
+            showToast(`got ${turbines.length} wind turbines`);
 
             for (const turbine of turbines) {
                 const elevation = getElevation(turbine.lat, turbine.lon);
@@ -157,6 +124,7 @@ async function fetchTile(url) {
     return tileCache[url];
   }
 
+  console.log(`fetching tile from: ${url}`);
   const response = await fetch(url);
   const blob = await response.blob();
   const img = new Image();
@@ -182,7 +150,7 @@ async function fetchTile(url) {
   });
 }
 
-async function getElevation(lat, lng, zoom = 14) {  // z 14 -> resolution ~10m/pixel https://wiki.openstreetmap.org/wiki/Zoom_levels
+async function getElevation(lat, lng, zoom = 15) {  // max Zoom is 15 -> resolution ~4.777m/pixel -> 1,2km x 1,2km per tile https://wiki.openstreetmap.org/wiki/Zoom_levels
   const tileSize = 256;
 
   // pre-calculate multiplicator to reuse for tile number and pixels calculation

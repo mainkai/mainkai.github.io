@@ -41,16 +41,32 @@ window.onload = () => {
 
             updateCameraElevation(e.detail.position.latitude, e.detail.position.longitude);
 
-            // add wind turbines
-            const turbines = fetchWindTurbines(e.detail.position.latitude, e.detail.position.longitude, 10000);
-            console.log('Wind turbines fetched:', turbines);
-            showToast(`got ${turbines.length} wind turbines`);
+            // add wind turbines (in 50 km radius)
+            // const turbines = fetchWindTurbines(e.detail.position.latitude, e.detail.position.longitude, 50000);
+            // console.log('Wind turbines fetched:', turbines);
+            // showToast(`got ${turbines.length} wind turbines`);
 
-            for (const turbine of turbines) {
-                const elevation = getElevation(turbine.lat, turbine.lon);
-                const turbineEntity = createWindTurbineEntity(turbine, elevation);
-                document.querySelector("a-scene").appendChild(turbineEntity);
-            }
+            // for (const turbine of turbines) {
+            //     const elevation = getElevation(turbine.lat, turbine.lon);
+            //     const turbineEntity = createWindTurbineEntity(turbine, elevation);
+            //     document.querySelector("a-scene").appendChild(turbineEntity);
+            // }
+
+            // do it async
+            fetchWindTurbines(e.detail.position.latitude, e.detail.position.longitude, 50000)
+            .then((turbines) => {
+                console.log(`Wind turbines fetched: ${turbines}`);
+                showToast(`got ${turbines.length} wind turbines`);
+
+                for (const turbine of turbines) {
+                    const elevation = getElevation(turbine.lat, turbine.lon);
+                    const turbineEntity = createWindTurbineEntity(turbine, elevation);
+                    document.querySelector("a-scene").appendChild(turbineEntity);
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+            });
 
 
             // Add a box to the north of the initial GPS position
@@ -172,6 +188,7 @@ async function getElevation(lat, lng, zoom = 15) {  // max Zoom is 15 -> resolut
   const [r, g, b] = imageData.data;
 
   const elevation = (r * 256 + g + b / 256) - 32768;
+  console.log(`got elevation: ${elevation} meters`);
   return elevation;
 }
 

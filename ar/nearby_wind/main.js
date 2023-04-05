@@ -79,6 +79,12 @@ window.onload = () => {
 
 
 function createWindTurbineEntity(turbine, altitude) {
+    // TODO: check
+    // https://ar-js-org.github.io/AR.js-Docs/location-based/#projection-details
+    // The key method is the latLonToWorld(lat, lon) method of the gps-new-camera and gps-projected-camera components. This converts latitude and longitude directly to world coordinates, performing the projection as the first step and then calculating the world coordinates from the projected coordinates. It will return a 2-member array containing the x and z world coordinates, allowing the developer to calculate or specify the y coordinate (altitude) independently.
+    // const camera = document.querySelector("[gps-new-camera]");
+    // const [worldX, worldZ] = camera.components["gps-new-camera"].latLonToWorld(lat,lon);
+
     const entity = document.createElement('a-entity');
     entity.setAttribute('gps-entity-place', `latitude: ${turbine.lat}; longitude: ${turbine.lon}`);
     entity.setAttribute('geometry', 'primitive: cylinder; radius: 0.5; height: 10');

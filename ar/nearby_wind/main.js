@@ -55,7 +55,7 @@ window.onload = () => {
             // do it async
             fetchWindTurbines(e.detail.position.latitude, e.detail.position.longitude, 50000)
             .then((turbines) => {
-                console.log(`Wind turbines fetched: ${turbines}`);
+                console.log(`got ${turbines.length} wind turbines`);
                 showToast(`got ${turbines.length} wind turbines`);
 
                 for (const turbine of turbines) {

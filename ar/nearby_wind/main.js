@@ -217,9 +217,14 @@ function parseGPX(gpxContent) {
     const entity = document.createElement("a-entity");
     entity.setAttribute("gps-entity-place", `latitude: ${poi.lat}; longitude: ${poi.lng};`);
   
+    if (!poi.height) {
+      poi.height = getElevation(poi.lat, poi.lon);
+    }
+    entity.setAttribute('position', `0 ${poi.height} 0`);
+
     // Create a line going up from the waypoint
     const line = document.createElement("a-entity");
-    line.setAttribute("line", "start: 0, 0, 0; end: 0, 2, 0; color: #00ff00");
+    line.setAttribute("line", "start: 0, 0, 0; end: 0, 200, 0; color: #00ff00");
     entity.appendChild(line);
   
     // Create a text box showing the name, height, and distance to the camera
@@ -229,6 +234,7 @@ function parseGPX(gpxContent) {
     textBox.setAttribute("position", "0 2.5 0");
     entity.appendChild(textBox);
   
+    // add text to the text box
     const text = document.createElement("a-text");
     text.setAttribute("value", `${poi.name}\nHeight: ${poi.height}m`);
     text.setAttribute("color", "#000");
@@ -236,7 +242,7 @@ function parseGPX(gpxContent) {
     text.setAttribute("position", "-0.5 0.1 -0.01");
     textBox.appendChild(text);
   
-    // Update the distance to the camera
+    // Update the distance to the camera whenever GPS position is updated
     entity.addEventListener("gps-entity-place-update-positon", (event) => {
       const distance = event.detail.distance;
       text.setAttribute("value", `${poi.name}\nHeight: ${poi.height}m\nDistance: ${distance.toFixed(1)}m`);

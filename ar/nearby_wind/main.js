@@ -122,6 +122,7 @@ window.onload = () => {
                 pois.forEach((poi) => {
                   const waypointEntity = createWaypointEntity(poi, cameraEl);
                   sceneEl.appendChild(waypointEntity);
+                  showToast(`added entity for poi ${poi.name}`);
                 });
               })();
 
@@ -197,8 +198,9 @@ function parseGPX(gpxContent) {
       const lng = parseFloat(waypoint.getAttribute("lon"));
       const nameElem = waypoint.getElementsByTagName("name")[0];
       const name = nameElem ? nameElem.textContent : "";
+      const height = waypoint.hasAttribute("height") ? parseFloat(waypoint.getAttribute("height")) : 0;
   
-      pois.push({ lat, lng, name });
+      pois.push({ lat, lng, name, height });
     }
   
     return pois;

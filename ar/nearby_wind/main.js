@@ -97,25 +97,32 @@ window.onload = () => {
             updateCameraElevation(e.detail.position.latitude, e.detail.position.longitude);
 
             // add wind turbines (in 50 km radius)
-            fetchWindTurbines(e.detail.position.latitude, e.detail.position.longitude, 50000)
-            .then((turbines) => {
-                showToast(`got ${turbines.length} wind turbines`);
+            // fetchWindTurbines(e.detail.position.latitude, e.detail.position.longitude, 50000)
+            // .then((turbines) => {
+            //     showToast(`got ${turbines.length} wind turbines`);
 
-                for (const turbine of turbines) {
-                    const elevation = getElevation(turbine.lat, turbine.lon);
-                    const turbineEntity = createWindTurbineEntity(turbine, elevation);
-                    document.querySelector("a-scene").appendChild(turbineEntity);
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+            //     for (const turbine of turbines) {
+            //         const elevation = getElevation(turbine.lat, turbine.lon);
+            //         const turbineEntity = createWindTurbineEntity(turbine, elevation);
+            //         document.querySelector("a-scene").appendChild(turbineEntity);
+            //     }
+            // })
+            // .catch((err) => {
+            //     console.error(err);
+            // });
 
             // load POIs from GPX file
-            (async () => {
-                const url = 'path/to/your/gpx/file.gpx';
+              (async () => {
+                const url = '../assets/poi/zuhause.gpx';
                 const pois = await loadGPX(url);
-                console.log(pois);
+                showToast(`loaded ${pois.length} pois`);
+                const sceneEl = document.querySelector("a-scene");
+                const cameraEl = document.querySelector("a-camera");
+              
+                pois.forEach((poi) => {
+                  const waypointEntity = createWaypointEntity(poi, cameraEl);
+                  sceneEl.appendChild(waypointEntity);
+                });
               })();
 
 
@@ -202,5 +209,37 @@ function parseGPX(gpxContent) {
     const gpxContent = await response.text();
     const pois = parseGPX(gpxContent);
     return pois;
+  }
+  
+  function createWaypointEntity(poi, cameraEl) {
+    const entity = document.createElement("a-entity");
+    entity.setAttribute("gps-entity-place", `latitude: ${poi.lat}; longitude: ${poi.lng};`);
+  
+    // Create a line going up from the waypoint
+    const line = document.createElement("a-entity");
+    line.setAttribute("line", "start: 0, 0, 0; end: 0, 2, 0; color: #00ff00");
+    entity.appendChild(line);
+  
+    // Create a text box showing the name, height, and distance to the camera
+    const textBox = document.createElement("a-entity");
+    textBox.setAttribute("geometry", "primitive: plane; width: 1; height: 0.5");
+    textBox.setAttribute("material", "color: #fff; opacity: 0.8");
+    textBox.setAttribute("position", "0 2.5 0");
+    entity.appendChild(textBox);
+  
+    const text = document.createElement("a-text");
+    text.setAttribute("value", `${poi.name}\nHeight: ${poi.height}m`);
+    text.setAttribute("color", "#000");
+    text.setAttribute("align", "center");
+    text.setAttribute("position", "-0.5 0.1 -0.01");
+    textBox.appendChild(text);
+  
+    // Update the distance to the camera
+    entity.addEventListener("gps-entity-place-update-positon", (event) => {
+      const distance = event.detail.distance;
+      text.setAttribute("value", `${poi.name}\nHeight: ${poi.height}m\nDistance: ${distance.toFixed(1)}m`);
+    });
+  
+    return entity;
   }
   

@@ -1,0 +1,321 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<gpx version="1.1" creator="OsmAnd+ 4.4.7" xmlns="http://www.topografix.com/GPX/1/1" xmlns:osmand="https://osmand.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+  <metadata>
+    <name>favorites-Zuhause</name>
+    <time>2023-04-19T04:49:26Z</time>
+  </metadata>
+  <wpt lat="48.5303009" lon="8.1889558">
+    <time>2022-09-02T21:40:15Z</time>
+    <name>Allerheiligen-Wasserfälle</name>
+    <type>Zuhause</type>
+    <cmt>Amenity:All Saints Waterfalls: osmwiki:wiki_place</cmt>
+    <extensions>
+      <osmand:address>Nähe Allerheiligenstraße, Unterwasser</osmand:address>
+      <osmand:icon>special_star</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:All Saints Waterfalls: osmwiki:wiki_place</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="48.4773916" lon="8.2365006">
+    <ele>914</ele>
+    <time>2022-07-19T16:42:57Z</time>
+    <name>Buchkopfturm</name>
+    <type>Zuhause</type>
+    <cmt>Amenity:Buchkopfturm: man_made:tower</cmt>
+    <extensions>
+      <osmand:address>Pechweg, Oppenau</osmand:address>
+      <osmand:icon>man_made_tower</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Buchkopfturm: man_made:tower</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="48.6284297" lon="8.0823386">
+    <time>2021-08-11T21:17:37Z</time>
+    <name>Daheim</name>
+    <type>Zuhause</type>
+    <extensions>
+      <osmand:icon>special_star</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+    </extensions>
+  </wpt>
+  <wpt lat="48.4935684" lon="8.2045126">
+    <ele>533</ele>
+    <time>2023-01-22T11:41:30Z</time>
+    <name>Eckenfels</name>
+    <type>Zuhause</type>
+    <extensions>
+      <osmand:amenity_subtype>climbing</osmand:amenity_subtype>
+      <osmand:collapsable_climbing_style>climbing_toprope_yes;climbing_sport_yes</osmand:collapsable_climbing_style>
+      <osmand:collapsable_climbing_bolted_filter>climbing_bolted_yes</osmand:collapsable_climbing_bolted_filter>
+      <osmand:amenity_name>Eckenfels</osmand:amenity_name>
+      <osmand:amenity_type>sport</osmand:amenity_type>
+      <osmand:address>Nähe Mühlelochstraße, Oppenau</osmand:address>
+      <osmand:icon>sport_climbing</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Eckenfels: sport:climbing</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="48.5484861" lon="8.0964679">
+    <time>2022-04-15T07:10:50Z</time>
+    <name>Fellhauerhütte</name>
+    <type>Zuhause</type>
+    <cmt>Amenity:Fellhauerhutte: service:shelter</cmt>
+    <extensions>
+      <osmand:address>Schwendner Straße, Oberkirch</osmand:address>
+      <osmand:icon>amenity_shelter</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Fellhauerhutte: service:shelter</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="48.5446815" lon="8.1199694">
+    <time>2021-08-11T21:17:37Z</time>
+    <name>Fiesemichel</name>
+    <type>Zuhause</type>
+    <cmt>Amenity:Zum Fiesemichel: sustenance:restaurant</cmt>
+    <extensions>
+      <osmand:address>Spitzenbergstraße 22, Lautenbach</osmand:address>
+      <osmand:icon>special_star</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#10c0f0</osmand:color>
+      <osmand:amenity_origin>Amenity:Zum Fiesemichel: sustenance:restaurant</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="48.538959" lon="8.1064667">
+    <time>2022-07-19T16:51:53Z</time>
+    <name>Flow Trail Einstieg</name>
+    <type>Zuhause</type>
+    <extensions>
+      <osmand:address>2020-05-15 1400 Sohlberg mit Meli, Anja, Jessi, Caro  20200515 1400</osmand:address>
+      <osmand:icon>sport_bmx</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+    </extensions>
+  </wpt>
+  <wpt lat="48.5055947" lon="8.0562991">
+    <time>2022-07-19T16:41:30Z</time>
+    <name>Geigerskopfturm</name>
+    <type>Zuhause</type>
+    <cmt>Amenity:Geigerskopfturm: man_made:tower</cmt>
+    <extensions>
+      <osmand:address>Keine Adresse bekannt</osmand:address>
+      <osmand:icon>man_made_tower</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Geigerskopfturm: man_made:tower</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="48.4258003" lon="8.261939">
+    <time>2023-01-22T11:46:19Z</time>
+    <name>Glaswaldsee</name>
+    <type>Zuhause</type>
+    <extensions>
+      <osmand:amenity_subtype>wiki_place</osmand:amenity_subtype>
+      <osmand:osm_tag_content> gz ¿+¨       e÷íď{æ°Ë«µÉ¼àÖÅÛé±çÆð§Q3ÆaîĀ@·āé.hM6[r*ċĚďÉG/m22µkísÊà¯Öèg\9ęĆÔĉrølérD³ÉĒÍ]ß¹Hú6Ô°5Cyi@ªAÙî²Ò§«Õ÷­µê¾ø÷Æ6&lt;ÉígØU0Zä'§_Ôà¤µÔ=¬~öÄÖ¶¥,8Ùû+ 5×´"¯×_·!&lt;Ęęçå#ĔBòĘ7ėĆÝV-VR(VïČçÄéĎzº?$JMSÐÙDÎ&lt;Đt\æÉĕ¯¸÷á²āypĞTċDr£1D3äF3âýOVL·ēy¤ąmÀ\U{¬pě¸Ôòă-^Ì³½r§o/¾Ĝ(qîÿ³æè?¬,=ùMĂ0ĎÛµ!Çà&gt;î:(đ2E»ÐÇé6ªãrå4^1Âx%±ĖV³óùìÏôsøx0ąþiÆ3ęU%·»eĝ»¹UðĆpÝÇ³&lt;tsóÍlÚā«ä_édíB{T¢P+ēĒUÔkÍěĈâËČçFĒ_V{ČhĈÇôÒ¨%ďm¼"½(ºárSáñ{v¤I,÷¥Ñ£ė~¾(÷±ĔÃýø¡ÒÒT.Đ~3[þcRÅ+.ÎD·èBlTµµ¼sÇC#H%ĝ¹xûlĔïkÙÝ|ÄĀÍæĜĆý}9&amp;E8(ûČY¤HcÉ2&amp;xĚĉª¿Ly.č¶×(&amp;(nùð}VáĄk½Y§ÑiµYÍSąÝúËúGì¹ý}ivK&lt;FQğ}QEĒ²~đÒ2Ú3ĆnĔė®LÎBĉî8øôÊO8ôč£I³Ĉ1Õ¥Pé´ĜªÑ²µ²Ä1Õç2ÅÓ®sq?_õ4ÃY95xN`Ö.UĔüc¹%¥Ë[ñ\ĐtĜÀV¦ø?Á¨Ý@1ËÛ(«¹sĄû73ğÆô(ć²^Òõ­9*H&amp;âf*()è#:IüÁ2pęĒ¾6ûčsàďL¯¨º4µð÷EMrëBîčõÚ´vEhÍÿpÛ]±%s1ø§@ÏC÷æ`tæëÐ«¾­×Â-Øn­ė³Ü¦O4&amp;c2»/êe~W¼ÝĚf¿e»¼)ď¯e&gt;öēzYÎö¤ěZėqbàjČ·ċ_ÇĒ´EY~¹Óu ãÆ+o;/ÝÕ¶Ò9SfÜ¼*¬ÉĀ¶ÔÌĖhĝt×eìĕ³(ò¤:ê«Zäĝäjê¦ÎÒ»ÐPõÓÕDjªi-ĘMTæyÐãčÁ7=24éĒ'VîÊÑ÷~ªªÒMĕÿøÍÏCNhàĜ[ÄBWºø·Ä¯êĂõć`ûÐ×xµg¬y´=dÙþÞĕĒ¶VÞėV^m·M¯ĎY*qÕ|Aw`ĒąČZ·ý\Çø,*Uq5$;#{c8É'²bú·\bÑoĖ¬&lt;ór4M.ĉz.;óÈđk2FĒ¤H»ÿ`6ċúÂüÐU$t´0çH3g/ñrFÈ=ä7ÞēdD¥z+VPZIx%S;/Đ©Ĕ'¢ÿ&amp;;/5ææÀA%ĒðºÊôĚHā-©ã#&lt;{ì(Ċ`ě}0æĝ Ü , ďNĘpāÁ£y1òĒî¥ě;ý"ú9¯J$Hôj|s[¸:.åüú¢ąf¤#^çĈ¨3S0ýqïāÆæ¼ÈZĈ®×cYĕå×çäąU«ĜýuªfÞãHiĈêČ\öTXOĚ·ÊôÃR7ùs¥kÖĎJÛ¾ö'¤ß£lÊäĂ_ÂùÀÕ¨0Êî¦pIt~®Xě¨Ğ:ÄĜ _ÒfďD|ĂÐā`.ėWÚ=Ĉ5ÔóÊ¿FĖÖ-%`¯ğ×Ąæ®cZĂÖFébÈ²&amp;sÒçGÏĈ¦Ö¹ÔáĚe.ğA5·ĝØFÔ'Eu[(ÚlqëmM=ĜãÜ¿@aOĉñăLg/ïTüBOîĆkõ_²Æ¨ÝĆĉ-!£µË~u«r!éă"5'7?ĘÌęu&amp;¯Èy"lµÖ'àLVąw\Û]ĚXR±ěÝğyßÛ¿/{đ×¢î¾Ù»¿/çcqĈTh=Ã9Ítï&lt;_\ßÐ×iĐoó·s_ 7ē[Āí±  </osmand:osm_tag_content>
+      <osmand:osm_tag_content_-_es> gz ¿+¨       Mõáċ{Ð´ËbCÃ!ÔĆk®û¸zT¦ă'UpăĘQÿ¼čRéĒr_s®Ý,ýė¿{ěJ½z9âa%àÌÝé]ÉIrēÅ2õJ@Ðâ!{!j3Ę5*±Ċ1 hĈnmÃ\ĈÕÈQV(1xøüoC-uñ¼C;¯ùāÎāĊČ±È&lt;ëób²´6§+yai»½©+Ċ¾ĉSÖê9ý4ĒLYué¬1èĄzÛdÄ6ø@³Ð¶ÿè÷¯7eÒHĐrw0»áòµ¬bYäU%÷ÌÌâì$¸Cîþ ´Ēt'w&lt;xs%¾kµzB'ČQ0m¿ÍÀÏE6nûĒ»è(¼§±ĈQÆªnãěP¯#ěeH¦¡&gt;ĉĆYf¼Íğ,îhÜ@Å,ě¸6^$jćFYýv}ÏY÷Ýº"}Aĕ¡f¸ï¤pµ¡jÎĎÁ«eÆmć¿ä)~ºėÌ\ä-Ĝ-:û+`q9xĀcpíå²÷ĉRę;ÆN¢}qÍė'»$üéíĄąÞ/¶ĀÁÃ©seČĚĒ\l`åĉ×{|}oÄÑ¿2ÆÑ?7kčėüĆTçCÔ©ÆÔ;ėªLþ.P^§ÜeúÙr&lt;éÛāX ìÉÈ)°Ô_áÐ¯¯ć-³QÖVČ[aàĆ«ĉÓSÌ´õ¤Č/ûfqĀï\iĀk05QãÑÏ&gt;àċùÐ~ôĜ"¬y±ąąâ&amp;ĔLċ´ôÀ3éÂ29rĐË^6*Î:X\dÂĄùØ@æ½iĔµúºBðTµjµ.RZ£ ûûąíþćěÛN,çåZÛSt'èwKy[ăÂb§Ç]ĝ®f\ì¹ÇJº÷ïã÷ótr}o-=¦gfĄOć»NqBF¬0ý¿¬&gt;tËĊÔĕhjCÖò@±Uõ'ºÜÌ/ÇsÝĎ]ºÝĚh·w}Ėî+t%ĊĞY@:ĞãČ©¾«ăcēĜ¦çÖZą.kVğuI¦wĎČzí&lt;0×Ñđ¯,HÊ'ó¨  </osmand:osm_tag_content_-_es>
+      <osmand:osm_tag_content_-_zh> gz ¿+¨       Mòñďrð´Ëí3x~¢ÚzEÔĉéă¹¥ªôûz4Îì?FĂ¼b¾,».ąºVØfÒÒ¦ČIÈ{Ğ,VÜ·\·1ì#)ÆmmYĜÛėĎå-j:úY&lt;B­ëËÔõĔĜ*ÎĚ&gt;SªsÂûÑ¾».&gt;ÓÔvĖ«0|ã"üĝ {Ê:9ËÚhÉp4Äºö!Ê[y¿ą|_8V6;ēø_Đl¹āvVÌ[ô&amp;þđmj`ÜlďLÐ±&lt;ĕnL%ĆsnĊ&gt;ā7¸wÈ´Ý*&gt;ØÚÓćËĉ&amp;éóð²AÆ).ÄĆÄt&gt;@Ě­Õ{îXę½üĈ|´āæ:íÖēÚ5BĎ­9íĊSé£eĚĕïėë:éýv¤tàñ!2Ä!0¦\âóNĎF2=WísNp²¶±w)fĐO*@qċÜ{u¶ĊîB3ÁNåç×av[+În'{#ğv3¤jÝ@Æ!À åāèÄG!\¢ô¡hÜðØ¢2ÙÀg¶Ĉá]Ëz_¨ûÿ8Pw9Ėo#áğÀ®BāÛºbS#J*eæM½Č_Qþ!Hđ&lt;¦ªð²à.oëÜùSj3Üà¬Ïiláđ´§4uû,X§#ÂxüčÜĝuàCã7ä-ĎĐĔl@ā«UnĐÍZÜÅþGMĊĔ¦[&lt;¼»¯þĐgw-ćá_W\2cĄ+ăYäÐ¾AĘùà7ÞJďïïė#o½ÞÁ$#±éď¤¿/q¥§QxÂ×Ď¦cïA_'§āÌgÆğnĚÎâç®TčO^£  </osmand:osm_tag_content_-_zh>
+      <osmand:osm_tag_wiki_lang_-_de>yes</osmand:osm_tag_wiki_lang_-_de>
+      <osmand:osm_tag_content_-_de> gz ¿+¨       ]ømĎ{æ°Ğ5%! ®Āû2sF(Ë«(³kĎÄå4tàÏdê¼1«Í7brĊĔj#´í¯ę&amp;&lt;ĜJ~Äïrď64b8î6æ¯2ÈolĞÓ×ã#GĄåğÜØqrÍD.½ñ_Ó¾¨ąä,1KÉ)k|(^´³lđ'û[ÇċD¶óëTÅòëscMtáG³s~âmt&lt;ĂÅĒ;ĔÿèfqëÕ?xÿ¶[CéÊăÙéW$ÅĝXąĉNĕ^xºĀBXĉĂ_Ãòvj)ćjěí6Č$č·rÎX­¯vS,HmªUBdÓÎD¬UēìzĈ5ts|Ć»ÎĀ4­(øZÒ®æØïê%IÔé(í»¯niěÝęĐėÑ¶çGĜĝÐE&amp;Ûtuě&gt;Æî÷¿òªĐ %$¼9¹ÐđĞï¼û{µĜíĈLhcïÇĚ/¾ĖåāĘę|²Xú6æ{oEÏL;D%ÿ6v:ðÆ:tÄ¥Ďoąæ3¶ėÝÐĐč³ĒěnĜpÏ9ÑÂ²+bf¦³0¶đ þ3ÿÖćÙöĎéjë-%­gKajXP3ÔýÛ3Ç»ć]a~ĆÄx3%ċ½JÃä|é³ē:ÆqCaÆČcČâĉÞÆ-Ĝº%,·OG {M~·(ÿĀbøÙQÌäOÇ&gt;±G4÷Ôe¢1Á_0ağEòÄÖÿ]ă²³āËîjG,āænāmETê1ĂYðÎç'ĎxĂğ_ûċ¤g_6ĐĂAČü%ÂĄÓ&amp;uâNkbû(§©pĂîb/bQā&lt;ćÓu)ăą6åÊĚ´y´ċî(M8MN,:Óö¼5Ï`ĕÔĘÃwÖ ¨«ĊTĝ1ĉ3ÐuĐ(èāĀĐĕÕ9ÙĆ+êFÉČ)Ēñ÷&lt;rlë[Ćkï¦îLNr@=ßktF`³¸?tîuâXDô_C¦ĂìëÆG¡¬{«åØÆ čēÔ~ß¨ck¢èēĂÕo÷mÉSÜ³;9ÁėĂ&lt;ÏfÒZÑÉđfl×ă;»ēğ§é3ÀÍÉµ`:"Ă¡3I(!mĉ(\v&lt;®ü,ÙÍG$|Mêd8¬Â×6¡·ěù$)Ã0&amp;×F@qČFlù×çñÃ½ĄZ6NFØĂTFĉÆ«Ìä©¼ÕÛĂ!ôeüĄ&lt;(ēH:ECĘ»èïē]¤EF^¡ĆDôĔ;MÞÄÚèĚ(ăûcãý¶ãĞÔäâK&amp;§ã] !apZÕáÙďý593qð·n}0ß¸LĘÙ½ö÷ü#eJÎöõÍ®Õ·&lt;Í%£tÓÁvU~&amp;|îċ`þù5Æo¨áĉÖ°^ÖÊčYäpø+ëm0TęĂÔ(ĒHWp~c_çö#£~j¤QÝçÆÌÑ$98ċØ¨¼£6`)Ê&lt;²B5. ïJYt7Ø2®ý=ąÊÍÚàsÌ¿ã-ÿ&amp;Ė@²ÓÆïðčĀ¤nđăÀG~MÛ#VÍ¹dÿÅ°HæđÊ'q±4$â!gĂ ÐÎôCü4n)ÿQÅ!Ď!âãáîØl¬°YªûFÀªE¢¹½geÒąw2ëUcIâîñyZ5ÖČ%æP'Í³ûĆÜĎÝÖAÂÔõ£Â°pĐHÔcÏ|äñ[Ù¦P ¥§Eì{Ĕğpėēĉv(Ć+}4Ą,X¡ïµ¿Ď-´î¹đąàĉðÅ½þÔėĘĝLÎwkÇÙîā¶ÁÿáÿKáKæ¹äB¨§*8Ü1ÒqóÈâ£ĆOlSc£uXÔ;CzPß½ĖL£oď¡a¥-ćÀ uu_Ý®ĐăĒÙwăz¤)ãÝ«uBēÎàÁvûßû$Ì4ĈąðBĉprÇÖĚ=Ípx}{ğ²ÝËS³Đ"ñM£/çĆBú"*2Ñ;;ÐwÍ(É(Ïj}ėdĆÀÌU]åU×ÆOµ{O/Î'Xôćï^WÛÜĕß^à¬xWĚ7°zpÚ®Ě}]ĎWû¦RVĂTþ!fµld³ciW·=¼Ė²¶čò]ßDĚZ|Ĕĕ[´&gt;3Ôė§áÎS»WîHęËÊ=éïé®ÅÚ Ù8éW,ć8ómè&amp;°~Eċg%m{N4nÜÔ7[è5ĝÅeLwþ÷|ÁºùdĜ;ÁÕýÔTô Ĝ°ÏĎVąwpidĆ=HO[ÛîÈßęøÎß&lt;¬&lt;ě#b0åĈ æ?]%[ã4pÕmó%G3Ï])[Íôē]xr«ZòäA± ¾ýð?ò´  </osmand:osm_tag_content_-_de>
+      <osmand:amenity_name>Glaswaldsee</osmand:amenity_name>
+      <osmand:amenity_type>osmwiki</osmand:amenity_type>
+      <osmand:osm_tag_wiki_lang_-_zh>yes</osmand:osm_tag_wiki_lang_-_zh>
+      <osmand:osm_tag_wiki_lang_-_es>yes</osmand:osm_tag_wiki_lang_-_es>
+      <osmand:osm_tag_wiki_lang_-_en>yes</osmand:osm_tag_wiki_lang_-_en>
+      <osmand:address>Nähe Heidenstadtweg, Oppenau</osmand:address>
+      <osmand:icon>wiki_place</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Glaswaldsee: osmwiki:wiki_place</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="48.6096323" lon="8.1526387">
+    <ele>752</ele>
+    <time>2021-11-21T08:59:05Z</time>
+    <name>Gleitschirm-Startplatz</name>
+    <type>Zuhause</type>
+    <cmt>Amenity:Gleitschirm-Startplatz: tourism:viewpoint</cmt>
+    <extensions>
+      <osmand:address>Nähe Markteichstraße (Schönbüch), Sasbachwalden</osmand:address>
+      <osmand:icon>special_star</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Gleitschirm-Startplatz: tourism:viewpoint</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="48.6145636" lon="8.1061036">
+    <time>2021-08-11T21:17:37Z</time>
+    <name>Hausrunde Trail</name>
+    <type>Zuhause</type>
+    <extensions>
+      <osmand:address>Nähe Allmendweg, Sasbachwalden</osmand:address>
+      <osmand:icon>special_star</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#10c0f0</osmand:color>
+    </extensions>
+  </wpt>
+  <wpt lat="48.546192" lon="8.1074059">
+    <ele>584.5</ele>
+    <time>2022-04-20T05:46:08Z</time>
+    <name>Jugendhaus St. Hubertus</name>
+    <type>Zuhause</type>
+    <cmt>Amenity:Jugendhaus St. Hubertus: tourism:chalet</cmt>
+    <extensions>
+      <osmand:address>Nähe Schwendner Straße, Oberkirch</osmand:address>
+      <osmand:icon>tourism_chalet</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Jugendhaus St. Hubertus: tourism:chalet</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="48.4695425" lon="8.1199962">
+    <ele>508</ele>
+    <time>2023-01-22T11:38:36Z</time>
+    <name>Kalikutt</name>
+    <type>Zuhause</type>
+    <extensions>
+      <osmand:amenity_subtype>hamlet</osmand:amenity_subtype>
+      <osmand:amenity_name>Kalikutt</osmand:amenity_name>
+      <osmand:amenity_type>administrative</osmand:amenity_type>
+      <osmand:address>Kalikutt</osmand:address>
+      <osmand:icon>hamlet</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Kalikutt: administrative:hamlet</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="48.5448779" lon="8.0978748">
+    <time>2022-07-18T05:00:02Z</time>
+    <name>Mini-Trail</name>
+    <type>Zuhause</type>
+    <extensions>
+      <osmand:address>2022-07-17 15-24 Sun</osmand:address>
+      <osmand:icon>sport_bmx</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+    </extensions>
+  </wpt>
+  <wpt lat="48.4527893" lon="8.0935116">
+    <ele>848</ele>
+    <time>2022-07-19T16:40:19Z</time>
+    <name>Moosturm</name>
+    <type>Zuhause</type>
+    <cmt>Amenity:Moosturm: man_made:tower</cmt>
+    <extensions>
+      <osmand:address>Nähe Müllerwaldweg, Gengenbach</osmand:address>
+      <osmand:icon>man_made_tower</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Moosturm: man_made:tower</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="48.6189825" lon="8.1918019">
+    <time>2021-08-11T21:17:37Z</time>
+    <name>Pfad Zwo Trail</name>
+    <type>Zuhause</type>
+    <extensions>
+      <osmand:address>L 86</osmand:address>
+      <osmand:icon>special_star</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#10c0f0</osmand:color>
+    </extensions>
+  </wpt>
+  <wpt lat="48.6174434" lon="8.129736">
+    <time>2021-08-11T21:17:37Z</time>
+    <name>Pumptrack</name>
+    <type>Zuhause</type>
+    <cmt>Amenity:Pumptrack: sport:pitch</cmt>
+    <extensions>
+      <osmand:address>Am Werth, Sasbachwalden</osmand:address>
+      <osmand:icon>special_star</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#10c0f0</osmand:color>
+      <osmand:amenity_origin>Amenity:Pumptrack: sport:pitch</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="48.539405" lon="8.0944777">
+    <ele>357</ele>
+    <time>2022-09-07T14:47:34Z</time>
+    <name>Schauenburg</name>
+    <type>Zuhause</type>
+    <cmt>Amenity:Schauenburg: tourism:castle</cmt>
+    <extensions>
+      <osmand:address>Burgstraße (Gaisbach) 29, Oberkirch</osmand:address>
+      <osmand:icon>historic_castle</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Schauenburg: tourism:castle</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="48.5327023" lon="8.0954701">
+    <time>2022-04-20T05:47:32Z</time>
+    <name>Schwalbenstein</name>
+    <type>Zuhause</type>
+    <cmt>Amenity:: tourism:viewpoint</cmt>
+    <extensions>
+      <osmand:address>Schwalbensteinweg, Oberkirch</osmand:address>
+      <osmand:icon>tourism_viewpoint</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:: tourism:viewpoint</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="48.6085964" lon="8.1699874">
+    <time>2021-08-11T21:17:37Z</time>
+    <name>Schwarzwaldtrail</name>
+    <type>Zuhause</type>
+    <extensions>
+      <osmand:address>Nähe Markteichstraße (Grimmerswald), Seebach</osmand:address>
+      <osmand:icon>special_star</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#10c0f0</osmand:color>
+    </extensions>
+  </wpt>
+  <wpt lat="48.5330276" lon="8.1615219">
+    <ele>785.5</ele>
+    <time>2023-01-22T11:22:13Z</time>
+    <name>Sohlberg</name>
+    <type>Zuhause</type>
+    <extensions>
+      <osmand:amenity_subtype>peak</osmand:amenity_subtype>
+      <osmand:amenity_name>Sohlberg</osmand:amenity_name>
+      <osmand:osm_tag_wikidata>Q31316967</osmand:osm_tag_wikidata>
+      <osmand:osm_tag_ele>781</osmand:osm_tag_ele>
+      <osmand:amenity_type>natural</osmand:amenity_type>
+      <osmand:address>Sohlbergstraße, Sohlberg</osmand:address>
+      <osmand:icon>natural_peak</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+      <osmand:amenity_origin>Amenity:Sohlberg: natural:peak</osmand:amenity_origin>
+    </extensions>
+  </wpt>
+  <wpt lat="48.6092602" lon="8.116251">
+    <time>2021-08-11T21:17:37Z</time>
+    <name>Steil</name>
+    <type>Zuhause</type>
+    <extensions>
+      <osmand:address>Nähe L 86a</osmand:address>
+      <osmand:icon>special_star</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#b488e030</osmand:color>
+    </extensions>
+  </wpt>
+  <wpt lat="48.6058487" lon="8.1162732">
+    <time>2021-08-11T21:17:37Z</time>
+    <name>Unterschlupf</name>
+    <type>Zuhause</type>
+    <extensions>
+      <osmand:icon>special_star</osmand:icon>
+      <osmand:background>circle</osmand:background>
+      <osmand:color>#eecc22</osmand:color>
+    </extensions>
+  </wpt>
+  <extensions>
+    <osmand:points_groups>
+      <group name="Zuhause" color="#eecc22" icon="special_star" background="circle" />
+    </osmand:points_groups>
+  </extensions>
+</gpx>

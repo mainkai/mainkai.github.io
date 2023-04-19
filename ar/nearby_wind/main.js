@@ -36,7 +36,6 @@ async function getElevation(lat, lng, zoom = 15) {  // max Zoom is 15 -> resolut
 
   // pre-calculate multiplicator to reuse for tile number and pixels calculation
   const xMul = ((lng + 180) / 360) * Math.pow(2, zoom);
-  // const yMul = (1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) * Math.pow(2, zoom - 1);
   const yMul = (1 - Math.log(Math.tan(lat * Math.PI / 180) + 1 / Math.cos(lat * Math.PI / 180)) / Math.PI) / 2 * Math.pow(2, zoom);  // https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames#ECMAScript_(JavaScript/ActionScript,_etc.)
 
   const tileX = Math.floor(xMul);
@@ -112,6 +111,13 @@ window.onload = () => {
                 console.error(err);
             });
 
+            // load POIs from GPX file
+            (async () => {
+                const url = 'path/to/your/gpx/file.gpx';
+                const pois = await loadGPX(url);
+                console.log(pois);
+              })();
+
 
             // Add a box to the north of the initial GPS position
             const entity = document.createElement("a-box");
@@ -164,8 +170,37 @@ function createWindTurbineEntity(turbine, altitude) {
     const entity = document.createElement('a-entity');
     entity.setAttribute('gps-entity-place', `latitude: ${turbine.lat}; longitude: ${turbine.lon}`);
     entity.setAttribute('geometry', 'primitive: cylinder; radius: 0.5; height: 10');
+    // TODO: use 3D model
     entity.setAttribute('material', 'color: green');
     entity.setAttribute('scale', '100 200 100');
     entity.setAttribute('position', `0 ${altitude} 0`);
     return entity;
 }
+
+function parseGPX(gpxContent) {
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(gpxContent, "application/xml");
+  
+    const pois = [];
+  
+    const waypoints = xmlDoc.getElementsByTagName("wpt");
+    for (let i = 0; i < waypoints.length; i++) {
+      const waypoint = waypoints[i];
+      const lat = parseFloat(waypoint.getAttribute("lat"));
+      const lng = parseFloat(waypoint.getAttribute("lon"));
+      const nameElem = waypoint.getElementsByTagName("name")[0];
+      const name = nameElem ? nameElem.textContent : "";
+  
+      pois.push({ lat, lng, name });
+    }
+  
+    return pois;
+  }
+  
+  async function loadGPX(url) {
+    const response = await fetch(url);
+    const gpxContent = await response.text();
+    const pois = parseGPX(gpxContent);
+    return pois;
+  }
+  

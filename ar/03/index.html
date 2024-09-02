@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR.js GeoJSON Overlay</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.7.6/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs="sourceType: webcam;">
+        <!-- Camera setup -->
+        <a-camera gps-camera rotation-reader></a-camera>
+
+        <!-- GeoJSON Loader -->
+        <a-entity id="geojson-entity"
+                  geojson="src: ./assets/suitability_areas/kwp_oberkirch/Suitability area.geojson; color: neon-green; opacity: 0.5;">
+        </a-entity>
+    </a-scene>
+
+    <script>
+        AFRAME.registerComponent('geojson', {
+            schema: {
+                src: { type: 'string' },
+                color: { type: 'color', default: 'neon-green' },
+                opacity: { type: 'number', default: 0.5 }
+            },
+            init: function () {
+                var self = this;
+                var loader = new THREE.FileLoader();
+                loader.load(this.data.src, function (data) {
+                    var geoData = JSON.parse(data);
+                    var material = new THREE.MeshBasicMaterial({
+                        color: self.data.color,
+                        transparent: true,
+                        opacity: self.data.opacity,
+                        side: THREE.DoubleSide,
+                        wireframe: true
+                    });
+
+                    geoData.features.forEach(function (feature) {
+                        if (feature.geometry.type === 'Polygon') {
+                            var shape = new THREE.Shape();
+                            feature.geometry.coordinates[0].forEach(function (coord, index) {
+                                var lat = coord[1];
+                                var lon = coord[0];
+                                var altitude = coord[2] || 0;
+                                var position = self.el.sceneEl.systems['gps-camera'].latLonToWorld(lat, lon);
+
+                                if (index === 0) {
+                                    shape.moveTo(position.x, position.z);
+                                } else {
+                                    shape.lineTo(position.x, position.z);
+                                }
+                            });
+                            var geometry = new THREE.ShapeBufferGeometry(shape);
+                            var mesh = new THREE.Mesh(geometry, material);
+                            self.el.setObject3D('mesh', mesh);
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

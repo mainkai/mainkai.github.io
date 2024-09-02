@@ -7,18 +7,8 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.7.6/aframe/build/aframe-ar.min.js"></script>
     <script src="https://unpkg.com/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
-</head>
-<body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="sourceType: webcam;">
-        <!-- Camera setup -->
-        <a-camera gps-camera rotation-reader></a-camera>
 
-        <!-- GeoJSON Loader -->
-        <a-entity id="geojson-entity"
-                  geojson="src: '../assets/suitability_areas/kwp_oberkirch/Suitability area.geojson'; color: neon-green; opacity: 0.5;">
-        </a-entity>
-    </a-scene>
-
+    <!-- Register the custom components before the scene -->
     <script>
         AFRAME.registerComponent('geojson', {
             schema: {
@@ -89,5 +79,16 @@
             }
         });
     </script>
+</head>
+<body style="margin: 0; overflow: hidden;">
+    <a-scene embedded arjs="sourceType: webcam;">
+        <!-- Camera setup -->
+        <a-camera gps-camera rotation-reader></a-camera>
+
+        <!-- GeoJSON Loader -->
+        <a-entity id="geojson-entity"
+                  geojson="src: '../assets/suitability_areas/kwp_oberkirch/Suitability area.geojson'; color: neon-green; opacity: 0.5;">
+        </a-entity>
+    </a-scene>
 </body>
 </html>

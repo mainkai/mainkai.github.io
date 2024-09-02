@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AR.js GeoJSON Overlay</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.7.6/aframe/build/aframe-ar.min.js"></script>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <script src="https://unpkg.com/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
 
     <script>
@@ -20,17 +20,7 @@
                 console.log('GeoJSON component initialized.');
                 console.log('Loading GeoJSON from:', this.data.src);
 
-                // Check if the gps-camera system is available before loading
-                if (this.el.sceneEl.systems['gps-camera']) {
-                    console.log('GPS camera system available.');
-                    this.loadGeoJSON();
-                } else {
-                    console.warn('GPS camera system is not available.');
-                    this.el.sceneEl.addEventListener('gps-camera-update-position', function () {
-                        console.log('GPS camera system is now ready.');
-                        self.loadGeoJSON();
-                    });
-                }
+                this.loadGeoJSON();
             },
             loadGeoJSON: function() {
                 var self = this;
@@ -59,21 +49,17 @@
                                 var altitude = coord[2] || 0;
                                 console.log(`Coordinate ${index}: lat=${lat}, lon=${lon}, altitude=${altitude}`);
 
-                                var gpsSystem = self.el.sceneEl.systems['gps-camera'];
-                                if (gpsSystem) {
-                                    var position = gpsSystem.latLonToWorld(lat, lon);
-                                    if (position) {
-                                        console.log('Converted to world position:', position);
-                                        if (index === 0) {
-                                            shape.moveTo(position.x, position.z);
-                                        } else {
-                                            shape.lineTo(position.x, position.z);
-                                        }
+                                // Fallback to simple lat/lon without the gps-camera system
+                                var position = self.latLonToWorld(lat, lon);
+                                if (position) {
+                                    console.log('Converted to world position:', position);
+                                    if (index === 0) {
+                                        shape.moveTo(position.x, position.z);
                                     } else {
-                                        console.warn('Failed to convert lat/lon to world position for coordinate:', index);
+                                        shape.lineTo(position.x, position.z);
                                     }
                                 } else {
-                                    console.warn('GPS system is still not available.');
+                                    console.warn('Failed to convert lat/lon to world position for coordinate:', index);
                                 }
                             });
                             var geometry = new THREE.ShapeBufferGeometry(shape);
@@ -91,6 +77,12 @@
                 }, function (err) {
                     console.error('An error happened while loading the GeoJSON file from:', self.data.src, err);
                 });
+            },
+            latLonToWorld: function (lat, lon) {
+                // Simple conversion, assuming a flat world (not for actual GPS usage)
+                var x = lon * 111320; // longitude to meters
+                var z = lat * 110540; // latitude to meters
+                return { x: x, z: z };
             }
         });
 
@@ -109,14 +101,18 @@
     </script>
 </head>
 <body style="margin: 0; overflow: hidden;">
-    <a-scene embedded arjs="sourceType: webcam;">
-        <!-- Camera setup with fallback initial position -->
-        <a-camera gps-camera position="0 0 0" rotation-reader></a-camera>
-
-        <!-- GeoJSON Loader -->
-        <a-entity id="geojson-entity"
-                  geojson="src: https://mainkai.github.io/ar/assets/suitability_areas/kwp_oberkirch/Suitability%20area.geojson; color: #39FF14; opacity: 0.5;">
+    <a-scene
+        vr-mode-ui="enabled: false"
+        arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false;">
+        
+        <a-camera gps-camera="positionMinAccuracy: 500" rotation-reader></a-camera>
+        
+        <!-- Use gps-entity-place for static positioning -->
+        <a-entity
+            gps-entity-place="latitude: 48.53907734654573; longitude: 8.076382418101675;"
+            geojson="src: https://mainkai.github.io/ar/assets/suitability_areas/kwp_oberkirch/Suitability%20area.geojson; color: #39FF14; opacity: 0.5;">
         </a-entity>
+      
     </a-scene>
 </body>
 </html>

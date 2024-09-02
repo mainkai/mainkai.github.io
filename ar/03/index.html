@@ -20,15 +20,17 @@
                 console.log('GeoJSON component initialized.');
                 console.log('Loading GeoJSON from:', this.data.src);
 
-                // Debugging: Check if the event fires
-                this.el.sceneEl.addEventListener('gps-camera-update-position', function () {
-                    console.log('GPS camera is ready and event fired.');
-
-                    self.loadGeoJSON();
-                });
-
-                // Fallback to load immediately if GPS data isn't necessary for initial testing
-                self.loadGeoJSON();
+                // Check if the gps-camera system is available before loading
+                if (this.el.sceneEl.systems['gps-camera']) {
+                    console.log('GPS camera system available.');
+                    this.loadGeoJSON();
+                } else {
+                    console.warn('GPS camera system is not available.');
+                    this.el.sceneEl.addEventListener('gps-camera-update-position', function () {
+                        console.log('GPS camera system is now ready.');
+                        self.loadGeoJSON();
+                    });
+                }
             },
             loadGeoJSON: function() {
                 var self = this;
@@ -57,17 +59,21 @@
                                 var altitude = coord[2] || 0;
                                 console.log(`Coordinate ${index}: lat=${lat}, lon=${lon}, altitude=${altitude}`);
 
-                                var position = self.el.sceneEl.systems['gps-camera'].latLonToWorld(lat, lon);
-
-                                if (position) {
-                                    console.log('Converted to world position:', position);
-                                    if (index === 0) {
-                                        shape.moveTo(position.x, position.z);
+                                var gpsSystem = self.el.sceneEl.systems['gps-camera'];
+                                if (gpsSystem) {
+                                    var position = gpsSystem.latLonToWorld(lat, lon);
+                                    if (position) {
+                                        console.log('Converted to world position:', position);
+                                        if (index === 0) {
+                                            shape.moveTo(position.x, position.z);
+                                        } else {
+                                            shape.lineTo(position.x, position.z);
+                                        }
                                     } else {
-                                        shape.lineTo(position.x, position.z);
+                                        console.warn('Failed to convert lat/lon to world position for coordinate:', index);
                                     }
                                 } else {
-                                    console.warn('Failed to convert lat/lon to world position for coordinate:', index);
+                                    console.warn('GPS system is still not available.');
                                 }
                             });
                             var geometry = new THREE.ShapeBufferGeometry(shape);
@@ -88,22 +94,6 @@
             }
         });
 
-        AFRAME.registerComponent('gps-camera', {
-            init: function() {
-                // Set initial fallback coordinates
-                this.el.setAttribute('gps-camera', {
-                    position: {
-                        latitude: 48.53907734654573,
-                        longitude: 8.076382418101675
-                    }
-                });
-                console.log('Fallback coordinates set:', {
-                    latitude: 48.53907734654573,
-                    longitude: 8.076382418101675
-                });
-            }
-        });
-
         AFRAME.registerComponent('rotation-reader', {
             init: function () {
                 this.lastRotation = null;
@@ -120,8 +110,8 @@
 </head>
 <body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs="sourceType: webcam;">
-        <!-- Camera setup -->
-        <a-camera gps-camera rotation-reader></a-camera>
+        <!-- Camera setup with fallback initial position -->
+        <a-camera gps-camera position="0 0 0" rotation-reader></a-camera>
 
         <!-- GeoJSON Loader -->
         <a-entity id="geojson-entity"

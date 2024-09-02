@@ -13,7 +13,7 @@
         AFRAME.registerComponent('geojson', {
             schema: {
                 src: { type: 'string' },
-                color: { type: 'color', default: 'neon-green' },
+                color: { type: 'color', default: '#39FF14' },  // Using hex color code for neon-green
                 opacity: { type: 'number', default: 0.5 }
             },
             init: function () {
@@ -21,58 +21,62 @@
                 console.log('GeoJSON component initialized.');
                 console.log('Loading GeoJSON from:', this.data.src);
 
-                var loader = new THREE.FileLoader();
-                loader.load(this.data.src, function (data) {
-                    console.log('GeoJSON file loaded successfully from:', self.data.src);
-                    var geoData = JSON.parse(data);
-                    var material = new THREE.MeshBasicMaterial({
-                        color: self.data.color,
-                        transparent: true,
-                        opacity: self.data.opacity,
-                        side: THREE.DoubleSide,
-                        wireframe: true
-                    });
+                this.el.sceneEl.addEventListener('gps-camera-update-position', function () {
+                    console.log('GPS camera is ready.');
 
-                    var totalPoints = 0;
+                    var loader = new THREE.FileLoader();
+                    loader.load(self.data.src, function (data) {
+                        console.log('GeoJSON file loaded successfully from:', self.data.src);
+                        var geoData = JSON.parse(data);
+                        var material = new THREE.MeshBasicMaterial({
+                            color: self.data.color,
+                            transparent: true,
+                            opacity: self.data.opacity,
+                            side: THREE.DoubleSide,
+                            wireframe: true
+                        });
 
-                    geoData.features.forEach(function (feature, featureIndex) {
-                        if (feature.geometry.type === 'Polygon') {
-                            console.log('Processing Polygon feature:', featureIndex);
-                            var shape = new THREE.Shape();
-                            feature.geometry.coordinates[0].forEach(function (coord, index) {
-                                totalPoints++;
-                                var lat = coord[1];
-                                var lon = coord[0];
-                                var altitude = coord[2] || 0;
-                                console.log(`Coordinate ${index}: lat=${lat}, lon=${lon}, altitude=${altitude}`);
+                        var totalPoints = 0;
 
-                                var position = self.el.sceneEl.systems['gps-camera'].latLonToWorld(lat, lon);
+                        geoData.features.forEach(function (feature, featureIndex) {
+                            if (feature.geometry.type === 'Polygon') {
+                                console.log('Processing Polygon feature:', featureIndex);
+                                var shape = new THREE.Shape();
+                                feature.geometry.coordinates[0].forEach(function (coord, index) {
+                                    totalPoints++;
+                                    var lat = coord[1];
+                                    var lon = coord[0];
+                                    var altitude = coord[2] || 0;
+                                    console.log(`Coordinate ${index}: lat=${lat}, lon=${lon}, altitude=${altitude}`);
 
-                                if (position) {
-                                    console.log('Converted to world position:', position);
-                                    if (index === 0) {
-                                        shape.moveTo(position.x, position.z);
+                                    var position = self.el.sceneEl.systems['gps-camera'].latLonToWorld(lat, lon);
+
+                                    if (position) {
+                                        console.log('Converted to world position:', position);
+                                        if (index === 0) {
+                                            shape.moveTo(position.x, position.z);
+                                        } else {
+                                            shape.lineTo(position.x, position.z);
+                                        }
                                     } else {
-                                        shape.lineTo(position.x, position.z);
+                                        console.warn('Failed to convert lat/lon to world position for coordinate:', index);
                                     }
-                                } else {
-                                    console.warn('Failed to convert lat/lon to world position for coordinate:', index);
-                                }
-                            });
-                            var geometry = new THREE.ShapeBufferGeometry(shape);
-                            var mesh = new THREE.Mesh(geometry, material);
-                            self.el.setObject3D('mesh' + featureIndex, mesh);
-                            console.log('Polygon feature rendered:', featureIndex);
-                        } else {
-                            console.warn('Unsupported geometry type:', feature.geometry.type);
-                        }
-                    });
+                                });
+                                var geometry = new THREE.ShapeBufferGeometry(shape);
+                                var mesh = new THREE.Mesh(geometry, material);
+                                self.el.setObject3D('mesh' + featureIndex, mesh);
+                                console.log('Polygon feature rendered:', featureIndex);
+                            } else {
+                                console.warn('Unsupported geometry type:', feature.geometry.type);
+                            }
+                        });
 
-                    console.log('Total number of points loaded from GeoJSON:', totalPoints);
-                }, function (xhr) {
-                    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-                }, function (err) {
-                    console.error('An error happened while loading the GeoJSON file from:', self.data.src, err);
+                        console.log('Total number of points loaded from GeoJSON:', totalPoints);
+                    }, function (xhr) {
+                        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+                    }, function (err) {
+                        console.error('An error happened while loading the GeoJSON file from:', self.data.src, err);
+                    });
                 });
             }
         });
@@ -98,7 +102,7 @@
 
         <!-- GeoJSON Loader -->
         <a-entity id="geojson-entity"
-                  geojson="src: https://mainkai.github.io/ar/assets/suitability_areas/kwp_oberkirch/Suitability%20area.geojson; color: neon-green; opacity: 0.5;">
+                  geojson="src: https://mainkai.github.io/ar/assets/suitability_areas/kwp_oberkirch/Suitability%20area.geojson; color: #39FF14; opacity: 0.5;">
         </a-entity>
     </a-scene>
 </body>

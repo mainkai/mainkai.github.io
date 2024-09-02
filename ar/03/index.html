@@ -23,7 +23,7 @@
 
                 var loader = new THREE.FileLoader();
                 loader.load(this.data.src, function (data) {
-                    console.log('GeoJSON file loaded successfully.');
+                    console.log('GeoJSON file loaded successfully from:', self.data.src);
                     var geoData = JSON.parse(data);
                     var material = new THREE.MeshBasicMaterial({
                         color: self.data.color,
@@ -33,11 +33,14 @@
                         wireframe: true
                     });
 
+                    var totalPoints = 0;
+
                     geoData.features.forEach(function (feature, featureIndex) {
                         if (feature.geometry.type === 'Polygon') {
                             console.log('Processing Polygon feature:', featureIndex);
                             var shape = new THREE.Shape();
                             feature.geometry.coordinates[0].forEach(function (coord, index) {
+                                totalPoints++;
                                 var lat = coord[1];
                                 var lon = coord[0];
                                 var altitude = coord[2] || 0;
@@ -64,10 +67,12 @@
                             console.warn('Unsupported geometry type:', feature.geometry.type);
                         }
                     });
+
+                    console.log('Total number of points loaded from GeoJSON:', totalPoints);
                 }, function (xhr) {
                     console.log((xhr.loaded / xhr.total * 100) + '% loaded');
                 }, function (err) {
-                    console.error('An error happened while loading the GeoJSON file:', err);
+                    console.error('An error happened while loading the GeoJSON file from:', self.data.src, err);
                 });
             }
         });
@@ -87,7 +92,7 @@
 
         <!-- GeoJSON Loader -->
         <a-entity id="geojson-entity"
-                  geojson="src: '../assets/suitability_areas/kwp_oberkirch/Suitability area.geojson'; color: neon-green; opacity: 0.5;">
+                  geojson="src: 'https://mainkai.github.io/ar/assets/suitability_areas/kwp_oberkirch/Suitability%20area.geojson'; color: neon-green; opacity: 0.5;">
         </a-entity>
     </a-scene>
 </body>

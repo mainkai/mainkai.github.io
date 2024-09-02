@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AR.js GeoJSON Overlay</title>
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <!-- Use the latest stable A-Frame and AR.js versions -->
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <script src="https://unpkg.com/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
 
@@ -49,7 +50,6 @@
                                 var altitude = coord[2] || 0;
                                 console.log(`Coordinate ${index}: lat=${lat}, lon=${lon}, altitude=${altitude}`);
 
-                                // Fallback to simple lat/lon without the gps-camera system
                                 var position = self.latLonToWorld(lat, lon);
                                 if (position) {
                                     console.log('Converted to world position:', position);

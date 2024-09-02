@@ -78,9 +78,15 @@
         });
 
         AFRAME.registerComponent('rotation-reader', {
+            init: function () {
+                this.lastRotation = null;
+            },
             tick: function () {
                 var rotation = this.el.getAttribute('rotation');
-                console.log('Camera rotation:', rotation);
+                if (this.lastRotation === null || rotation.x !== this.lastRotation.x || rotation.y !== this.lastRotation.y || rotation.z !== this.lastRotation.z) {
+                    console.log('Camera rotation:', rotation);
+                    this.lastRotation = Object.assign({}, rotation);
+                }
             }
         });
     </script>
@@ -92,7 +98,7 @@
 
         <!-- GeoJSON Loader -->
         <a-entity id="geojson-entity"
-                  geojson="src: 'https://mainkai.github.io/ar/assets/suitability_areas/kwp_oberkirch/Suitability%20area.geojson'; color: neon-green; opacity: 0.5;">
+                  geojson="src: https://mainkai.github.io/ar/assets/suitability_areas/kwp_oberkirch/Suitability%20area.geojson; color: neon-green; opacity: 0.5;">
         </a-entity>
     </a-scene>
 </body>

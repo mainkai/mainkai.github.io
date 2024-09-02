@@ -8,7 +8,6 @@
     <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.7.6/aframe/build/aframe-ar.min.js"></script>
     <script src="https://unpkg.com/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
 
-    <!-- Register the custom components before the scene -->
     <script>
         AFRAME.registerComponent('geojson', {
             schema: {
@@ -21,62 +20,86 @@
                 console.log('GeoJSON component initialized.');
                 console.log('Loading GeoJSON from:', this.data.src);
 
+                // Debugging: Check if the event fires
                 this.el.sceneEl.addEventListener('gps-camera-update-position', function () {
-                    console.log('GPS camera is ready.');
+                    console.log('GPS camera is ready and event fired.');
 
-                    var loader = new THREE.FileLoader();
-                    loader.load(self.data.src, function (data) {
-                        console.log('GeoJSON file loaded successfully from:', self.data.src);
-                        var geoData = JSON.parse(data);
-                        var material = new THREE.MeshBasicMaterial({
-                            color: self.data.color,
-                            transparent: true,
-                            opacity: self.data.opacity,
-                            side: THREE.DoubleSide,
-                            wireframe: true
-                        });
+                    self.loadGeoJSON();
+                });
 
-                        var totalPoints = 0;
-
-                        geoData.features.forEach(function (feature, featureIndex) {
-                            if (feature.geometry.type === 'Polygon') {
-                                console.log('Processing Polygon feature:', featureIndex);
-                                var shape = new THREE.Shape();
-                                feature.geometry.coordinates[0].forEach(function (coord, index) {
-                                    totalPoints++;
-                                    var lat = coord[1];
-                                    var lon = coord[0];
-                                    var altitude = coord[2] || 0;
-                                    console.log(`Coordinate ${index}: lat=${lat}, lon=${lon}, altitude=${altitude}`);
-
-                                    var position = self.el.sceneEl.systems['gps-camera'].latLonToWorld(lat, lon);
-
-                                    if (position) {
-                                        console.log('Converted to world position:', position);
-                                        if (index === 0) {
-                                            shape.moveTo(position.x, position.z);
-                                        } else {
-                                            shape.lineTo(position.x, position.z);
-                                        }
-                                    } else {
-                                        console.warn('Failed to convert lat/lon to world position for coordinate:', index);
-                                    }
-                                });
-                                var geometry = new THREE.ShapeBufferGeometry(shape);
-                                var mesh = new THREE.Mesh(geometry, material);
-                                self.el.setObject3D('mesh' + featureIndex, mesh);
-                                console.log('Polygon feature rendered:', featureIndex);
-                            } else {
-                                console.warn('Unsupported geometry type:', feature.geometry.type);
-                            }
-                        });
-
-                        console.log('Total number of points loaded from GeoJSON:', totalPoints);
-                    }, function (xhr) {
-                        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-                    }, function (err) {
-                        console.error('An error happened while loading the GeoJSON file from:', self.data.src, err);
+                // Fallback to load immediately if GPS data isn't necessary for initial testing
+                self.loadGeoJSON();
+            },
+            loadGeoJSON: function() {
+                var self = this;
+                var loader = new THREE.FileLoader();
+                loader.load(self.data.src, function (data) {
+                    console.log('GeoJSON file loaded successfully from:', self.data.src);
+                    var geoData = JSON.parse(data);
+                    var material = new THREE.MeshBasicMaterial({
+                        color: self.data.color,
+                        transparent: true,
+                        opacity: self.data.opacity,
+                        side: THREE.DoubleSide,
+                        wireframe: true
                     });
+
+                    var totalPoints = 0;
+
+                    geoData.features.forEach(function (feature, featureIndex) {
+                        if (feature.geometry.type === 'Polygon') {
+                            console.log('Processing Polygon feature:', featureIndex);
+                            var shape = new THREE.Shape();
+                            feature.geometry.coordinates[0].forEach(function (coord, index) {
+                                totalPoints++;
+                                var lat = coord[1];
+                                var lon = coord[0];
+                                var altitude = coord[2] || 0;
+                                console.log(`Coordinate ${index}: lat=${lat}, lon=${lon}, altitude=${altitude}`);
+
+                                var position = self.el.sceneEl.systems['gps-camera'].latLonToWorld(lat, lon);
+
+                                if (position) {
+                                    console.log('Converted to world position:', position);
+                                    if (index === 0) {
+                                        shape.moveTo(position.x, position.z);
+                                    } else {
+                                        shape.lineTo(position.x, position.z);
+                                    }
+                                } else {
+                                    console.warn('Failed to convert lat/lon to world position for coordinate:', index);
+                                }
+                            });
+                            var geometry = new THREE.ShapeBufferGeometry(shape);
+                            var mesh = new THREE.Mesh(geometry, material);
+                            self.el.setObject3D('mesh' + featureIndex, mesh);
+                            console.log('Polygon feature rendered:', featureIndex);
+                        } else {
+                            console.warn('Unsupported geometry type:', feature.geometry.type);
+                        }
+                    });
+
+                    console.log('Total number of points loaded from GeoJSON:', totalPoints);
+                }, function (xhr) {
+                    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+                }, function (err) {
+                    console.error('An error happened while loading the GeoJSON file from:', self.data.src, err);
+                });
+            }
+        });
+
+        AFRAME.registerComponent('gps-camera', {
+            init: function() {
+                // Set initial fallback coordinates
+                this.el.setAttribute('gps-camera', {
+                    position: {
+                        latitude: 48.53907734654573,
+                        longitude: 8.076382418101675
+                    }
+                });
+                console.log('Fallback coordinates set:', {
+                    latitude: 48.53907734654573,
+                    longitude: 8.076382418101675
                 });
             }
         });
